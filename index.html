@@ -38,7 +38,9 @@
 <body>
 <header class="topbar">
  <div class="brandmark">🎲</div><div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.0.0</div></div>
- <div class="top-spacer"></div><button class="iconbtn" id="settingsTop" aria-label="Pengaturan">⚙</button>
+ <div class="top-spacer"></div>
+ <button class="btn primary small" id="installAppBtn" style="display:none; margin-right:8px; padding:6px 12px; font-size:12px;">⬇ Instal App</button>
+ <button class="iconbtn" id="settingsTop" aria-label="Pengaturan">⚙</button>
 </header>
 <div class="app">
  <aside class="panel">
@@ -109,11 +111,4 @@ $('settingsTop').onclick=$('settingsBtn').onclick=openSettings;$('closeSettings'
 $('applySettings').onclick=()=>{const gc=Math.max(2,Math.min(50,parseInt($('groupSetting').value)||4)),pg=Math.max(1,Math.min(100,parseInt($('sizeSetting').value)||5));state.settings={title:$('appTitle').value.trim()||'LOTRE GROUP RANDOM',groupCount:gc,perGroup:pg,mode:$('modeSetting').value,palette:$('colorSetting').value};document.title=state.settings.title;$('mode').value=state.settings.mode;persist();fillTarget();renderStats();closeModal('settingsModal');toast('Pengaturan berhasil disimpan.')};
 $('copyBtn').onclick=()=>{const t=resultText();if(!t)return toast('Belum ada hasil undian.');if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>toast('Hasil disalin.')).catch(()=>toast('Gagal menyalin.'));else toast('Browser tidak mendukung salin otomatis.')};
 $('shareBtn').onclick=()=>{const t=resultText();if(!t)return toast('Belum ada hasil undian.');if(navigator.share)navigator.share({title:state.settings.title,text:t}).catch(()=>{});else{const url='https://wa.me/?text='+encodeURIComponent(t);window.open(url,'_blank')}};
-$('saveBtn').onclick=()=>{if(!state.groups.length)return toast('Belum ada hasil undian.');state.history.unshift({date:new Date().toISOString(),groups:state.groups});state.history=state.history.slice(0,50);persist();renderStats();toast('Hasil undian disimpan.')};
-$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='backup-lotre-group-random.json';a.click();URL.revokeObjectURL(a.href);toast('Backup siap diunduh.')};
-$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!Array.isArray(x.members))throw Error();state={...state,...x,settings:{...state.settings,...x.settings}};persist();renderMembers();renderTeams();fillTarget();renderStats();toast('Data berhasil dipulihkan.')}catch(err){toast('File backup tidak valid.')}e.target.value=''};
-load();$('mode').value=state.settings.mode;document.title=state.settings.title;renderMembers();fillTarget();renderTeams();renderStats();
-if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-})();
-</script>
-</body></html>
+$('saveBtn').onclick=()=>{if(!state.groups.length)return toast('Belum ada hasil undian.');state.history.unshift({date:new Date().toISOString(),groups:state.groups});state.history=state.histo
