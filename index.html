@@ -39,7 +39,7 @@
 .install-actions{display:flex;gap:6px}
 
 /* LOCKSCREEN OVERRIDE */
-#lockScreen { z-index: 2000; background: var(--navy); backdrop-filter: none; }
+#lockScreen { z-index: 2000; background: var(--navy); backdrop-filter: none; display: flex; }
 #lockScreen .modal { width: 320px; text-align: center; }
 
 @media(max-width:800px){.app{grid-template-columns:1fr;padding:11px}.member-list{height:165px}.hero{padding:14px}.heroicon{font-size:32px}.hero .btn{padding:11px 12px;font-size:13px}.topbar{height:56px;padding:0 12px}.teams{gap:10px}}
@@ -49,24 +49,24 @@
 <body>
 
 <!-- KUNCI LAYAR (LOCKSCREEN) -->
-<div id="lockScreen" class="modalback show">
+<div id="lockScreen" class="modalback">
  <div class="modal">
   <div class="modalhead" style="justify-content:center; background:var(--navy2);"><b>🔒 MASUK APLIKASI</b></div>
   <div class="modalbody" style="padding: 25px 20px;">
-   <p style="font-size:13px; color:var(--muted); margin:0 0 15px;">Masukkan PIN keamanan Anda</p>
+   <p style="font-size:13px; color:var(--muted); margin:0 0 15px;">Masukkan PIN keamanan Anda (Default: 123456)</p>
    <input type="password" id="pinInput" class="field" style="text-align:center; font-size:24px; letter-spacing:8px; padding:12px;" placeholder="****">
-   <button class="btn primary" id="unlockBtn" style="width: 100%; margin-top: 15px; font-size:15px; padding:13px;">BUKA</button>
-   <button class="btn secondary small" id="forgotPinBtn" style="margin-top: 15px; width: 100%; background:transparent; border:1px solid var(--line);">Lupa PIN?</button>
+   <button class="btn primary" id="unlockBtn" type="button" style="width: 100%; margin-top: 15px; font-size:15px; padding:13px;">BUKA</button>
+   <button class="btn secondary small" id="forgotPinBtn" type="button" style="margin-top: 15px; width: 100%; background:transparent; border:1px solid var(--line);">Lupa PIN?</button>
   </div>
  </div>
 </div>
 
 <header class="topbar">
  <div class="brandmark">🎲</div>
- <div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.0.4</div></div>
+ <div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.0.5</div></div>
  <div class="top-spacer"></div>
- <button class="btn primary small" id="installAppBtn" style="display:none; margin-right:8px; padding:6px 12px; font-size:12px; font-weight:800;">⬇ Instal App</button>
- <button class="iconbtn" id="settingsTop" aria-label="Pengaturan">⚙</button>
+ <button class="btn primary small" id="installAppBtn" style="display:none; margin-right:8px; padding:6px 12px; font-size:12px; font-weight:800;" type="button">⬇ Instal App</button>
+ <button class="iconbtn" id="settingsTop" aria-label="Pengaturan" type="button">⚙</button>
 </header>
 <div class="app">
  <aside class="panel">
@@ -74,19 +74,19 @@
   <div class="member-body">
    <div class="counter"><span>Anggota terdaftar</span><b id="memberCount">0 orang</b></div>
    <div class="member-list" id="memberList"><div class="empty">Belum ada anggota.<br>Tambahkan nama di bawah.</div></div>
-   <div class="addrow"><input class="field" id="newName" placeholder="Nama anggota..." maxlength="60"><button class="btn primary" id="addBtn">＋</button></div>
-   <div class="tools"><button class="btn secondary small" id="pasteBtn">📋 Tempel banyak</button><button class="btn secondary small" id="clearBtn">🗑 Hapus semua</button></div>
-   <div class="tools"><button class="btn secondary small" id="exportBtn">⬇ Backup</button><button class="btn secondary small" id="importBtn">⬆ Restore</button><input type="file" id="importFile" accept="application/json,.json" hidden></div>
+   <div class="addrow"><input class="field" id="newName" placeholder="Nama anggota..." maxlength="60"><button class="btn primary" id="addBtn" type="button">＋</button></div>
+   <div class="tools"><button class="btn secondary small" id="pasteBtn" type="button">📋 Tempel banyak</button><button class="btn secondary small" id="clearBtn" type="button">🗑 Hapus semua</button></div>
+   <div class="tools"><button class="btn secondary small" id="exportBtn" type="button">⬇ Backup</button><button class="btn secondary small" id="importBtn" type="button">⬆ Restore</button><input type="file" id="importFile" accept="application/json,.json" hidden></div>
   </div>
  </aside>
  <main class="main">
-  <section class="hero"><div class="heroicon">🏆</div><div><h1>GENERATE YOUR TEAMS</h1><p>Acak anggota menjadi kelompok secara cepat dan adil.</p></div><button class="btn primary" id="generateBtn">🎲 MULAI UNDI</button></section>
+  <section class="hero"><div class="heroicon">🏆</div><div><h1>GENERATE YOUR TEAMS</h1><p>Acak anggota menjadi kelompok secara cepat dan adil.</p></div><button class="btn primary" id="generateBtn" type="button">🎲 MULAI UNDI</button></section>
   <div class="stats"><div class="stat"><b id="statMembers">0</b><span>TOTAL ANGGOTA</span></div><div class="stat"><b id="statGroups">4</b><span>JUMLAH GRUP</span></div><div class="stat"><b id="statRounds">0</b><span>HASIL TERSIMPAN</span></div></div>
-  <section class="controlbar"><label>MODE PEMBAGIAN</label><select id="mode"><option value="groups">Jumlah grup</option><option value="size">Anggota/grup</option></select><label id="targetLabel">Jumlah grup</label><select id="target"></select><div class="grow"></div><button class="btn secondary small" id="settingsBtn">⚙ Pengaturan</button></section>
+  <section class="controlbar"><label>MODE PEMBAGIAN</label><select id="mode"><option value="groups">Jumlah grup</option><option value="size">Anggota/grup</option></select><label id="targetLabel">Jumlah grup</label><select id="target"></select><div class="grow"></div><button class="btn secondary small" id="settingsBtn" type="button">⚙ Pengaturan</button></section>
   <div class="results-head"><h2>📌 HASIL PEMBAGIAN</h2><span class="hint" id="resultHint">Belum ada undian</span></div>
   <div id="teams" class="empty">Masukkan anggota, atur jumlah grup, lalu tekan <b>MULAI UNDI</b>.</div>
-  <div class="tools" style="justify-content:flex-end"><button class="btn secondary" id="copyBtn">📄 Salin hasil</button><button class="btn secondary" id="shareBtn">📲 Bagikan</button><button class="btn dark" id="saveBtn">💾 Simpan hasil</button></div>
-  <div class="footer">LOTRE GROUP RANDOM • v1.0.4 • Powered By Ari GPM</div>
+  <div class="tools" style="justify-content:flex-end"><button class="btn secondary" id="copyBtn" type="button">📄 Salin hasil</button><button class="btn secondary" id="shareBtn" type="button">📲 Bagikan</button><button class="btn dark" id="saveBtn" type="button">💾 Simpan hasil</button></div>
+  <div class="footer">LOTRE GROUP RANDOM • v1.0.5 • Powered By Ari GPM</div>
  </main>
 </div>
 
@@ -98,19 +98,19 @@
   <p>Pasang ke layar utama untuk akses instan & mode offline.</p>
  </div>
  <div class="install-actions">
-  <button class="btn secondary small" id="installDeclineBtn">Nanti</button>
-  <button class="btn primary small" id="installAcceptBtn">Instal</button>
+  <button class="btn secondary small" id="installDeclineBtn" type="button">Nanti</button>
+  <button class="btn primary small" id="installAcceptBtn" type="button">Instal</button>
  </div>
 </div>
 
 <!-- MODAL LUPA PIN -->
 <div class="modalback" id="forgotPinModal" style="z-index: 2500;">
  <div class="modal" style="width: min(340px, 90vw);">
-  <div class="modalhead"><b>🔑 LUPA PIN</b><button class="iconbtn" id="closeForgotPin">✕</button></div>
+  <div class="modalhead"><b>🔑 LUPA PIN</b><button class="iconbtn" id="closeForgotPin" type="button">✕</button></div>
   <div class="modalbody">
    <div class="formgroup">
     <label id="secQuestionText" style="color:var(--navy); font-size:13px;">Pertanyaan Keamanan</label>
-    <input type="password" id="secAnswerInput" class="field" placeholder="Jawaban Anda...">
+    <input type="text" id="secAnswerInput" class="field" placeholder="Jawaban Anda...">
    </div>
    <div class="formgroup">
     <label>Buat PIN Baru</label>
@@ -118,8 +118,8 @@
    </div>
   </div>
   <div class="modalfoot">
-   <button class="btn secondary" id="cancelForgotPin">Batal</button>
-   <button class="btn primary" id="resetPinBtn">Reset & Buka</button>
+   <button class="btn secondary" id="cancelForgotPin" type="button">Batal</button>
+   <button class="btn primary" id="resetPinBtn" type="button">Reset & Buka</button>
   </div>
  </div>
 </div>
@@ -127,7 +127,7 @@
 <!-- MODAL PENGATURAN -->
 <div class="modalback" id="settingsModal">
  <div class="modal">
-  <div class="modalhead"><b>⚙ PENGATURAN APLIKASI</b><button class="iconbtn" id="closeSettings">✕</button></div>
+  <div class="modalhead"><b>⚙ PENGATURAN APLIKASI</b><button class="iconbtn" id="closeSettings" type="button">✕</button></div>
   <div class="modalbody">
    <div class="formgroup"><label>Nama aplikasi / judul grup</label><input class="field" id="appTitle" value="LOTRE GROUP RANDOM"></div>
    <div class="formrow"><div class="formgroup"><label>Jumlah grup</label><input class="field" id="groupSetting" type="number" min="2" max="50" value="4"></div><div class="formgroup"><label>Anggota per grup</label><input class="field" id="sizeSetting" type="number" min="1" max="100" value="5"></div></div>
@@ -141,30 +141,30 @@
     <div class="formgroup"><label>PIN Aplikasi</label><input type="password" class="field" id="pinSetting" placeholder="Ubah PIN (Opsional)"></div>
    </div>
    <div class="formgroup"><label>Pertanyaan Keamanan Lupa PIN</label><input class="field" id="questionSetting" placeholder="Contoh: Nama hewan peliharaan?"></div>
-   <div class="formgroup"><label>Jawaban Rahasia</label><input type="password" class="field" id="answerSetting" placeholder="Jawaban (Opsional diubah)"></div>
+   <div class="formgroup"><label>Jawaban Rahasia</label><input type="text" class="field" id="answerSetting" placeholder="Jawaban (Opsional diubah)"></div>
    
    <small style="color:#68788d; display:block; margin-top:5px;">Default PIN: <b>123456</b>. Atur Pertanyaan Keamanan untuk fitur Lupa PIN.</small>
   </div>
-  <div class="modalfoot"><button class="btn secondary" id="cancelSettings">Batal</button><button class="btn primary" id="applySettings">Simpan pengaturan</button></div>
+  <div class="modalfoot"><button class="btn secondary" id="cancelSettings" type="button">Batal</button><button class="btn primary" id="applySettings" type="button">Simpan pengaturan</button></div>
  </div>
 </div>
 
 <!-- MODALS LAINNYA -->
 <div class="modalback" id="pasteModal">
  <div class="modal">
-  <div class="modalhead"><b>📋 TEMPEL DAFTAR ANGGOTA</b><button class="iconbtn" id="closePaste">✕</button></div>
+  <div class="modalhead"><b>📋 TEMPEL DAFTAR ANGGOTA</b><button class="iconbtn" id="closePaste" type="button">✕</button></div>
   <div class="modalbody">
    <div class="formgroup"><label>Masukkan nama, baris baru atau pisahkan dengan koma</label><textarea class="field" id="pasteArea" rows="9" placeholder="Andi&#10;Budi&#10;Citra&#10;Dewi"></textarea></div>
    <small>Nama kosong akan diabaikan. Nama yang sama tetap dianggap sebagai entri terpisah.</small>
   </div>
-  <div class="modalfoot"><button class="btn secondary" id="cancelPaste">Batal</button><button class="btn primary" id="applyPaste">Tambahkan nama</button></div>
+  <div class="modalfoot"><button class="btn secondary" id="cancelPaste" type="button">Batal</button><button class="btn primary" id="applyPaste" type="button">Tambahkan nama</button></div>
  </div>
 </div>
 <div class="modalback" id="clearModal">
  <div class="modal">
-  <div class="modalhead"><b>🗑 HAPUS SEMUA ANGGOTA?</b><button class="iconbtn" id="closeClear">✕</button></div>
+  <div class="modalhead"><b>🗑 HAPUS SEMUA ANGGOTA?</b><button class="iconbtn" id="closeClear" type="button">✕</button></div>
   <div class="modalbody"><p>Semua nama anggota dan hasil pembagian saat ini akan dihapus dari perangkat ini. Tindakan ini tidak bisa dibatalkan.</p></div>
-  <div class="modalfoot"><button class="btn secondary" id="cancelClear">Batal</button><button class="btn danger" id="confirmClear">Ya, hapus semua</button></div>
+  <div class="modalfoot"><button class="btn secondary" id="cancelClear" type="button">Batal</button><button class="btn danger" id="confirmClear" type="button">Ya, hapus semua</button></div>
  </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -190,8 +190,8 @@ let state={
 const load=()=>{
   try{
     const x=JSON.parse(localStorage.getItem('lgr-data')||'null');
-    if(x&&Array.isArray(x.members)) {
-       state.members = x.members;
+    if(x&&x.settings) {
+       state.members = x.members || [];
        state.groups = x.groups || [];
        state.history = x.history || [];
        state.settings = {...state.settings, ...x.settings};
@@ -205,21 +205,24 @@ function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;',
 
 // LOGIKA LOCKSCREEN & LUPA PIN
 function initLock() {
+  const ls = $('lockScreen');
   if (state.settings.pinEnable) {
-    $('lockScreen').classList.add('show');
+    ls.style.display = 'flex';
     $('pinInput').value = '';
-    $('pinInput').focus();
+    setTimeout(() => $('pinInput').focus(), 100);
   } else {
-    $('lockScreen').classList.remove('show');
+    ls.style.display = 'none';
   }
 }
 
 $('unlockBtn').onclick = () => {
-  if ($('pinInput').value === state.settings.pin) {
-    $('lockScreen').classList.remove('show');
+  const val = $('pinInput').value.trim();
+  if (val === String(state.settings.pin)) {
+    $('lockScreen').style.display = 'none';
     $('pinInput').value = '';
+    toast('Berhasil masuk!');
   } else {
-    toast('PIN Salah!');
+    toast('PIN Salah! (Default: 123456)');
     $('pinInput').value = '';
     $('pinInput').focus();
   }
@@ -227,29 +230,31 @@ $('unlockBtn').onclick = () => {
 $('pinInput').addEventListener('keydown', e => { if (e.key === 'Enter') $('unlockBtn').click(); });
 
 $('forgotPinBtn').onclick = () => {
-  $('secQuestionText').textContent = state.settings.secQ;
+  $('secQuestionText').textContent = state.settings.secQ || 'Nama hewan peliharaan pertama?';
   $('secAnswerInput').value = '';
   $('newPinInput').value = '';
   $('forgotPinModal').classList.add('show');
 };
 
-$('closeForgotPin').onclick = $('cancelForgotPin').onclick = () => $('forgotPinModal').classList.remove('show');
+$('closeForgotPin').onclick = $('cancelForgotPin').onclick = () => {
+  $('forgotPinModal').classList.remove('show');
+};
 
 $('resetPinBtn').onclick = () => {
   const ans = $('secAnswerInput').value.trim().toLowerCase();
-  const realAns = state.settings.secA.trim().toLowerCase();
+  const realAns = (state.settings.secA || 'kucing').trim().toLowerCase();
   
   if (ans === realAns) {
     const newPin = $('newPinInput').value.trim();
     if (newPin.length < 4) return toast('PIN baru minimal 4 karakter!');
     
     state.settings.pin = newPin;
-    state.settings.pinEnable = true; // Ensure enabled
+    state.settings.pinEnable = true;
     persist();
     
     toast('PIN berhasil direset! Aplikasi terbuka.');
     $('forgotPinModal').classList.remove('show');
-    $('lockScreen').classList.remove('show');
+    $('lockScreen').style.display = 'none';
   } else {
     toast('Jawaban keamanan salah!');
   }
@@ -267,13 +272,4 @@ function renderMembers(){
     return;
   }
   
-  box.innerHTML=state.members.map((n,i)=>`<div class="member"><span class="num">${i+1}.</span><span style="flex:1">${esc(n)}</span><button class="btn secondary small" data-edit="${i}" aria-label="Edit">✎</button><button class="btn danger small" data-del="${i}" aria-label="Hapus">×</button></div>`).join('');
-  
-  box.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{
-    state.members.splice(+b.dataset.del,1);
-    persist(); renderMembers(); fillTarget(); renderStats();
-  });
-  
-  box.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{
-    const i=+b.dataset.edit; const row=b.closest('.member');
-    const name=row.querySelector('span:nt
+  box.innerHTML=state.members.map((n,i)=>`<div class="member"><span class="num">${i+1}.</span><span style="fle
