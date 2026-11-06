@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#142b4d">
+<meta name="description" content="Aplikasi pengacak anggota menjadi kelompok secara cepat dan adil.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<title>LOTRE GROUP RANDOM</title>
+<style>
+:root{--navy:#142b4d;--navy2:#203e66;--ink:#13243b;--muted:#64748b;--paper:#f4f7fb;--line:#d9e2ee;--mint:#72e4c7;--yellow:#ffd65a;--red:#f16b70;--blue:#56a9f2;--green:#55c58a;--purple:#a68cf4}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink)}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}
+.topbar{height:62px;background:var(--navy);color:white;display:flex;align-items:center;gap:12px;padding:0 18px;box-shadow:0 3px 12px #071a3433;position:sticky;top:0;z-index:5}
+.brandmark{width:38px;height:38px;border-radius:12px;background:var(--mint);color:#092a40;display:grid;place-items:center;font-size:22px;font-weight:900}.brand{font-weight:900;letter-spacing:.5px;font-size:16px}.subtitle{font-size:10px;opacity:.7;letter-spacing:1.5px}.top-spacer{flex:1}.iconbtn{background:#ffffff1b;color:white;width:40px;height:40px;border-radius:12px;font-size:20px}
+.app{max-width:1450px;margin:auto;padding:18px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:18px}
+.panel{background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 24px #1936570b;overflow:hidden}
+.panelhead{background:var(--navy2);color:white;padding:14px 16px;font-weight:850;letter-spacing:.7px;display:flex;align-items:center;justify-content:space-between}
+.member-body{padding:14px}.counter{font-size:12px;color:var(--muted);margin-bottom:9px;display:flex;justify-content:space-between}
+.member-list{height:420px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:#f8fbff;padding:6px}
+.member{padding:8px 10px;border-radius:8px;font-weight:650;font-size:14px;display:flex;align-items:center;gap:8px}.member:nth-child(even){background:#eaf2fa}.member .num{font-size:10px;color:#8393a8;width:20px}
+.field{width:100%;border:1px solid #cbd7e5;border-radius:10px;padding:11px;background:#fff;outline:none}.field:focus{border-color:#4c9ee8;box-shadow:0 0 0 3px #4c9ee822}
+.btn{border-radius:11px;padding:11px 14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.15s}.btn:active{transform:scale(.98)}.primary{background:var(--mint);color:#082d3c;box-shadow:0 3px 0 #3ab89a}.secondary{background:#e8eef6;color:#203a59}.danger{background:#ffe8e8;color:#a42c35}.dark{background:var(--navy);color:white}.small{padding:8px 10px;font-size:12px}
+.addrow{display:flex;gap:7px;margin-top:10px}.addrow .field{min-width:0}.tools{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.main{min-width:0}.hero{background:linear-gradient(125deg,#19395f,#102744);border-radius:18px;padding:18px;color:white;display:flex;align-items:center;gap:16px;box-shadow:0 9px 24px #142b4d24}
+.heroicon{font-size:42px}.hero h1{font-size:clamp(18px,3vw,27px);margin:0 0 4px}.hero p{margin:0;color:#c9d8e8;font-size:13px}.hero .btn{margin-left:auto;white-space:nowrap;font-size:15px;padding:14px 18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:12px 14px}.stat b{font-size:22px;display:block}.stat span{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px}
+.controlbar{background:white;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.controlbar label{font-size:12px;font-weight:800;color:#53657b}.controlbar select{width:82px;padding:9px;border:1px solid var(--line);border-radius:9px;background:white}.controlbar .grow{flex:1}
+.results-head{display:flex;align-items:center;justify-content:space-between;margin:15px 2px 10px}.results-head h2{font-size:16px;margin:0}.hint{font-size:11px;color:var(--muted)}
+.teams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.team{border:3px solid var(--team);border-radius:15px;background:white;overflow:hidden;box-shadow:0 4px 0 color-mix(in srgb,var(--team),#000 18%)}.teamhead{background:var(--team);color:#10243a;padding:9px 12px;display:flex;align-items:center;gap:9px;font-weight:900}.teamnum{width:29px;height:29px;background:white;border-radius:50%;display:grid;place-items:center;font-size:14px;box-shadow:0 2px 3px #0002}.teamname{flex:1}.teamcount{font-size:11px;background:#ffffff88;padding:4px 7px;border-radius:20px}.teamlist{padding:10px 13px;min-height:90px}.teamlist ol{padding-left:22px;margin:0}.teamlist li{padding:3px 0;font-weight:650;font-size:14px;overflow-wrap:anywhere}.empty{border:2px dashed #cbd7e5;border-radius:14px;padding:35px 15px;text-align:center;color:#728198;background:#ffffffa8}
+.footer{text-align:center;font-size:10px;color:#8391a3;padding:20px}
+.modalback{position:fixed;inset:0;background:#081a30a8;z-index:20;display:none;align-items:center;justify-content:center;padding:15px}.modalback.show{display:flex}.modal{background:white;width:min(520px,100%);max-height:90vh;overflow:auto;border-radius:18px;box-shadow:0 20px 60px #0004}.modalhead{padding:16px 18px;background:var(--navy);color:white;display:flex;justify-content:space-between;align-items:center}.modalbody{padding:17px;display:grid;gap:12px}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formgroup label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.modalfoot{padding:0 17px 17px;display:flex;gap:8px;justify-content:flex-end}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#102a49;color:white;padding:11px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.2s;z-index:30;font-size:13px}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:800px){.app{grid-template-columns:1fr;padding:11px}.member-list{height:165px}.hero{padding:14px}.heroicon{font-size:32px}.hero .btn{padding:11px 12px;font-size:13px}.topbar{height:56px;padding:0 12px}.teams{gap:10px}}
+@media(max-width:460px){.teams{grid-template-columns:1fr}.hero{flex-wrap:wrap}.hero .btn{margin-left:0;width:100%}.stats{gap:7px}.stat{padding:10px}.stat b{font-size:19px}.controlbar{gap:7px}.controlbar .grow{display:none}.brand{font-size:14px}.formrow{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="brandmark">🎲</div><div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.0.0</div></div>
+ <div class="top-spacer"></div><button class="iconbtn" id="settingsTop" aria-label="Pengaturan">⚙</button>
+</header>
+<div class="app">
+ <aside class="panel">
+  <div class="panelhead"><span>👥 DAFTAR ANGGOTA</span><span id="memberBadge">0</span></div>
+  <div class="member-body">
+   <div class="counter"><span>Anggota terdaftar</span><b id="memberCount">0 orang</b></div>
+   <div class="member-list" id="memberList"><div class="empty">Belum ada anggota.<br>Tambahkan nama di bawah.</div></div>
+   <div class="addrow"><input class="field" id="newName" placeholder="Nama anggota..." maxlength="60"><button class="btn primary" id="addBtn">＋</button></div>
+   <div class="tools"><button class="btn secondary small" id="pasteBtn">📋 Tempel banyak</button><button class="btn secondary small" id="clearBtn">🗑 Hapus semua</button></div>
+   <div class="tools"><button class="btn secondary small" id="exportBtn">⬇ Backup</button><button class="btn secondary small" id="importBtn">⬆ Restore</button><input type="file" id="importFile" accept="application/json,.json" hidden></div>
+  </div>
+ </aside>
+ <main class="main">
+  <section class="hero"><div class="heroicon">🏆</div><div><h1>GENERATE YOUR TEAMS</h1><p>Acak anggota menjadi kelompok secara cepat dan adil.</p></div><button class="btn primary" id="generateBtn">🎲 MULAI UNDI</button></section>
+  <div class="stats"><div class="stat"><b id="statMembers">0</b><span>TOTAL ANGGOTA</span></div><div class="stat"><b id="statGroups">4</b><span>JUMLAH GRUP</span></div><div class="stat"><b id="statRounds">0</b><span>HASIL TERSIMPAN</span></div></div>
+  <section class="controlbar"><label>MODE PEMBAGIAN</label><select id="mode"><option value="groups">Jumlah grup</option><option value="size">Anggota/grup</option></select><label id="targetLabel">Jumlah grup</label><select id="target"></select><div class="grow"></div><button class="btn secondary small" id="settingsBtn">⚙ Pengaturan</button></section>
+  <div class="results-head"><h2>📌 HASIL PEMBAGIAN</h2><span class="hint" id="resultHint">Belum ada undian</span></div>
+  <div id="teams" class="empty">Masukkan anggota, atur jumlah grup, lalu tekan <b>MULAI UNDI</b>.</div>
+  <div class="tools" style="justify-content:flex-end"><button class="btn secondary" id="copyBtn">📄 Salin hasil</button><button class="btn secondary" id="shareBtn">📲 Bagikan</button><button class="btn dark" id="saveBtn">💾 Simpan hasil</button></div>
+  <div class="footer">LOTRE GROUP RANDOM • v1.0.0 • Powered By Ari GPM</div>
+ </main>
+</div>
+<div class="modalback" id="settingsModal">
+ <div class="modal">
+  <div class="modalhead"><b>⚙ PENGATURAN APLIKASI</b><button class="iconbtn" id="closeSettings">✕</button></div>
+  <div class="modalbody">
+   <div class="formgroup"><label>Nama aplikasi / judul grup</label><input class="field" id="appTitle" value="LOTRE GROUP RANDOM"></div>
+   <div class="formrow"><div class="formgroup"><label>Jumlah grup</label><input class="field" id="groupSetting" type="number" min="2" max="50" value="4"></div><div class="formgroup"><label>Anggota per grup</label><input class="field" id="sizeSetting" type="number" min="1" max="100" value="5"></div></div>
+   <div class="formgroup"><label>Mode awal</label><select class="field" id="modeSetting"><option value="groups">Berdasarkan jumlah grup</option><option value="size">Berdasarkan anggota per grup</option></select></div>
+   <div class="formgroup"><label>Warna grup</label><select class="field" id="colorSetting"><option value="bright">Ceria (warna berbeda)</option><option value="cool">Biru & ungu</option></select></div>
+   <small style="color:#68788d">Pengaturan tersimpan otomatis di perangkat ini. Pada mode jumlah grup, anggota dibagi semerata mungkin. Pada mode anggota/grup, sisa anggota dibuatkan grup tambahan.</small>
+  </div>
+  <div class="modalfoot"><button class="btn secondary" id="cancelSettings">Batal</button><button class="btn primary" id="applySettings">Simpan pengaturan</button></div>
+ </div>
+</div>
+<div class="modalback" id="pasteModal"><div class="modal"><div class="modalhead"><b>📋 TEMPEL DAFTAR ANGGOTA</b><button class="iconbtn" id="closePaste">✕</button></div><div class="modalbody"><div class="formgroup"><label>Masukkan nama, satu nama per baris atau pisahkan dengan koma</label><textarea class="field" id="pasteArea" rows="9" placeholder="Andi&#10;Budi&#10;Citra&#10;Dewi"></textarea></div><small>Nama kosong akan diabaikan. Nama yang sama tetap dianggap sebagai entri terpisah.</small></div><div class="modalfoot"><button class="btn secondary" id="cancelPaste">Batal</button><button class="btn primary" id="applyPaste">Tambahkan nama</button></div></div></div>
+<div class="modalback" id="clearModal"><div class="modal"><div class="modalhead"><b>🗑 HAPUS SEMUA ANGGOTA?</b><button class="iconbtn" id="closeClear">✕</button></div><div class="modalbody"><p>Semua nama anggota dan hasil pembagian saat ini akan dihapus dari perangkat ini. Tindakan ini tidak bisa dibatalkan.</p></div><div class="modalfoot"><button class="btn secondary" id="cancelClear">Batal</button><button class="btn danger" id="confirmClear">Ya, hapus semua</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+const colorsBright=['#f16b70','#56a9f2','#55c58a','#ffd65a','#a68cf4','#ff9d59','#55c9c9','#e88ab5'];
+const colorsCool=['#5799df','#8c83e6','#65b9ce','#6c91bd','#9b91d8','#72b8a8'];
+let state={members:[],groups:[],history:[],settings:{title:'LOTRE GROUP RANDOM',groupCount:4,perGroup:5,mode:'groups',palette:'bright'}};
+const load=()=>{try{const x=JSON.parse(localStorage.getItem('lgr-data')||'null');if(x&&Array.isArray(x.members))state={...state,...x,settings:{...state.settings,...x.settings}}}catch(e){}};
+const persist=()=>localStorage.setItem('lgr-data',JSON.stringify(state));
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2200)}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderMembers(){const box=$('memberList');$('memberCount').textContent=state.members.length+' orang';$('memberBadge').textContent=state.members.length;$('statMembers').textContent=state.members.length;if(!state.members.length){box.innerHTML='<div class="empty">Belum ada anggota.<br>Tambahkan nama di bawah.</div>';return}box.innerHTML=state.members.map((n,i)=>`<div class="member"><span class="num">${i+1}.</span><span style="flex:1">${esc(n)}</span><button class="btn secondary small" data-edit="${i}" aria-label="Edit ${esc(n)}">✎</button><button class="btn danger small" data-del="${i}" aria-label="Hapus ${esc(n)}">×</button></div>`).join('');box.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{state.members.splice(+b.dataset.del,1);persist();renderMembers();fillTarget();renderStats()});box.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{const i=+b.dataset.edit;const row=b.closest('.member');const name=row.querySelector('span:nth-child(2)');const input=document.createElement('input');input.className='field';input.value=state.members[i];input.maxLength=60;name.replaceWith(input);input.focus();const finish=()=>{const v=input.value.trim();if(v)state.members[i]=v;persist();renderMembers()};input.addEventListener('keydown',e=>{if(e.key==='Enter')finish();if(e.key==='Escape')renderMembers()});input.addEventListener('blur',finish)})}
+function fillTarget(){const mode=$('mode').value,sel=$('target');$('targetLabel').textContent=mode==='groups'?'Jumlah grup':'Anggota/grup';const max=mode==='groups'?50:Math.max(1,Math.min(100,state.members.length||20));const current=mode==='groups'?state.settings.groupCount:state.settings.perGroup;sel.innerHTML=Array.from({length:max},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');sel.value=String(Math.min(max,Math.max(1,current)))}
+function renderStats(){$('statGroups').textContent=state.groups.length||($('mode').value==='groups'?state.settings.groupCount:Math.ceil(state.members.length/Math.max(1,state.settings.perGroup)));$('statRounds').textContent=state.history.length}
+function renderTeams(){const root=$('teams');if(!state.groups.length){root.className='empty';root.innerHTML='Masukkan anggota, atur jumlah grup, lalu tekan <b>MULAI UNDI</b>.';return}root.className='teams';const palette=state.settings.palette==='cool'?colorsCool:colorsBright;root.innerHTML=state.groups.map((g,i)=>`<article class="team" style="--team:${palette[i%palette.length]}"><div class="teamhead"><span class="teamnum">${i+1}</span><span class="teamname">GRUP ${i+1}</span><span class="teamcount">${g.length} anggota</span></div><div class="teamlist"><ol>${g.map(n=>`<li>${esc(n)}</li>`).join('')}</ol></div></article>`).join('')}
+function shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function generate(){if(state.members.length<2){toast('Tambahkan minimal 2 anggota terlebih dahulu.');return}const mode=$('mode').value,target=+$('target').value;let count=mode==='groups'?Math.min(target,state.members.length):Math.ceil(state.members.length/target);count=Math.max(1,count);const arr=shuffle(state.members);const groups=Array.from({length:count},()=>[]);if(mode==='groups'){arr.forEach((n,i)=>groups[i%count].push(n))}else{arr.forEach((n,i)=>groups[Math.floor(i/target)].push(n))}state.groups=groups;persist();renderTeams();renderStats();$('resultHint').textContent='Diundi '+new Date().toLocaleString('id-ID');toast('Pengundian selesai!')}
+function resultText(){if(!state.groups.length)return '';return state.groups.map((g,i)=>`GRUP ${i+1} (${g.length} anggota)\n${g.map((n,j)=>`${j+1}. ${n}`).join('\n')}`).join('\n\n')}
+function openSettings(){$('appTitle').value=state.settings.title;$('groupSetting').value=state.settings.groupCount;$('sizeSetting').value=state.settings.perGroup;$('modeSetting').value=state.settings.mode;$('colorSetting').value=state.settings.palette;$('settingsModal').classList.add('show')}
+function closeModal(id){$(id).classList.remove('show')}
+$('addBtn').onclick=()=>{const n=$('newName').value.trim();if(!n)return toast('Tulis nama anggota terlebih dahulu.');state.members.push(n);$('newName').value='';persist();renderMembers();fillTarget();renderStats()};
+$('newName').addEventListener('keydown',e=>{if(e.key==='Enter')$('addBtn').click()});
+$('pasteBtn').onclick=()=>$('pasteModal').classList.add('show');$('closePaste').onclick=$('cancelPaste').onclick=()=>closeModal('pasteModal');
+$('applyPaste').onclick=()=>{const names=$('pasteArea').value.split(/[\n,;]+/).map(x=>x.trim()).filter(Boolean);if(!names.length)return toast('Belum ada nama yang bisa ditambahkan.');state.members.push(...names);$('pasteArea').value='';closeModal('pasteModal');persist();renderMembers();fillTarget();renderStats();toast(names.length+' nama ditambahkan.')};
+$('clearBtn').onclick=()=>{if(!state.members.length)return toast('Daftar anggota sudah kosong.');$('clearModal').classList.add('show')};
+$('mode').onchange=()=>{state.settings.mode=$('mode').value;persist();fillTarget();renderStats()};
+$('target').onchange=()=>{if($('mode').value==='groups')state.settings.groupCount=+$('target').value;else state.settings.perGroup=+$('target').value;persist();renderStats()};
+$('generateBtn').onclick=generate;
+$('confirmClear').onclick=()=>{state.members=[];state.groups=[];persist();renderMembers();renderTeams();fillTarget();renderStats();closeModal('clearModal');toast('Semua anggota dihapus.')};$('cancelClear').onclick=$('closeClear').onclick=()=>closeModal('clearModal');
+$('settingsTop').onclick=$('settingsBtn').onclick=openSettings;$('closeSettings').onclick=$('cancelSettings').onclick=()=>closeModal('settingsModal');
+$('applySettings').onclick=()=>{const gc=Math.max(2,Math.min(50,parseInt($('groupSetting').value)||4)),pg=Math.max(1,Math.min(100,parseInt($('sizeSetting').value)||5));state.settings={title:$('appTitle').value.trim()||'LOTRE GROUP RANDOM',groupCount:gc,perGroup:pg,mode:$('modeSetting').value,palette:$('colorSetting').value};document.title=state.settings.title;$('mode').value=state.settings.mode;persist();fillTarget();renderStats();closeModal('settingsModal');toast('Pengaturan berhasil disimpan.')};
+$('copyBtn').onclick=()=>{const t=resultText();if(!t)return toast('Belum ada hasil undian.');if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>toast('Hasil disalin.')).catch(()=>toast('Gagal menyalin.'));else toast('Browser tidak mendukung salin otomatis.')};
+$('shareBtn').onclick=()=>{const t=resultText();if(!t)return toast('Belum ada hasil undian.');if(navigator.share)navigator.share({title:state.settings.title,text:t}).catch(()=>{});else{const url='https://wa.me/?text='+encodeURIComponent(t);window.open(url,'_blank')}};
+$('saveBtn').onclick=()=>{if(!state.groups.length)return toast('Belum ada hasil undian.');state.history.unshift({date:new Date().toISOString(),groups:state.groups});state.history=state.history.slice(0,50);persist();renderStats();toast('Hasil undian disimpan.')};
+$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='backup-lotre-group-random.json';a.click();URL.revokeObjectURL(a.href);toast('Backup siap diunduh.')};
+$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!Array.isArray(x.members))throw Error();state={...state,...x,settings:{...state.settings,...x.settings}};persist();renderMembers();renderTeams();fillTarget();renderStats();toast('Data berhasil dipulihkan.')}catch(err){toast('File backup tidak valid.')}e.target.value=''};
+load();$('mode').value=state.settings.mode;document.title=state.settings.title;renderMembers();fillTarget();renderTeams();renderStats();
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+})();
+</script>
+</body></html>
