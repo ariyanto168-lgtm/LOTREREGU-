@@ -1,7 +1,7 @@
 {
   "name": "LOTRE GROUP RANDOM",
   "short_name": "LGR",
-  "description": "Aplikasi pengacak anggota menjadi kelompok secara cepat dan adil.",
+  "description": "Aplikasi pengacak anggota secara adil.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f4f7fb",
