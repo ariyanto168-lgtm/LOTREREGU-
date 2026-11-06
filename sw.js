@@ -1,4 +1,4 @@
-
+// Service Worker v1.0.3 - Mode Aman GitHub Pages
 self.addEventListener('install', (e) => {
   self.skipWaiting();
 });
@@ -7,7 +7,7 @@ self.addEventListener('activate', (e) => {
   e.waitUntil(clients.claim());
 });
 
+// Wajib ada untuk memenuhi syarat PWA Chrome (Installable)
 self.addEventListener('fetch', (e) => {
-  // Required to satisfy PWA install criteria
+  // Hanya melewatkan request tanpa proses caching yang berisiko gagal di subdirektori
 });
-
