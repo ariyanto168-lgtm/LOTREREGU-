@@ -62,9 +62,10 @@
 <div id="lockScreen" class="modalback">
  <div class="modal">
   <div class="modalhead" style="justify-content:center; background:var(--navy2);"><b>🔒 MASUK APLIKASI</b></div>
-  <div class="modalbody" style="padding: 25px 20px;">
-   <p style="font-size:13px; color:var(--muted); margin:0 0 15px;">Masukkan PIN keamanan Anda<br><small>(Default: 123456)</small></p>
-   <input type="password" id="pinInput" class="field" style="text-align:center; font-size:24px; letter-spacing:8px; padding:12px;" placeholder="****">
+  <div class="modalbody" style="padding: 25px 20px; display:flex; flex-direction:column; align-items:center;">
+   <img src="icon-192.png" alt="Logo" onerror="this.style.display='none'" style="width:75px; height:75px; border-radius:18px; margin-bottom:12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+   <p style="font-size:13px; color:var(--muted); margin:0 0 15px; text-align:center;">Masukkan PIN keamanan Anda</p>
+   <input type="password" id="pinInput" class="field" style="text-align:center; font-size:24px; letter-spacing:8px; padding:12px; width:100%;" placeholder="****">
    <button class="btn primary" id="unlockBtn" type="button" style="width: 100%; margin-top: 15px; font-size:15px; padding:13px;">BUKA APLIKASI</button>
    <button class="btn secondary small" id="forgotPinBtn" type="button" style="margin-top: 15px; width: 100%; background:transparent; border:1px solid var(--line);">Lupa PIN?</button>
   </div>
@@ -73,16 +74,16 @@
 
 <header class="topbar">
  <div class="brandmark">🎲</div>
- <div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.0.6</div></div>
+ <div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.0.7</div></div>
  <div class="top-spacer"></div>
  <button class="btn primary small" id="installAppBtn" style="display:none; margin-right:8px; padding:6px 12px; font-size:12px; font-weight:800;" type="button">⬇ Instal App</button>
  <button class="iconbtn" id="settingsTop" aria-label="Pengaturan" type="button">⚙</button>
 </header>
 
 <div class="app">
- <!-- SIDEBAR PESERTA -->
+ <!-- SIDEBAR PESERTA DINAMIS -->
  <aside class="panel">
-  <div class="panelhead"><span>👥 DAFTAR PESERTA</span><span id="memberBadge">0</span></div>
+  <div class="panelhead"><span id="panelTitle">👥 PESERTA TIM</span><span id="memberBadge">0</span></div>
   <div class="member-body">
    <div class="counter"><span>Total Peserta</span><b id="memberCount">0 orang</b></div>
    <div class="member-list" id="memberList"><div class="empty">Belum ada peserta.<br>Tambahkan nama di bawah.</div></div>
@@ -123,7 +124,7 @@
     <div class="grow"></div><button class="btn secondary small" id="settingsBtn" type="button">⚙ Pengaturan</button>
    </section>
    <div class="results-head"><h2>📌 HASIL PEMBAGIAN</h2><span class="hint" id="resultHint">Belum ada undian</span></div>
-   <div id="teams" class="empty">Masukkan peserta, atur grup, lalu tekan <b>MULAI UNDI</b>.</div>
+   <div id="teams" class="empty">Masukkan peserta tim, atur grup, lalu tekan <b>MULAI UNDI</b>.</div>
    <div class="tools" style="justify-content:flex-end; margin-top:15px;">
     <button class="btn secondary" id="copyBtn" type="button">📄 Salin hasil</button>
     <button class="btn secondary" id="shareBtn" type="button">📲 Bagikan</button>
@@ -135,7 +136,7 @@
   <div id="viewArisan" style="display:none;">
    <section class="hero arisan-hero">
     <div class="heroicon">🎰</div>
-    <div><h1>KOPYOK ARISAN</h1><p>Undi satu pemenang beruntung dari daftar peserta.</p></div>
+    <div><h1>KOPYOK ARISAN</h1><p>Undi satu pemenang beruntung dari daftar peserta arisan.</p></div>
    </section>
    
    <div class="arisan-box">
@@ -152,7 +153,7 @@
    </div>
   </div>
 
-  <div class="footer">LOTRE GROUP RANDOM • v1.0.6 • Powered By Ari GPM</div>
+  <div class="footer">LOTRE GROUP RANDOM • v1.0.7 • Powered By Ari GPM</div>
  </main>
 </div>
 
@@ -233,9 +234,9 @@
 <!-- MODAL CLEAR -->
 <div class="modalback" id="clearModal">
  <div class="modal">
-  <div class="modalhead"><b>🗑 HAPUS SEMUA DATA?</b><button class="iconbtn" id="closeClear" type="button">✕</button></div>
-  <div class="modalbody"><p>Semua nama peserta, hasil tim, dan riwayat arisan akan <b>dihapus bersih</b> dari perangkat ini.<br><br>Tindakan ini tidak bisa dibatalkan.</p></div>
-  <div class="modalfoot"><button class="btn secondary" id="cancelClear" type="button">Batal</button><button class="btn danger" id="confirmClear" type="button">Ya, hapus semua</button></div>
+  <div class="modalhead"><b>🗑 HAPUS DATA?</b><button class="iconbtn" id="closeClear" type="button">✕</button></div>
+  <div class="modalbody"><p id="clearModalDesc"></p></div>
+  <div class="modalfoot"><button class="btn secondary" id="cancelClear" type="button">Batal</button><button class="btn danger" id="confirmClear" type="button">Ya, hapus</button></div>
  </div>
 </div>
 
@@ -247,9 +248,10 @@ const $=id=>document.getElementById(id);
 const colorsBright=['#f16b70','#56a9f2','#55c58a','#ffd65a','#a68cf4','#ff9d59','#55c9c9','#e88ab5'];
 const colorsCool=['#5799df','#8c83e6','#65b9ce','#6c91bd','#9b91d8','#72b8a8'];
 
-// STATE MANAGEMENT
+// STATE & TAB MANAGEMENT
+let currentTab = 'teams'; // 'teams' atau 'arisan'
 let state={
-  members:[], groups:[], history:[], arisanHistory:[],
+  members:[], arisanMembers:[], groups:[], history:[], arisanHistory:[],
   settings:{
     title:'LOTRE GROUP RANDOM', groupCount:4, perGroup:5, mode:'groups', palette:'bright',
     pinEnable: true, pin: '123456', secQ: 'Nama hewan peliharaan pertama?', secA: 'kucing'
@@ -261,6 +263,7 @@ const load=()=>{
     const x=JSON.parse(localStorage.getItem('lgr-data')||'null');
     if(x&&x.settings) {
        state.members = x.members || [];
+       state.arisanMembers = x.arisanMembers || [];
        state.groups = x.groups || [];
        state.history = x.history || [];
        state.arisanHistory = x.arisanHistory || [];
@@ -290,9 +293,8 @@ $('unlockBtn').onclick = () => {
   if (val === String(state.settings.pin)) {
     $('lockScreen').style.display = 'none';
     $('pinInput').value = '';
-    toast('Berhasil masuk!');
   } else {
-    toast('PIN Salah! (Default: 123456)');
+    toast('PIN Salah!');
     $('pinInput').value = '';
     $('pinInput').focus();
   }
@@ -324,35 +326,43 @@ $('resetPinBtn').onclick = () => {
   } else { toast('Jawaban keamanan salah!'); }
 };
 
-// --- LOGIKA PESERTA (SIDEBAR) ---
+// --- LOGIKA PESERTA (SIDEBAR DINAMIS) ---
+function getActiveList() { return currentTab === 'teams' ? state.members : state.arisanMembers; }
+
 function renderMembers(){
+  const list = getActiveList();
   const box=$('memberList');
-  $('memberCount').textContent=state.members.length+' orang';
-  $('memberBadge').textContent=state.members.length;
-  $('statMembers').textContent=state.members.length;
+  $('memberCount').textContent=list.length+' orang';
+  $('memberBadge').textContent=list.length;
   
-  if(!state.members.length){
+  if(currentTab === 'teams') {
+    $('statMembers').textContent=list.length;
+  }
+  
+  if(!list.length){
     box.innerHTML='<div class="empty">Belum ada peserta.<br>Tambahkan nama di bawah.</div>';
     return;
   }
   
-  box.innerHTML=state.members.map((n,i)=>`<div class="member"><span class="num">${i+1}.</span><span style="flex:1">${esc(n)}</span><button class="btn secondary small" data-edit="${i}" aria-label="Edit" type="button">✎</button><button class="btn danger small" data-del="${i}" aria-label="Hapus" type="button">×</button></div>`).join('');
+  box.innerHTML=list.map((n,i)=>`<div class="member"><span class="num">${i+1}.</span><span style="flex:1">${esc(n)}</span><button class="btn secondary small" data-edit="${i}" aria-label="Edit" type="button">✎</button><button class="btn danger small" data-del="${i}" aria-label="Hapus" type="button">×</button></div>`).join('');
   
   box.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{
-    state.members.splice(+b.dataset.del,1); persist(); renderMembers(); fillTarget(); renderStats();
+    list.splice(+b.dataset.del,1); persist(); renderMembers(); 
+    if(currentTab === 'teams'){ fillTarget(); renderStats(); }
   });
   
   box.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{
     const i=+b.dataset.edit; const row=b.closest('.member');
     const name=row.querySelector('span:nth-child(2)');
     const input=document.createElement('input');
-    input.className='field'; input.value=state.members[i]; input.maxLength=60;
+    input.className='field'; input.value=list[i]; input.maxLength=60;
     name.replaceWith(input); input.focus();
     let isFinished = false;
     const finish=()=>{
       if(isFinished) return; isFinished = true;
-      const v=input.value.trim(); if(v) state.members[i]=v;
+      const v=input.value.trim(); if(v) list[i]=v;
       persist(); renderMembers();
+      if(currentTab === 'teams'){ fillTarget(); renderStats(); }
     };
     input.addEventListener('keydown',e=>{ if(e.key==='Enter')finish(); if(e.key==='Escape')renderMembers(); });
     input.addEventListener('blur',finish);
@@ -362,8 +372,9 @@ function renderMembers(){
 $('addBtn').onclick=()=>{
   const n=$('newName').value.trim();
   if(!n) return toast('Ketik nama peserta terlebih dahulu.');
-  state.members.push(n); $('newName').value='';
-  persist(); renderMembers(); fillTarget(); renderStats();
+  getActiveList().push(n); $('newName').value='';
+  persist(); renderMembers(); 
+  if(currentTab === 'teams'){ fillTarget(); renderStats(); }
 };
 $('newName').addEventListener('keydown',e=>{if(e.key==='Enter')$('addBtn').click();});
 
@@ -374,31 +385,52 @@ $('applyPaste').onclick=()=>{
   const rawText = $('pasteArea').value;
   const names = rawText.split(/[\n,;]+/).map(x=>x.trim()).filter(Boolean);
   if(!names.length) return toast('Belum ada nama yang dimasukkan.');
-  state.members.push(...names); $('pasteArea').value='';
-  closeModal('pasteModal'); persist(); renderMembers(); fillTarget(); renderStats();
+  getActiveList().push(...names); $('pasteArea').value='';
+  closeModal('pasteModal'); persist(); renderMembers(); 
+  if(currentTab === 'teams'){ fillTarget(); renderStats(); }
   toast(names.length+' peserta ditambahkan.');
 };
 
 $('clearBtn').onclick=()=>{
-  if(!state.members.length && !state.arisanHistory.length && !state.history.length) return toast('Data sudah bersih.');
+  const list = getActiveList();
+  if(!list.length) return toast('Daftar peserta sudah kosong.');
+  
+  const modalText = currentTab === 'teams' 
+    ? 'Semua nama peserta tim dan hasil undian akan dihapus bersih.' 
+    : 'Semua nama peserta arisan dan riwayat pemenang akan dihapus bersih.';
+    
+  $('clearModalDesc').innerHTML = modalText + '<br><br>Tindakan ini tidak bisa dibatalkan.';
   $('clearModal').classList.add('show');
 };
+
 $('confirmClear').onclick=()=>{
-  state.members=[]; state.groups=[]; state.history=[]; state.arisanHistory=[]; persist();
-  renderMembers(); renderTeams(); renderArisanHistory(); fillTarget(); renderStats();
-  closeModal('clearModal'); toast('Semua data dibersihkan.');
+  if (currentTab === 'teams') {
+    state.members=[]; state.groups=[]; state.history=[]; 
+    renderTeams(); fillTarget(); renderStats();
+  } else {
+    state.arisanMembers=[]; state.arisanHistory=[]; 
+    renderArisanHistory();
+  }
+  persist(); renderMembers();
+  closeModal('clearModal'); toast('Data berhasil dibersihkan.');
 };
 $('cancelClear').onclick=$('closeClear').onclick=()=>closeModal('clearModal');
 
 // --- TABS NAVIGASI ---
 $('tabTeams').onclick = () => {
+  currentTab = 'teams';
+  $('panelTitle').innerHTML = '👥 PESERTA TIM';
   $('tabTeams').className = 'btn primary grow'; $('tabArisan').className = 'btn secondary grow';
   $('viewTeams').style.display = 'block'; $('viewArisan').style.display = 'none';
+  renderMembers(); fillTarget(); renderStats();
 };
+
 $('tabArisan').onclick = () => {
+  currentTab = 'arisan';
+  $('panelTitle').innerHTML = '🎰 PESERTA ARISAN';
   $('tabArisan').className = 'btn primary grow'; $('tabTeams').className = 'btn secondary grow';
   $('viewTeams').style.display = 'none'; $('viewArisan').style.display = 'block';
-  renderArisanHistory();
+  renderMembers(); renderArisanHistory();
 };
 
 // --- LOGIKA BAGI TIM ---
@@ -478,7 +510,7 @@ $('saveBtn').onclick=()=>{
 // --- LOGIKA ARISAN ---
 let isRolling = false;
 $('btnKopyok').onclick = () => {
-  if (state.members.length === 0) return toast('Daftar peserta masih kosong!');
+  if (state.arisanMembers.length === 0) return toast('Daftar peserta arisan masih kosong!');
   if (isRolling) return;
   isRolling = true;
   
@@ -490,30 +522,20 @@ $('btnKopyok').onclick = () => {
   display.style.color = 'var(--muted)';
 
   let counter = 0;
-  const maxRolls = 35; // Animasi 35 putaran
+  const maxRolls = 35;
   
-  // Efek Suara (Opsional jika didukung browser)
-  try {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const ctx = new AudioContext();
-    const osc = ctx.createOscillator();
-    osc.type = 'triangle'; osc.frequency.setValueAtTime(400, ctx.currentTime);
-    osc.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + 0.1);
-  } catch(e) {}
-
   const roll = setInterval(() => {
-    display.textContent = state.members[Math.floor(Math.random() * state.members.length)];
+    display.textContent = state.arisanMembers[Math.floor(Math.random() * state.arisanMembers.length)];
     counter++;
     
     if(counter >= maxRolls) {
       clearInterval(roll);
-      const winnerIndex = Math.floor(Math.random() * state.members.length);
-      const winnerName = state.members[winnerIndex];
+      const winnerIndex = Math.floor(Math.random() * state.arisanMembers.length);
+      const winnerName = state.arisanMembers[winnerIndex];
       
       display.textContent = winnerName;
       display.classList.add('pop-anim');
       
-      // Tambah ke riwayat
       state.arisanHistory.unshift({ name: winnerName, date: new Date().toLocaleString('id-ID') });
       persist(); renderArisanHistory();
       
@@ -522,7 +544,7 @@ $('btnKopyok').onclick = () => {
       isRolling = false;
       toast('Selamat kepada ' + winnerName + '!');
     }
-  }, 60); // Kecepatan acak (ms)
+  }, 60);
 };
 
 function renderArisanHistory() {
@@ -583,7 +605,7 @@ $('applySettings').onclick=()=>{
   persist(); fillTarget(); renderStats(); renderTeams(); closeModal('settingsModal'); toast('Pengaturan tersimpan.');
 };
 
-// BACKUP & RESTORE
+// --- BACKUP & RESTORE ---
 $('exportBtn').onclick=()=>{
   const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
@@ -618,7 +640,7 @@ const installBanner = $('installBanner');
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault(); deferredPrompt = e; installAppBtn.style.display = 'inline-flex';
-  const dismissed = localStorage.getItem('lgr-dismiss-v1.0.6') === 'true';
+  const dismissed = localStorage.getItem('lgr-dismiss-v1.0.7') === 'true';
   if (!dismissed && !window.matchMedia('(display-mode: standalone)').matches) {
     setTimeout(() => { if(deferredPrompt) installBanner.classList.add('show'); }, 1200);
   }
@@ -635,7 +657,7 @@ const triggerInstall = async () => {
 installAppBtn.addEventListener('click', triggerInstall);
 $('installAcceptBtn').addEventListener('click', triggerInstall);
 $('installDeclineBtn').addEventListener('click', () => {
-  installBanner.classList.remove('show'); localStorage.setItem('lgr-dismiss-v1.0.6', 'true');
+  installBanner.classList.remove('show'); localStorage.setItem('lgr-dismiss-v1.0.7', 'true');
 });
 window.addEventListener('appinstalled', () => {
   installAppBtn.style.display = 'none'; installBanner.classList.remove('show'); deferredPrompt = null; toast('Aplikasi LGR berhasil diinstal!');
