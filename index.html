@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#142b4d">
-<meta name="description" content="Aplikasi pengacak anggota menjadi kelompok secara cepat dan adil.">
+<meta name="description" content="Aplikasi pengacak peserta untuk tim dan arisan.">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <title>LOTRE GROUP RANDOM</title>
@@ -12,38 +12,48 @@
 :root{--navy:#142b4d;--navy2:#203e66;--ink:#13243b;--muted:#64748b;--paper:#f4f7fb;--line:#d9e2ee;--mint:#72e4c7;--yellow:#ffd65a;--red:#f16b70;--blue:#56a9f2;--green:#55c58a;--purple:#a68cf4}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink)}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}
 .topbar{height:62px;background:var(--navy);color:white;display:flex;align-items:center;gap:12px;padding:0 18px;box-shadow:0 3px 12px #071a3433;position:sticky;top:0;z-index:5}
-.brandmark{width:38px;height:38px;border-radius:12px;background:var(--mint);color:#092a40;display:grid;place-items:center;font-size:22px;font-weight:900}.brand{font-weight:900;letter-spacing:.5px;font-size:16px}.subtitle{font-size:10px;opacity:.7;letter-spacing:1.5px}.top-spacer{flex:1}.iconbtn{background:#ffffff1b;color:white;width:40px;height:40px;border-radius:12px;font-size:20px}
-.app{max-width:1450px;margin:auto;padding:18px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:18px}
-.panel{background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 24px #1936570b;overflow:hidden}
+.brandmark{width:38px;height:38px;border-radius:12px;background:var(--mint);color:#092a40;display:grid;place-items:center;font-size:22px;font-weight:900}.brand{font-weight:900;letter-spacing:.5px;font-size:16px}.subtitle{font-size:10px;opacity:.7;letter-spacing:1.5px}.top-spacer{flex:1}.iconbtn{background:#ffffff1b;color:white;width:40px;height:40px;border-radius:12px;font-size:20px;display:grid;place-items:center;}
+.app{max-width:1450px;margin:auto;padding:18px;display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px}
+.panel{background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 24px #1936570b;overflow:hidden;display:flex;flex-direction:column}
 .panelhead{background:var(--navy2);color:white;padding:14px 16px;font-weight:850;letter-spacing:.7px;display:flex;align-items:center;justify-content:space-between}
-.member-body{padding:14px}.counter{font-size:12px;color:var(--muted);margin-bottom:9px;display:flex;justify-content:space-between}
+.member-body{padding:14px;display:flex;flex-direction:column;flex:1}.counter{font-size:12px;color:var(--muted);margin-bottom:9px;display:flex;justify-content:space-between}
 .member-list{height:420px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:#f8fbff;padding:6px}
-.member{padding:8px 10px;border-radius:8px;font-weight:650;font-size:14px;display:flex;align-items:center;gap:8px}.member:nth-child(even){background:#eaf2fa}.member .num{font-size:10px;color:#8393a8;width:20px}
+.member{padding:8px 10px;border-radius:8px;font-weight:650;font-size:14px;display:flex;align-items:center;gap:8px}.member:nth-child(even){background:#eaf2fa}.member .num{font-size:10px;color:#8393a8;width:20px;flex-shrink:0}
 .field{width:100%;border:1px solid #cbd7e5;border-radius:10px;padding:11px;background:#fff;outline:none}.field:focus{border-color:#4c9ee8;box-shadow:0 0 0 3px #4c9ee822}
-.btn{border-radius:11px;padding:11px 14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.15s}.btn:active{transform:scale(.98)}.primary{background:var(--mint);color:#082d3c;box-shadow:0 3px 0 #3ab89a}.secondary{background:#e8eef6;color:#203a59}.danger{background:#ffe8e8;color:#a42c35}.dark{background:var(--navy);color:white}.small{padding:8px 10px;font-size:12px}
+.btn{border-radius:11px;padding:11px 14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.15s}.btn:active{transform:scale(.98)}.primary{background:var(--mint);color:#082d3c;box-shadow:0 3px 0 #3ab89a}.secondary{background:#e8eef6;color:#203a59}.danger{background:#ffe8e8;color:#a42c35}.dark{background:var(--navy);color:white}.small{padding:8px 10px;font-size:12px}.grow{flex:1}
 .addrow{display:flex;gap:7px;margin-top:10px}.addrow .field{min-width:0}.tools{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
 .main{min-width:0}.hero{background:linear-gradient(125deg,#19395f,#102744);border-radius:18px;padding:18px;color:white;display:flex;align-items:center;gap:16px;box-shadow:0 9px 24px #142b4d24}
 .heroicon{font-size:42px}.hero h1{font-size:clamp(18px,3vw,27px);margin:0 0 4px}.hero p{margin:0;color:#c9d8e8;font-size:13px}.hero .btn{margin-left:auto;white-space:nowrap;font-size:15px;padding:14px 18px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:12px 14px}.stat b{font-size:22px;display:block}.stat span{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px}
-.controlbar{background:white;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.controlbar label{font-size:12px;font-weight:800;color:#53657b}.controlbar select{width:82px;padding:9px;border:1px solid var(--line);border-radius:9px;background:white}.controlbar .grow{flex:1}
+.controlbar{background:white;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.controlbar label{font-size:12px;font-weight:800;color:#53657b}.controlbar select{width:82px;padding:9px;border:1px solid var(--line);border-radius:9px;background:white}
 .results-head{display:flex;align-items:center;justify-content:space-between;margin:15px 2px 10px}.results-head h2{font-size:16px;margin:0}.hint{font-size:11px;color:var(--muted)}
-.teams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.team{border:3px solid var(--team);border-radius:15px;background:white;overflow:hidden;box-shadow:0 4px 0 color-mix(in srgb,var(--team),#000 18%)}.teamhead{background:var(--team);color:#10243a;padding:9px 12px;display:flex;align-items:center;gap:9px;font-weight:900}.teamnum{width:29px;height:29px;background:white;border-radius:50%;display:grid;place-items:center;font-size:14px;box-shadow:0 2px 3px #0002}.teamname{flex:1}.teamcount{font-size:11px;background:#ffffff88;padding:4px 7px;border-radius:20px}.teamlist{padding:10px 13px;min-height:90px}.teamlist ol{padding-left:22px;margin:0}.teamlist li{padding:3px 0;font-weight:650;font-size:14px;overflow-wrap:anywhere}.empty{border:2px dashed #cbd7e5;border-radius:14px;padding:35px 15px;text-align:center;color:#728198;background:#ffffffa8}
+.teams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.team{border:3px solid var(--team);border-radius:15px;background:white;overflow:hidden;box-shadow:0 4px 0 color-mix(in srgb,var(--team),#000 18%)}.teamhead{background:var(--team);color:#10243a;padding:9px 12px;display:flex;align-items:center;gap:9px;font-weight:900}.teamnum{width:29px;height:29px;background:white;border-radius:50%;display:grid;place-items:center;font-size:14px;box-shadow:0 2px 3px #0002}.teamname{flex:1}.teamcount{font-size:11px;background:#ffffff88;padding:4px 7px;border-radius:20px}.teamlist{padding:10px 13px;min-height:90px}.teamlist ol{padding-left:22px;margin:0}.teamlist li{padding:3px 0;font-weight:650;font-size:14px;overflow-wrap:anywhere}.empty{border:2px dashed #cbd7e5;border-radius:14px;padding:35px 15px;text-align:center;color:#728198;background:#ffffffa8;font-size:14px}
 .footer{text-align:center;font-size:10px;color:#8391a3;padding:20px;font-weight:700;letter-spacing:0.5px}
-.modalback{position:fixed;inset:0;background:#081a30a8;z-index:20;display:none;align-items:center;justify-content:center;padding:15px;backdrop-filter:blur(3px)}.modalback.show{display:flex}.modal{background:white;width:min(520px,100%);max-height:90vh;overflow:auto;border-radius:18px;box-shadow:0 20px 60px #0004}.modalhead{padding:16px 18px;background:var(--navy);color:white;display:flex;justify-content:space-between;align-items:center}.modalbody{padding:17px;display:grid;gap:12px}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formgroup label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.modalfoot{padding:0 17px 17px;display:flex;gap:8px;justify-content:flex-end}
-.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#102a49;color:white;padding:11px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.2s;z-index:3000;font-size:13px;box-shadow:0 5px 15px #0003}.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ARISAN STYLES */
+.arisan-hero{background:linear-gradient(125deg,#a68cf4,#72e4c7);color:#10243a;}
+.arisan-hero p{color:#1a3754;}
+.arisan-box{background:white;border:3px solid var(--line);border-radius:18px;padding:40px 20px;text-align:center;margin:15px 0;min-height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:inset 0 0 40px #f4f7fb;}
+.winner-text{font-size:clamp(28px, 5vw, 42px);font-weight:900;color:var(--navy);margin-bottom:25px;word-break:break-word;line-height:1.2;min-height:50px;}
+@keyframes winnerPop{0%{transform:scale(0.5);opacity:0}50%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.pop-anim{animation:winnerPop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) forwards;color:var(--red) !important;}
+
+/* MODALS */
+.modalback{position:fixed;inset:0;background:#081a30a8;z-index:20;display:none;align-items:center;justify-content:center;padding:15px;backdrop-filter:blur(3px)}.modalback.show{display:flex}.modal{background:white;width:min(520px,100%);max-height:90vh;overflow:auto;border-radius:18px;box-shadow:0 20px 60px #0004;display:flex;flex-direction:column}.modalhead{padding:16px 18px;background:var(--navy);color:white;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}.modalbody{padding:17px;display:grid;gap:12px;overflow-y:auto}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formgroup label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.modalfoot{padding:15px 17px;display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--line);flex-shrink:0}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#102a49;color:white;padding:11px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.2s;z-index:3000;font-size:13px;box-shadow:0 5px 15px #0003;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+
 /* ANIMASI INSTAL BANNER */
 .install-banner{position:fixed;bottom:-120px;left:50%;transform:translateX(-50%);background:white;border-radius:14px;box-shadow:0 15px 45px #0006;padding:14px;display:flex;align-items:center;gap:12px;width:min(400px,calc(100vw - 32px));z-index:99;transition:bottom 0.5s cubic-bezier(0.175,0.885,0.32,1.275);border:2px solid var(--mint)}
 .install-banner.show{bottom:20px}
 .install-icon{width:46px;height:46px;background:var(--navy);border-radius:10px;display:grid;place-items:center;font-size:22px;color:white}
 .install-text{flex:1}.install-text h4{margin:0 0 3px;font-size:14px;color:var(--navy);font-weight:800}.install-text p{margin:0;font-size:11px;color:var(--muted)}
-.install-actions{display:flex;gap:6px}
 
 /* LOCKSCREEN OVERRIDE */
-#lockScreen { z-index: 2000; background: var(--navy); backdrop-filter: none; display: flex; }
-#lockScreen .modal { width: 320px; text-align: center; }
+#lockScreen{z-index:2000;background:var(--navy);backdrop-filter:none;}
+#lockScreen .modal{width:320px;text-align:center;}
 
-@media(max-width:800px){.app{grid-template-columns:1fr;padding:11px}.member-list{height:165px}.hero{padding:14px}.heroicon{font-size:32px}.hero .btn{padding:11px 12px;font-size:13px}.topbar{height:56px;padding:0 12px}.teams{gap:10px}}
-@media(max-width:460px){.teams{grid-template-columns:1fr}.hero{flex-wrap:wrap}.hero .btn{margin-left:0;width:100%}.stats{gap:7px}.stat{padding:10px}.stat b{font-size:19px}.controlbar{gap:7px}.controlbar .grow{display:none}.brand{font-size:14px}.formrow{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.app{grid-template-columns:1fr;padding:11px}.member-list{height:165px}.hero{padding:14px;flex-wrap:wrap}.heroicon{font-size:32px}.hero .btn{margin-left:0;width:100%;padding:11px 12px;font-size:13px}.topbar{height:56px;padding:0 12px}.teams{gap:10px}}
+@media(max-width:460px){.teams{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:10px}.stat b{font-size:19px}.controlbar{gap:7px}.controlbar .grow{display:none}.brand{font-size:14px}.formrow{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -53,9 +63,9 @@
  <div class="modal">
   <div class="modalhead" style="justify-content:center; background:var(--navy2);"><b>🔒 MASUK APLIKASI</b></div>
   <div class="modalbody" style="padding: 25px 20px;">
-   <p style="font-size:13px; color:var(--muted); margin:0 0 15px;">Masukkan PIN keamanan Anda (Default: 123456)</p>
+   <p style="font-size:13px; color:var(--muted); margin:0 0 15px;">Masukkan PIN keamanan Anda<br><small>(Default: 123456)</small></p>
    <input type="password" id="pinInput" class="field" style="text-align:center; font-size:24px; letter-spacing:8px; padding:12px;" placeholder="****">
-   <button class="btn primary" id="unlockBtn" type="button" style="width: 100%; margin-top: 15px; font-size:15px; padding:13px;">BUKA</button>
+   <button class="btn primary" id="unlockBtn" type="button" style="width: 100%; margin-top: 15px; font-size:15px; padding:13px;">BUKA APLIKASI</button>
    <button class="btn secondary small" id="forgotPinBtn" type="button" style="margin-top: 15px; width: 100%; background:transparent; border:1px solid var(--line);">Lupa PIN?</button>
   </div>
  </div>
@@ -63,30 +73,86 @@
 
 <header class="topbar">
  <div class="brandmark">🎲</div>
- <div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.0.5</div></div>
+ <div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.0.6</div></div>
  <div class="top-spacer"></div>
  <button class="btn primary small" id="installAppBtn" style="display:none; margin-right:8px; padding:6px 12px; font-size:12px; font-weight:800;" type="button">⬇ Instal App</button>
  <button class="iconbtn" id="settingsTop" aria-label="Pengaturan" type="button">⚙</button>
 </header>
+
 <div class="app">
+ <!-- SIDEBAR PESERTA -->
  <aside class="panel">
-  <div class="panelhead"><span>👥 DAFTAR ANGGOTA</span><span id="memberBadge">0</span></div>
+  <div class="panelhead"><span>👥 DAFTAR PESERTA</span><span id="memberBadge">0</span></div>
   <div class="member-body">
-   <div class="counter"><span>Anggota terdaftar</span><b id="memberCount">0 orang</b></div>
-   <div class="member-list" id="memberList"><div class="empty">Belum ada anggota.<br>Tambahkan nama di bawah.</div></div>
-   <div class="addrow"><input class="field" id="newName" placeholder="Nama anggota..." maxlength="60"><button class="btn primary" id="addBtn" type="button">＋</button></div>
-   <div class="tools"><button class="btn secondary small" id="pasteBtn" type="button">📋 Tempel banyak</button><button class="btn secondary small" id="clearBtn" type="button">🗑 Hapus semua</button></div>
-   <div class="tools"><button class="btn secondary small" id="exportBtn" type="button">⬇ Backup</button><button class="btn secondary small" id="importBtn" type="button">⬆ Restore</button><input type="file" id="importFile" accept="application/json,.json" hidden></div>
+   <div class="counter"><span>Total Peserta</span><b id="memberCount">0 orang</b></div>
+   <div class="member-list" id="memberList"><div class="empty">Belum ada peserta.<br>Tambahkan nama di bawah.</div></div>
+   <div class="addrow"><input class="field" id="newName" placeholder="Ketik nama..." maxlength="60"><button class="btn primary" id="addBtn" type="button">＋</button></div>
+   <div class="tools"><button class="btn secondary small grow" id="pasteBtn" type="button">📋 Tempel (Banyak)</button></div>
+   <div class="tools" style="margin-top:7px;">
+     <button class="btn secondary small" id="clearBtn" type="button" style="flex:1">🗑 Hapus</button>
+     <button class="btn secondary small" id="exportBtn" type="button" style="flex:1">⬇ Backup</button>
+     <button class="btn secondary small" id="importBtn" type="button" style="flex:1">⬆ Restore</button>
+     <input type="file" id="importFile" accept="application/json,.json" hidden>
+   </div>
   </div>
  </aside>
+
  <main class="main">
-  <section class="hero"><div class="heroicon">🏆</div><div><h1>GENERATE YOUR TEAMS</h1><p>Acak anggota menjadi kelompok secara cepat dan adil.</p></div><button class="btn primary" id="generateBtn" type="button">🎲 MULAI UNDI</button></section>
-  <div class="stats"><div class="stat"><b id="statMembers">0</b><span>TOTAL ANGGOTA</span></div><div class="stat"><b id="statGroups">4</b><span>JUMLAH GRUP</span></div><div class="stat"><b id="statRounds">0</b><span>HASIL TERSIMPAN</span></div></div>
-  <section class="controlbar"><label>MODE PEMBAGIAN</label><select id="mode"><option value="groups">Jumlah grup</option><option value="size">Anggota/grup</option></select><label id="targetLabel">Jumlah grup</label><select id="target"></select><div class="grow"></div><button class="btn secondary small" id="settingsBtn" type="button">⚙ Pengaturan</button></section>
-  <div class="results-head"><h2>📌 HASIL PEMBAGIAN</h2><span class="hint" id="resultHint">Belum ada undian</span></div>
-  <div id="teams" class="empty">Masukkan anggota, atur jumlah grup, lalu tekan <b>MULAI UNDI</b>.</div>
-  <div class="tools" style="justify-content:flex-end"><button class="btn secondary" id="copyBtn" type="button">📄 Salin hasil</button><button class="btn secondary" id="shareBtn" type="button">📲 Bagikan</button><button class="btn dark" id="saveBtn" type="button">💾 Simpan hasil</button></div>
-  <div class="footer">LOTRE GROUP RANDOM • v1.0.5 • Powered By Ari GPM</div>
+  <!-- TAB NAVIGASI -->
+  <div style="display:flex; gap:10px; margin-bottom:15px;">
+   <button class="btn primary grow" id="tabTeams" type="button" style="font-size:15px; padding:14px;">👥 BAGI TIM</button>
+   <button class="btn secondary grow" id="tabArisan" type="button" style="font-size:15px; padding:14px;">🎉 ARISAN</button>
+  </div>
+
+  <!-- MODE: BAGI TIM -->
+  <div id="viewTeams">
+   <section class="hero">
+    <div class="heroicon">🏆</div>
+    <div><h1>GENERATE YOUR TEAMS</h1><p>Acak anggota menjadi kelompok secara cepat dan adil.</p></div>
+    <button class="btn primary" id="generateBtn" type="button">🎲 MULAI UNDI</button>
+   </section>
+   <div class="stats">
+    <div class="stat"><b id="statMembers">0</b><span>TOTAL PESERTA</span></div>
+    <div class="stat"><b id="statGroups">4</b><span>JUMLAH GRUP</span></div>
+    <div class="stat"><b id="statRounds">0</b><span>HASIL TERSIMPAN</span></div>
+   </div>
+   <section class="controlbar">
+    <label>MODE PEMBAGIAN</label>
+    <select id="mode"><option value="groups">Jumlah grup</option><option value="size">Anggota/grup</option></select>
+    <label id="targetLabel">Jumlah grup</label><select id="target"></select>
+    <div class="grow"></div><button class="btn secondary small" id="settingsBtn" type="button">⚙ Pengaturan</button>
+   </section>
+   <div class="results-head"><h2>📌 HASIL PEMBAGIAN</h2><span class="hint" id="resultHint">Belum ada undian</span></div>
+   <div id="teams" class="empty">Masukkan peserta, atur grup, lalu tekan <b>MULAI UNDI</b>.</div>
+   <div class="tools" style="justify-content:flex-end; margin-top:15px;">
+    <button class="btn secondary" id="copyBtn" type="button">📄 Salin hasil</button>
+    <button class="btn secondary" id="shareBtn" type="button">📲 Bagikan</button>
+    <button class="btn dark" id="saveBtn" type="button">💾 Simpan hasil</button>
+   </div>
+  </div>
+
+  <!-- MODE: ARISAN -->
+  <div id="viewArisan" style="display:none;">
+   <section class="hero arisan-hero">
+    <div class="heroicon">🎰</div>
+    <div><h1>KOPYOK ARISAN</h1><p>Undi satu pemenang beruntung dari daftar peserta.</p></div>
+   </section>
+   
+   <div class="arisan-box">
+     <div id="arisanWinner" class="winner-text">SIAP DIUNDI</div>
+     <button class="btn primary" id="btnKopyok" type="button" style="font-size:18px; padding:15px 35px; border-radius:15px; box-shadow: 0 4px 0 #3ab89a;">🎊 KOCAK SEKARANG</button>
+   </div>
+
+   <div class="results-head">
+    <h2>🏆 RIWAYAT PEMENANG</h2>
+    <button class="btn secondary small" id="clearArisanBtn" type="button">🗑 Bersihkan</button>
+   </div>
+   <div id="arisanHistory" class="member-list" style="height:auto; max-height:250px;">
+      <div class="empty">Belum ada pemenang arisan.</div>
+   </div>
+  </div>
+
+  <div class="footer">LOTRE GROUP RANDOM • v1.0.6 • Powered By Ari GPM</div>
  </main>
 </div>
 
@@ -130,12 +196,12 @@
   <div class="modalhead"><b>⚙ PENGATURAN APLIKASI</b><button class="iconbtn" id="closeSettings" type="button">✕</button></div>
   <div class="modalbody">
    <div class="formgroup"><label>Nama aplikasi / judul grup</label><input class="field" id="appTitle" value="LOTRE GROUP RANDOM"></div>
-   <div class="formrow"><div class="formgroup"><label>Jumlah grup</label><input class="field" id="groupSetting" type="number" min="2" max="50" value="4"></div><div class="formgroup"><label>Anggota per grup</label><input class="field" id="sizeSetting" type="number" min="1" max="100" value="5"></div></div>
-   <div class="formgroup"><label>Mode awal</label><select class="field" id="modeSetting"><option value="groups">Berdasarkan jumlah grup</option><option value="size">Berdasarkan anggota per grup</option></select></div>
-   <div class="formgroup"><label>Warna grup</label><select class="field" id="colorSetting"><option value="bright">Ceria (warna berbeda)</option><option value="cool">Biru & ungu</option></select></div>
+   <div class="formrow"><div class="formgroup"><label>Jumlah grup (Mode Tim)</label><input class="field" id="groupSetting" type="number" min="2" max="50" value="4"></div><div class="formgroup"><label>Anggota per grup</label><input class="field" id="sizeSetting" type="number" min="1" max="100" value="5"></div></div>
+   <div class="formgroup"><label>Mode awal (Bagi Tim)</label><select class="field" id="modeSetting"><option value="groups">Berdasarkan jumlah grup</option><option value="size">Berdasarkan anggota per grup</option></select></div>
+   <div class="formgroup"><label>Tema Warna Hasil Tim</label><select class="field" id="colorSetting"><option value="bright">Ceria (warna berbeda)</option><option value="cool">Biru & ungu</option></select></div>
    
-   <hr style="border:0; border-top:1px solid var(--line); margin:15px 0">
-   <div style="font-size:12px; font-weight:800; color:var(--navy); margin-bottom:10px;">🔒 KEAMANAN (PIN)</div>
+   <hr style="border:0; border-top:1px solid var(--line); margin:5px 0">
+   <div style="font-size:12px; font-weight:800; color:var(--navy);">🔒 KEAMANAN (PIN)</div>
    <div class="formrow">
     <div class="formgroup"><label>Status PIN</label><select class="field" id="pinEnableSetting"><option value="true">Aktif</option><option value="false">Mati</option></select></div>
     <div class="formgroup"><label>PIN Aplikasi</label><input type="password" class="field" id="pinSetting" placeholder="Ubah PIN (Opsional)"></div>
@@ -143,30 +209,36 @@
    <div class="formgroup"><label>Pertanyaan Keamanan Lupa PIN</label><input class="field" id="questionSetting" placeholder="Contoh: Nama hewan peliharaan?"></div>
    <div class="formgroup"><label>Jawaban Rahasia</label><input type="text" class="field" id="answerSetting" placeholder="Jawaban (Opsional diubah)"></div>
    
-   <small style="color:#68788d; display:block; margin-top:5px;">Default PIN: <b>123456</b>. Atur Pertanyaan Keamanan untuk fitur Lupa PIN.</small>
+   <small style="color:#68788d; display:block; margin-top:5px; line-height:1.4;">Default PIN awal: <b>123456</b>.<br>Pastikan mengatur Pertanyaan Keamanan agar bisa melakukan reset saat lupa PIN.</small>
   </div>
-  <div class="modalfoot"><button class="btn secondary" id="cancelSettings" type="button">Batal</button><button class="btn primary" id="applySettings" type="button">Simpan pengaturan</button></div>
+  <div class="modalfoot">
+   <button class="btn secondary" id="cancelSettings" type="button">Batal</button>
+   <button class="btn primary" id="applySettings" type="button">Simpan pengaturan</button>
+  </div>
  </div>
 </div>
 
-<!-- MODALS LAINNYA -->
+<!-- MODAL PASTE / TEMPEL -->
 <div class="modalback" id="pasteModal">
  <div class="modal">
-  <div class="modalhead"><b>📋 TEMPEL DAFTAR ANGGOTA</b><button class="iconbtn" id="closePaste" type="button">✕</button></div>
+  <div class="modalhead"><b>📋 TEMPEL DAFTAR PESERTA</b><button class="iconbtn" id="closePaste" type="button">✕</button></div>
   <div class="modalbody">
-   <div class="formgroup"><label>Masukkan nama, baris baru atau pisahkan dengan koma</label><textarea class="field" id="pasteArea" rows="9" placeholder="Andi&#10;Budi&#10;Citra&#10;Dewi"></textarea></div>
-   <small>Nama kosong akan diabaikan. Nama yang sama tetap dianggap sebagai entri terpisah.</small>
+   <div class="formgroup"><label>Masukkan nama (pisahkan dengan baris baru (Enter) atau koma)</label><textarea class="field" id="pasteArea" rows="10" placeholder="Andi&#10;Budi&#10;Citra&#10;Dewi"></textarea></div>
+   <small>Nama kosong akan diabaikan. Sangat cocok untuk copy-paste dari Excel atau WhatsApp.</small>
   </div>
-  <div class="modalfoot"><button class="btn secondary" id="cancelPaste" type="button">Batal</button><button class="btn primary" id="applyPaste" type="button">Tambahkan nama</button></div>
+  <div class="modalfoot"><button class="btn secondary" id="cancelPaste" type="button">Batal</button><button class="btn primary" id="applyPaste" type="button">Tambahkan</button></div>
  </div>
 </div>
+
+<!-- MODAL CLEAR -->
 <div class="modalback" id="clearModal">
  <div class="modal">
-  <div class="modalhead"><b>🗑 HAPUS SEMUA ANGGOTA?</b><button class="iconbtn" id="closeClear" type="button">✕</button></div>
-  <div class="modalbody"><p>Semua nama anggota dan hasil pembagian saat ini akan dihapus dari perangkat ini. Tindakan ini tidak bisa dibatalkan.</p></div>
+  <div class="modalhead"><b>🗑 HAPUS SEMUA DATA?</b><button class="iconbtn" id="closeClear" type="button">✕</button></div>
+  <div class="modalbody"><p>Semua nama peserta, hasil tim, dan riwayat arisan akan <b>dihapus bersih</b> dari perangkat ini.<br><br>Tindakan ini tidak bisa dibatalkan.</p></div>
   <div class="modalfoot"><button class="btn secondary" id="cancelClear" type="button">Batal</button><button class="btn danger" id="confirmClear" type="button">Ya, hapus semua</button></div>
  </div>
 </div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -175,15 +247,12 @@ const $=id=>document.getElementById(id);
 const colorsBright=['#f16b70','#56a9f2','#55c58a','#ffd65a','#a68cf4','#ff9d59','#55c9c9','#e88ab5'];
 const colorsCool=['#5799df','#8c83e6','#65b9ce','#6c91bd','#9b91d8','#72b8a8'];
 
-// DEFAULT STATE
+// STATE MANAGEMENT
 let state={
-  members:[], groups:[], history:[],
+  members:[], groups:[], history:[], arisanHistory:[],
   settings:{
     title:'LOTRE GROUP RANDOM', groupCount:4, perGroup:5, mode:'groups', palette:'bright',
-    pinEnable: true,
-    pin: '123456',
-    secQ: 'Nama hewan peliharaan pertama?',
-    secA: 'kucing'
+    pinEnable: true, pin: '123456', secQ: 'Nama hewan peliharaan pertama?', secA: 'kucing'
   }
 };
 
@@ -194,6 +263,7 @@ const load=()=>{
        state.members = x.members || [];
        state.groups = x.groups || [];
        state.history = x.history || [];
+       state.arisanHistory = x.arisanHistory || [];
        state.settings = {...state.settings, ...x.settings};
     }
   }catch(e){}
@@ -203,7 +273,7 @@ const persist=()=>localStorage.setItem('lgr-data',JSON.stringify(state));
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2500)}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
-// LOGIKA LOCKSCREEN & LUPA PIN
+// --- LOGIKA LOCKSCREEN & LUPA PIN ---
 function initLock() {
   const ls = $('lockScreen');
   if (state.settings.pinEnable) {
@@ -247,20 +317,14 @@ $('resetPinBtn').onclick = () => {
   if (ans === realAns) {
     const newPin = $('newPinInput').value.trim();
     if (newPin.length < 4) return toast('PIN baru minimal 4 karakter!');
-    
-    state.settings.pin = newPin;
-    state.settings.pinEnable = true;
-    persist();
-    
+    state.settings.pin = newPin; state.settings.pinEnable = true; persist();
     toast('PIN berhasil direset! Aplikasi terbuka.');
     $('forgotPinModal').classList.remove('show');
     $('lockScreen').style.display = 'none';
-  } else {
-    toast('Jawaban keamanan salah!');
-  }
+  } else { toast('Jawaban keamanan salah!'); }
 };
 
-// CORE APP FUNCTIONS
+// --- LOGIKA PESERTA (SIDEBAR) ---
 function renderMembers(){
   const box=$('memberList');
   $('memberCount').textContent=state.members.length+' orang';
@@ -268,15 +332,14 @@ function renderMembers(){
   $('statMembers').textContent=state.members.length;
   
   if(!state.members.length){
-    box.innerHTML='<div class="empty">Belum ada anggota.<br>Tambahkan nama di bawah.</div>';
+    box.innerHTML='<div class="empty">Belum ada peserta.<br>Tambahkan nama di bawah.</div>';
     return;
   }
   
   box.innerHTML=state.members.map((n,i)=>`<div class="member"><span class="num">${i+1}.</span><span style="flex:1">${esc(n)}</span><button class="btn secondary small" data-edit="${i}" aria-label="Edit" type="button">✎</button><button class="btn danger small" data-del="${i}" aria-label="Hapus" type="button">×</button></div>`).join('');
   
   box.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{
-    state.members.splice(+b.dataset.del,1);
-    persist(); renderMembers(); fillTarget(); renderStats();
+    state.members.splice(+b.dataset.del,1); persist(); renderMembers(); fillTarget(); renderStats();
   });
   
   box.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{
@@ -285,13 +348,10 @@ function renderMembers(){
     const input=document.createElement('input');
     input.className='field'; input.value=state.members[i]; input.maxLength=60;
     name.replaceWith(input); input.focus();
-    
     let isFinished = false;
     const finish=()=>{
-      if(isFinished) return;
-      isFinished = true;
-      const v=input.value.trim();
-      if(v) state.members[i]=v;
+      if(isFinished) return; isFinished = true;
+      const v=input.value.trim(); if(v) state.members[i]=v;
       persist(); renderMembers();
     };
     input.addEventListener('keydown',e=>{ if(e.key==='Enter')finish(); if(e.key==='Escape')renderMembers(); });
@@ -299,6 +359,49 @@ function renderMembers(){
   });
 }
 
+$('addBtn').onclick=()=>{
+  const n=$('newName').value.trim();
+  if(!n) return toast('Ketik nama peserta terlebih dahulu.');
+  state.members.push(n); $('newName').value='';
+  persist(); renderMembers(); fillTarget(); renderStats();
+};
+$('newName').addEventListener('keydown',e=>{if(e.key==='Enter')$('addBtn').click();});
+
+$('pasteBtn').onclick=()=>$('pasteModal').classList.add('show');
+$('closePaste').onclick=$('cancelPaste').onclick=()=>closeModal('pasteModal');
+
+$('applyPaste').onclick=()=>{
+  const rawText = $('pasteArea').value;
+  const names = rawText.split(/[\n,;]+/).map(x=>x.trim()).filter(Boolean);
+  if(!names.length) return toast('Belum ada nama yang dimasukkan.');
+  state.members.push(...names); $('pasteArea').value='';
+  closeModal('pasteModal'); persist(); renderMembers(); fillTarget(); renderStats();
+  toast(names.length+' peserta ditambahkan.');
+};
+
+$('clearBtn').onclick=()=>{
+  if(!state.members.length && !state.arisanHistory.length && !state.history.length) return toast('Data sudah bersih.');
+  $('clearModal').classList.add('show');
+};
+$('confirmClear').onclick=()=>{
+  state.members=[]; state.groups=[]; state.history=[]; state.arisanHistory=[]; persist();
+  renderMembers(); renderTeams(); renderArisanHistory(); fillTarget(); renderStats();
+  closeModal('clearModal'); toast('Semua data dibersihkan.');
+};
+$('cancelClear').onclick=$('closeClear').onclick=()=>closeModal('clearModal');
+
+// --- TABS NAVIGASI ---
+$('tabTeams').onclick = () => {
+  $('tabTeams').className = 'btn primary grow'; $('tabArisan').className = 'btn secondary grow';
+  $('viewTeams').style.display = 'block'; $('viewArisan').style.display = 'none';
+};
+$('tabArisan').onclick = () => {
+  $('tabArisan').className = 'btn primary grow'; $('tabTeams').className = 'btn secondary grow';
+  $('viewTeams').style.display = 'none'; $('viewArisan').style.display = 'block';
+  renderArisanHistory();
+};
+
+// --- LOGIKA BAGI TIM ---
 function fillTarget(){
   const mode=$('mode').value, sel=$('target');
   $('targetLabel').textContent = mode==='groups' ? 'Jumlah grup' : 'Anggota/grup';
@@ -316,9 +419,7 @@ function renderStats(){
 function renderTeams(){
   const root=$('teams');
   if(!state.groups.length){
-    root.className='empty';
-    root.innerHTML='Masukkan anggota, atur jumlah grup, lalu tekan <b>MULAI UNDI</b>.';
-    return;
+    root.className='empty'; root.innerHTML='Masukkan peserta, atur grup, lalu tekan <b>MULAI UNDI</b>.'; return;
   }
   root.className='teams';
   const palette=state.settings.palette==='cool'?colorsCool:colorsBright;
@@ -327,82 +428,24 @@ function renderTeams(){
 
 function shuffle(a){
   const x=a.slice();
-  for(let i=x.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [x[i],x[j]]=[x[j],x[i]];
-  }
+  for(let i=x.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [x[i],x[j]]=[x[j],x[i]]; }
   return x;
 }
 
-function generate(){
-  if(state.members.length<2){toast('Tambahkan minimal 2 anggota terlebih dahulu.');return;}
+$('generateBtn').onclick=()=>{
+  if(state.members.length<2) return toast('Tambahkan minimal 2 peserta.');
   const mode=$('mode').value, target=+$('target').value;
   let count=mode==='groups' ? Math.min(target,state.members.length) : Math.ceil(state.members.length/target);
   count=Math.max(1,count);
   const arr=shuffle(state.members);
   const groups=Array.from({length:count},()=>[]);
   
-  if(mode==='groups'){
-    arr.forEach((n,i)=>groups[i%count].push(n));
-  }else{
-    arr.forEach((n,i)=>groups[Math.floor(i/target)].push(n));
-  }
+  if(mode==='groups'){ arr.forEach((n,i)=>groups[i%count].push(n)); }
+  else { arr.forEach((n,i)=>groups[Math.floor(i/target)].push(n)); }
+  
   state.groups=groups; persist(); renderTeams(); renderStats();
-  $('resultHint').textContent='Diundi '+new Date().toLocaleString('id-ID');
-  toast('Pengundian selesai!');
-}
-
-function resultText(){
-  if(!state.groups.length) return '';
-  return state.groups.map((g,i)=> {
-    return 'GRUP '+(i+1)+' ('+g.length+' anggota)\n' + g.map((n,j)=>(j+1)+'. '+n).join('\n');
-  }).join('\n\n');
-}
-
-function openSettings(){
-  $('appTitle').value=state.settings.title; $('groupSetting').value=state.settings.groupCount;
-  $('sizeSetting').value=state.settings.perGroup; $('modeSetting').value=state.settings.mode;
-  $('colorSetting').value=state.settings.palette;
-  
-  $('pinEnableSetting').value = state.settings.pinEnable ? 'true' : 'false';
-  $('pinSetting').value = '';
-  $('questionSetting').value = state.settings.secQ || '';
-  $('answerSetting').value = '';
-  
-  $('settingsModal').classList.add('show');
-}
-function closeModal(id){$(id).classList.remove('show');}
-
-$('addBtn').onclick=()=>{
-  const n=$('newName').value.trim();
-  if(!n) return toast('Tulis nama anggota terlebih dahulu.');
-  state.members.push(n); $('newName').value='';
-  persist(); renderMembers(); fillTarget(); renderStats();
+  $('resultHint').textContent='Diundi '+new Date().toLocaleString('id-ID'); toast('Pengundian selesai!');
 };
-$('newName').addEventListener('keydown',e=>{if(e.key==='Enter')$('addBtn').click();});
-
-$('pasteBtn').onclick=()=>$('pasteModal').classList.add('show');
-$('closePaste').onclick=$('cancelPaste').onclick=()=>closeModal('pasteModal');
-
-$('applyPaste').onclick=()=>{
-  const rawText = $('pasteArea').value;
-  const names = rawText.split(/[\n,;]+/).map(x=>x.trim()).filter(Boolean);
-  if(!names.length) return toast('Belum ada nama yang ditambahkan.');
-  state.members.push(...names); $('pasteArea').value='';
-  closeModal('pasteModal'); persist(); renderMembers(); fillTarget(); renderStats();
-  toast(names.length+' nama ditambahkan.');
-};
-
-$('clearBtn').onclick=()=>{
-  if(!state.members.length) return toast('Daftar anggota sudah kosong.');
-  $('clearModal').classList.add('show');
-};
-$('confirmClear').onclick=()=>{
-  state.members=[]; state.groups=[]; persist();
-  renderMembers(); renderTeams(); fillTarget(); renderStats();
-  closeModal('clearModal'); toast('Semua anggota dihapus.');
-};
-$('cancelClear').onclick=$('closeClear').onclick=()=>closeModal('clearModal');
 
 $('mode').onchange=()=>{state.settings.mode=$('mode').value; persist(); fillTarget(); renderStats();};
 $('target').onchange=()=>{
@@ -411,49 +454,136 @@ $('target').onchange=()=>{
   persist(); renderStats();
 };
 
-$('generateBtn').onclick=generate;
+function resultText(){
+  if(!state.groups.length) return '';
+  return state.groups.map((g,i)=> { return 'GRUP '+(i+1)+' ('+g.length+' anggota)\n' + g.map((n,j)=>(j+1)+'. '+n).join('\n'); }).join('\n\n');
+}
+
+$('copyBtn').onclick=()=>{
+  const t=resultText(); if(!t) return toast('Belum ada hasil tim.');
+  if(navigator.clipboard?.writeText) navigator.clipboard.writeText(t).then(()=>toast('Hasil disalin.')).catch(()=>toast('Gagal menyalin.'));
+  else toast('Browser tidak mendukung salin otomatis.');
+};
+$('shareBtn').onclick=()=>{
+  const t=resultText(); if(!t) return toast('Belum ada hasil tim.');
+  if(navigator.share) navigator.share({title:state.settings.title,text:t}).catch(()=>{});
+  else window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');
+};
+$('saveBtn').onclick=()=>{
+  if(!state.groups.length) return toast('Belum ada hasil tim.');
+  state.history.unshift({date:new Date().toISOString(),groups:state.groups});
+  state.history=state.history.slice(0,50); persist(); renderStats(); toast('Hasil tim disimpan.');
+};
+
+// --- LOGIKA ARISAN ---
+let isRolling = false;
+$('btnKopyok').onclick = () => {
+  if (state.members.length === 0) return toast('Daftar peserta masih kosong!');
+  if (isRolling) return;
+  isRolling = true;
+  
+  const btn = $('btnKopyok');
+  const display = $('arisanWinner');
+  btn.disabled = true;
+  btn.textContent = 'MENGACAK...';
+  display.classList.remove('pop-anim');
+  display.style.color = 'var(--muted)';
+
+  let counter = 0;
+  const maxRolls = 35; // Animasi 35 putaran
+  
+  // Efek Suara (Opsional jika didukung browser)
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    osc.type = 'triangle'; osc.frequency.setValueAtTime(400, ctx.currentTime);
+    osc.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + 0.1);
+  } catch(e) {}
+
+  const roll = setInterval(() => {
+    display.textContent = state.members[Math.floor(Math.random() * state.members.length)];
+    counter++;
+    
+    if(counter >= maxRolls) {
+      clearInterval(roll);
+      const winnerIndex = Math.floor(Math.random() * state.members.length);
+      const winnerName = state.members[winnerIndex];
+      
+      display.textContent = winnerName;
+      display.classList.add('pop-anim');
+      
+      // Tambah ke riwayat
+      state.arisanHistory.unshift({ name: winnerName, date: new Date().toLocaleString('id-ID') });
+      persist(); renderArisanHistory();
+      
+      btn.textContent = '🎊 KOCAK LAGI';
+      btn.disabled = false;
+      isRolling = false;
+      toast('Selamat kepada ' + winnerName + '!');
+    }
+  }, 60); // Kecepatan acak (ms)
+};
+
+function renderArisanHistory() {
+  const box = $('arisanHistory');
+  if(!state.arisanHistory || state.arisanHistory.length === 0) {
+    box.innerHTML = '<div class="empty">Belum ada pemenang arisan.</div>'; return;
+  }
+  
+  box.innerHTML = state.arisanHistory.map((w, i) => `
+    <div class="member" style="background:white; border:1px solid var(--line); margin-bottom:6px;">
+      <span class="num">${i+1}.</span>
+      <span style="flex:1; font-weight:800; color:var(--navy); font-size:15px;">${esc(w.name)}</span>
+      <span style="font-size:10px; color:var(--muted); margin-right:8px; text-align:right;">${w.date.replace(', ','<br>')}</span>
+      <button class="btn danger small" data-delarisan="${i}" type="button" aria-label="Hapus">×</button>
+    </div>
+  `).join('');
+  
+  box.querySelectorAll('[data-delarisan]').forEach(b => {
+    b.onclick = () => { state.arisanHistory.splice(+b.dataset.delarisan, 1); persist(); renderArisanHistory(); };
+  });
+}
+
+$('clearArisanBtn').onclick = () => {
+  if(state.arisanHistory.length === 0) return toast('Riwayat arisan sudah kosong.');
+  if(confirm('Hapus seluruh riwayat pemenang arisan?')) {
+    state.arisanHistory = []; persist(); renderArisanHistory(); toast('Riwayat dibersihkan.');
+  }
+};
+
+// --- PENGATURAN UMUM ---
+function openSettings(){
+  $('appTitle').value=state.settings.title; $('groupSetting').value=state.settings.groupCount;
+  $('sizeSetting').value=state.settings.perGroup; $('modeSetting').value=state.settings.mode;
+  $('colorSetting').value=state.settings.palette;
+  $('pinEnableSetting').value = state.settings.pinEnable ? 'true' : 'false';
+  $('pinSetting').value = '';
+  $('questionSetting').value = state.settings.secQ || '';
+  $('answerSetting').value = '';
+  $('settingsModal').classList.add('show');
+}
+function closeModal(id){$(id).classList.remove('show');}
 $('settingsTop').onclick=$('settingsBtn').onclick=openSettings;
 $('closeSettings').onclick=$('cancelSettings').onclick=()=>closeModal('settingsModal');
 
 $('applySettings').onclick=()=>{
   const gc=Math.max(2,Math.min(50,parseInt($('groupSetting').value)||4));
   const pg=Math.max(1,Math.min(100,parseInt($('sizeSetting').value)||5));
-  
   state.settings.title = $('appTitle').value.trim()||'LOTRE GROUP RANDOM';
-  state.settings.groupCount = gc;
-  state.settings.perGroup = pg;
-  state.settings.mode = $('modeSetting').value;
-  state.settings.palette = $('colorSetting').value;
+  state.settings.groupCount = gc; state.settings.perGroup = pg;
+  state.settings.mode = $('modeSetting').value; state.settings.palette = $('colorSetting').value;
   
   state.settings.pinEnable = $('pinEnableSetting').value === 'true';
-  const newP = $('pinSetting').value.trim();
-  if(newP) state.settings.pin = newP;
-  
-  const newQ = $('questionSetting').value.trim();
-  if(newQ) state.settings.secQ = newQ;
-  
-  const newA = $('answerSetting').value.trim();
-  if(newA) state.settings.secA = newA;
+  const newP = $('pinSetting').value.trim(); if(newP) state.settings.pin = newP;
+  const newQ = $('questionSetting').value.trim(); if(newQ) state.settings.secQ = newQ;
+  const newA = $('answerSetting').value.trim(); if(newA) state.settings.secA = newA;
 
   document.title=state.settings.title; $('mode').value=state.settings.mode;
-  persist(); fillTarget(); renderStats(); closeModal('settingsModal'); toast('Pengaturan tersimpan.');
+  persist(); fillTarget(); renderStats(); renderTeams(); closeModal('settingsModal'); toast('Pengaturan tersimpan.');
 };
 
-$('copyBtn').onclick=()=>{
-  const t=resultText(); if(!t) return toast('Belum ada hasil undian.');
-  if(navigator.clipboard?.writeText) navigator.clipboard.writeText(t).then(()=>toast('Hasil disalin.')).catch(()=>toast('Gagal menyalin.'));
-  else toast('Browser tidak mendukung salin otomatis.');
-};
-$('shareBtn').onclick=()=>{
-  const t=resultText(); if(!t) return toast('Belum ada hasil undian.');
-  if(navigator.share) navigator.share({title:state.settings.title,text:t}).catch(()=>{});
-  else window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');
-};
-$('saveBtn').onclick=()=>{
-  if(!state.groups.length) return toast('Belum ada hasil undian.');
-  state.history.unshift({date:new Date().toISOString(),groups:state.groups});
-  state.history=state.history.slice(0,50); persist(); renderStats(); toast('Hasil undian disimpan.');
-};
+// BACKUP & RESTORE
 $('exportBtn').onclick=()=>{
   const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
@@ -467,37 +597,28 @@ $('importFile').onchange=async e=>{
     const x=JSON.parse(await f.text());
     if(!Array.isArray(x.members)) throw Error();
     state={...state,...x,settings:{...state.settings,...x.settings}};
-    persist(); renderMembers(); renderTeams(); fillTarget(); renderStats(); toast('Data dipulihkan.');
+    persist(); renderMembers(); renderTeams(); renderArisanHistory(); fillTarget(); renderStats(); toast('Data dipulihkan.');
   }catch(err){toast('File backup tidak valid.');}
   e.target.value='';
 };
 
-// INIT APP
+// --- INIT APP ---
 load(); 
-$('mode').value=state.settings.mode; 
-document.title=state.settings.title;
-renderMembers(); fillTarget(); renderTeams(); renderStats();
+$('mode').value=state.settings.mode; document.title=state.settings.title;
+renderMembers(); fillTarget(); renderTeams(); renderStats(); renderArisanHistory();
+initLock(); // Tampilkan Lockscreen jika aktif
 
-// Tampilkan Lockscreen jika aktif
-initLock();
+// --- REGISTRASI SERVICE WORKER UNTUK PWA ---
+if('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(()=>{}); }); }
 
-// REGISTRASI SERVICE WORKER UNTUK PWA
-if('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  });
-}
-
-// LOGIKA BANNER PWA
+// --- LOGIKA BANNER INSTALASI PWA ---
 let deferredPrompt;
 const installAppBtn = $('installAppBtn');
 const installBanner = $('installBanner');
 
 window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installAppBtn.style.display = 'inline-flex';
-  const dismissed = localStorage.getItem('lgr-dismiss-v1.0.5') === 'true';
+  e.preventDefault(); deferredPrompt = e; installAppBtn.style.display = 'inline-flex';
+  const dismissed = localStorage.getItem('lgr-dismiss-v1.0.6') === 'true';
   if (!dismissed && !window.matchMedia('(display-mode: standalone)').matches) {
     setTimeout(() => { if(deferredPrompt) installBanner.classList.add('show'); }, 1200);
   }
@@ -505,8 +626,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 const triggerInstall = async () => {
   if (!deferredPrompt) return;
-  installBanner.classList.remove('show');
-  deferredPrompt.prompt();
+  installBanner.classList.remove('show'); deferredPrompt.prompt();
   const { outcome } = await deferredPrompt.userChoice;
   if (outcome === 'accepted') installAppBtn.style.display = 'none';
   deferredPrompt = null;
@@ -515,17 +635,11 @@ const triggerInstall = async () => {
 installAppBtn.addEventListener('click', triggerInstall);
 $('installAcceptBtn').addEventListener('click', triggerInstall);
 $('installDeclineBtn').addEventListener('click', () => {
-  installBanner.classList.remove('show');
-  localStorage.setItem('lgr-dismiss-v1.0.5', 'true');
+  installBanner.classList.remove('show'); localStorage.setItem('lgr-dismiss-v1.0.6', 'true');
 });
-
 window.addEventListener('appinstalled', () => {
-  installAppBtn.style.display = 'none';
-  installBanner.classList.remove('show');
-  deferredPrompt = null;
-  toast('Aplikasi LGR berhasil diinstal!');
+  installAppBtn.style.display = 'none'; installBanner.classList.remove('show'); deferredPrompt = null; toast('Aplikasi LGR berhasil diinstal!');
 });
-
 })();
 </script>
 </body></html>
