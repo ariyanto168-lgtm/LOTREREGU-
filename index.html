@@ -10,78 +10,63 @@
 <title>LOTRE GROUP RANDOM</title>
 <style>
 :root{--navy:#142b4d;--navy2:#203e66;--ink:#13243b;--muted:#64748b;--paper:#f4f7fb;--line:#d9e2ee;--mint:#72e4c7;--yellow:#ffd65a;--red:#f16b70;--blue:#56a9f2;--green:#55c58a;--purple:#a68cf4}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink)}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}
-.topbar{height:62px;background:var(--navy);color:white;display:flex;align-items:center;gap:12px;padding:0 18px;box-shadow:0 3px 12px #071a3433;position:sticky;top:0;z-index:5}
-.brandmark{width:38px;height:38px;border-radius:12px;background:var(--mint);color:#092a40;display:grid;place-items:center;font-size:22px;font-weight:900}.brand{font-weight:900;letter-spacing:.5px;font-size:16px}.subtitle{font-size:10px;opacity:.7;letter-spacing:1.5px}.top-spacer{flex:1}.iconbtn{background:#ffffff1b;color:white;width:40px;height:40px;border-radius:12px;font-size:20px;display:grid;place-items:center;}
-.app{max-width:1450px;margin:auto;padding:18px;display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px}
-.panel{background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 24px #1936570b;overflow:hidden;display:flex;flex-direction:column}
-.panelhead{background:var(--navy2);color:white;padding:14px 16px;font-weight:850;letter-spacing:.7px;display:flex;align-items:center;justify-content:space-between}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink)}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;touch-action:manipulation}
+.topbar{height:62px;background:var(--navy);color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;box-shadow:0 3px 12px #071a3433;position:sticky;top:0;z-index:10}
+.brandmark{width:38px;height:38px;border-radius:12px;background:var(--mint);color:#092a40;display:grid;place-items:center;font-size:21px;font-weight:900;flex-shrink:0}.brand{font-weight:900;letter-spacing:.4px;font-size:15px}.subtitle{font-size:10px;opacity:.75;letter-spacing:1.2px}.top-spacer{flex:1}.iconbtn{background:#ffffff1b;color:#fff;width:40px;height:40px;border-radius:12px;font-size:20px;display:grid;place-items:center;flex-shrink:0}
+.app{max-width:1400px;margin:auto;padding:16px;display:grid;grid-template-columns:290px minmax(0,1fr);gap:16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 24px #1936570b;overflow:hidden;display:flex;flex-direction:column}
+.panelhead{background:var(--navy2);color:#fff;padding:14px 16px;font-weight:850;letter-spacing:.6px;display:flex;align-items:center;justify-content:space-between}
 .member-body{padding:14px;display:flex;flex-direction:column;flex:1}.counter{font-size:12px;color:var(--muted);margin-bottom:9px;display:flex;justify-content:space-between}
-.member-list{height:420px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:#f8fbff;padding:6px}
-.member{padding:8px 10px;border-radius:8px;font-weight:650;font-size:14px;display:flex;align-items:center;gap:8px}.member:nth-child(even){background:#eaf2fa}.member .num{font-size:10px;color:#8393a8;width:20px;flex-shrink:0}
+.member-list{height:380px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:#f8fbff;padding:6px}
+.member{padding:8px 10px;border-radius:8px;font-weight:650;font-size:14px;display:flex;align-items:center;gap:8px}.member:nth-child(even){background:#eaf2fa}.member .num{font-size:11px;color:#8393a8;width:22px;flex-shrink:0}
 .field{width:100%;border:1px solid #cbd7e5;border-radius:10px;padding:11px;background:#fff;outline:none}.field:focus{border-color:#4c9ee8;box-shadow:0 0 0 3px #4c9ee822}
-.btn{border-radius:11px;padding:11px 14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.15s}.btn:active{transform:scale(.98)}.primary{background:var(--mint);color:#082d3c;box-shadow:0 3px 0 #3ab89a}.secondary{background:#e8eef6;color:#203a59}.danger{background:#ffe8e8;color:#a42c35}.dark{background:var(--navy);color:white}.small{padding:8px 10px;font-size:12px}.grow{flex:1}
+.btn{border-radius:11px;padding:11px 14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.12s;user-select:none}.btn:active{transform:scale(.97)}.primary{background:var(--mint);color:#082d3c;box-shadow:0 3px 0 #3ab89a}.secondary{background:#e8eef6;color:#203a59}.danger{background:#ffe8e8;color:#a42c35}.dark{background:var(--navy);color:#fff}.small{padding:8px 10px;font-size:12px}.grow{flex:1}
 .addrow{display:flex;gap:7px;margin-top:10px}.addrow .field{min-width:0}.tools{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
-.main{min-width:0}.hero{background:linear-gradient(125deg,#19395f,#102744);border-radius:18px;padding:18px;color:white;display:flex;align-items:center;gap:16px;box-shadow:0 9px 24px #142b4d24}
-.heroicon{font-size:42px}.hero h1{font-size:clamp(18px,3vw,27px);margin:0 0 4px}.hero p{margin:0;color:#c9d8e8;font-size:13px}.hero .btn{margin-left:auto;white-space:nowrap;font-size:15px;padding:14px 18px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:12px 14px}.stat b{font-size:22px;display:block}.stat span{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px}
-.controlbar{background:white;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.controlbar label{font-size:12px;font-weight:800;color:#53657b}.controlbar select{width:82px;padding:9px;border:1px solid var(--line);border-radius:9px;background:white}
+.main{min-width:0}.hero{background:linear-gradient(125deg,#19395f,#102744);border-radius:18px;padding:18px;color:#fff;display:flex;align-items:center;gap:16px;box-shadow:0 9px 24px #142b4d24}
+.heroicon{font-size:40px}.hero h1{font-size:clamp(18px,3vw,26px);margin:0 0 4px}.hero p{margin:0;color:#c9d8e8;font-size:13px}.hero .btn{margin-left:auto;white-space:nowrap;font-size:15px;padding:14px 18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}.stat b{font-size:22px;display:block}.stat span{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px}
+.controlbar{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.controlbar label{font-size:12px;font-weight:800;color:#53657b}.controlbar select{width:84px;padding:9px;border:1px solid var(--line);border-radius:9px;background:#fff}
 .results-head{display:flex;align-items:center;justify-content:space-between;margin:15px 2px 10px}.results-head h2{font-size:16px;margin:0}.hint{font-size:11px;color:var(--muted)}
-.teams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.team{border:3px solid var(--team);border-radius:15px;background:white;overflow:hidden;box-shadow:0 4px 0 color-mix(in srgb,var(--team),#000 18%)}.teamhead{background:var(--team);color:#10243a;padding:9px 12px;display:flex;align-items:center;gap:9px;font-weight:900}.teamnum{width:29px;height:29px;background:white;border-radius:50%;display:grid;place-items:center;font-size:14px;box-shadow:0 2px 3px #0002}.teamname{flex:1}.teamcount{font-size:11px;background:#ffffff88;padding:4px 7px;border-radius:20px}.teamlist{padding:10px 13px;min-height:90px}.teamlist ol{padding-left:22px;margin:0}.teamlist li{padding:3px 0;font-weight:650;font-size:14px;overflow-wrap:anywhere}.empty{border:2px dashed #cbd7e5;border-radius:14px;padding:35px 15px;text-align:center;color:#728198;background:#ffffffa8;font-size:14px}
-.footer{text-align:center;font-size:10px;color:#8391a3;padding:20px;font-weight:700;letter-spacing:0.5px}
-
-/* ARISAN STYLES */
-.arisan-hero{background:linear-gradient(125deg,#a68cf4,#72e4c7);color:#10243a;}
-.arisan-hero p{color:#1a3754;}
-.arisan-box{background:white;border:3px solid var(--line);border-radius:18px;padding:40px 20px;text-align:center;margin:15px 0;min-height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:inset 0 0 40px #f4f7fb;}
-.winner-text{font-size:clamp(28px, 5vw, 42px);font-weight:900;color:var(--navy);margin-bottom:25px;word-break:break-word;line-height:1.2;min-height:50px;}
-@keyframes winnerPop{0%{transform:scale(0.5);opacity:0}50%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
-.pop-anim{animation:winnerPop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) forwards;color:var(--red) !important;}
-
-/* MODALS */
-.modalback{position:fixed;inset:0;background:#081a30a8;z-index:20;display:none;align-items:center;justify-content:center;padding:15px;backdrop-filter:blur(3px)}.modalback.show{display:flex}.modal{background:white;width:min(520px,100%);max-height:90vh;overflow:auto;border-radius:18px;box-shadow:0 20px 60px #0004;display:flex;flex-direction:column}.modalhead{padding:16px 18px;background:var(--navy);color:white;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}.modalbody{padding:17px;display:grid;gap:12px;overflow-y:auto}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formgroup label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.modalfoot{padding:15px 17px;display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--line);flex-shrink:0}
-.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#102a49;color:white;padding:11px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.2s;z-index:3000;font-size:13px;box-shadow:0 5px 15px #0003;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
-
-/* ANIMASI INSTAL BANNER */
-.install-banner{position:fixed;bottom:-120px;left:50%;transform:translateX(-50%);background:white;border-radius:14px;box-shadow:0 15px 45px #0006;padding:14px;display:flex;align-items:center;gap:12px;width:min(400px,calc(100vw - 32px));z-index:99;transition:bottom 0.5s cubic-bezier(0.175,0.885,0.32,1.275);border:2px solid var(--mint)}
-.install-banner.show{bottom:20px}
-.install-icon{width:46px;height:46px;background:var(--navy);border-radius:10px;display:grid;place-items:center;font-size:22px;color:white}
-.install-text{flex:1}.install-text h4{margin:0 0 3px;font-size:14px;color:var(--navy);font-weight:800}.install-text p{margin:0;font-size:11px;color:var(--muted)}
-
-/* LOCKSCREEN OVERRIDE */
-#lockScreen{z-index:2000;background:var(--navy);backdrop-filter:none;}
-#lockScreen .modal{width:320px;text-align:center;}
-
-@media(max-width:800px){.app{grid-template-columns:1fr;padding:11px}.member-list{height:165px}.hero{padding:14px;flex-wrap:wrap}.heroicon{font-size:32px}.hero .btn{margin-left:0;width:100%;padding:11px 12px;font-size:13px}.topbar{height:56px;padding:0 12px}.teams{gap:10px}}
-@media(max-width:460px){.teams{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:10px}.stat b{font-size:19px}.controlbar{gap:7px}.controlbar .grow{display:none}.brand{font-size:14px}.formrow{grid-template-columns:1fr 1fr}}
+.teams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.team{border:3px solid var(--team);border-radius:15px;background:#fff;overflow:hidden;box-shadow:0 4px 0 color-mix(in srgb,var(--team),#000 18%)}.teamhead{background:var(--team);color:#10243a;padding:9px 12px;display:flex;align-items:center;gap:9px;font-weight:900}.teamnum{width:29px;height:29px;background:#fff;border-radius:50%;display:grid;place-items:center;font-size:14px}.teamname{flex:1}.teamcount{font-size:11px;background:#ffffff88;padding:4px 7px;border-radius:20px}.teamlist{padding:10px 13px;min-height:90px}.teamlist ol{padding-left:22px;margin:0}.teamlist li{padding:3px 0;font-weight:650;font-size:14px;overflow-wrap:anywhere}.empty{border:2px dashed #cbd7e5;border-radius:14px;padding:30px 15px;text-align:center;color:#728198;background:#ffffffa8;font-size:14px}
+.footer{text-align:center;font-size:11px;color:#8391a3;padding:22px 10px;font-weight:700;letter-spacing:.5px}
+.arisan-hero{background:linear-gradient(125deg,#a68cf4,#72e4c7);color:#10243a}.arisan-hero p{color:#1a3754}
+.arisan-box{background:#fff;border:3px solid var(--line);border-radius:18px;padding:36px 20px;text-align:center;margin:15px 0;min-height:210px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.winner-text{font-size:clamp(26px,5vw,40px);font-weight:900;color:var(--navy);margin-bottom:24px;word-break:break-word;line-height:1.2;min-height:48px}
+@keyframes winnerPop{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.pop-anim{animation:winnerPop .45s ease-out forwards;color:var(--red)!important}
+.modalback{position:fixed;inset:0;background:#081a30b8;z-index:50;display:none;align-items:center;justify-content:center;padding:15px}.modalback.show{display:flex}.modal{background:#fff;width:min(500px,100%);max-height:90vh;overflow:auto;border-radius:18px;box-shadow:0 20px 60px #0005;display:flex;flex-direction:column}.modalhead{padding:15px 18px;background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}.modalbody{padding:16px;display:grid;gap:12px;overflow-y:auto}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formgroup label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.modalfoot{padding:14px 16px;display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--line);flex-shrink:0}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#102a49;color:#fff;padding:11px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.2s;z-index:9999;font-size:13px;box-shadow:0 5px 15px #0004;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+.install-banner{position:fixed;bottom:-140px;left:50%;transform:translateX(-50%);background:#fff;border-radius:14px;box-shadow:0 15px 45px #0006;padding:14px;display:flex;align-items:center;gap:12px;width:min(400px,calc(100vw - 28px));z-index:40;transition:bottom .4s ease;border:2px solid var(--mint)}.install-banner.show{bottom:18px}
+.install-icon{width:44px;height:44px;background:var(--navy);border-radius:10px;display:grid;place-items:center;font-size:22px;color:#fff;flex-shrink:0}.install-text{flex:1}.install-text h4{margin:0 0 3px;font-size:14px;color:var(--navy);font-weight:800}.install-text p{margin:0;font-size:11px;color:var(--muted)}
+#lockScreen{z-index:2000;background:var(--navy)}#lockScreen .modal{width:min(330px,92vw);text-align:center}
+@media(max-width:800px){.app{grid-template-columns:1fr;padding:11px}.member-list{height:170px}.hero{padding:14px;flex-wrap:wrap}.heroicon{font-size:32px}.hero .btn{margin-left:0;width:100%;padding:12px;font-size:14px}.topbar{height:56px;padding:0 12px}.teams{gap:10px}}
+@media(max-width:460px){.teams{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:10px}.stat b{font-size:19px}.controlbar{gap:7px}.controlbar .grow{display:none}.brand{font-size:14px}}
 </style>
 </head>
 <body>
 
-<!-- KUNCI LAYAR (LOCKSCREEN) -->
 <div id="lockScreen" class="modalback">
  <div class="modal">
-  <div class="modalhead" style="justify-content:center; background:var(--navy2);"><b>🔒 MASUK APLIKASI</b></div>
-  <div class="modalbody" style="padding: 25px 20px; display:flex; flex-direction:column; align-items:center;">
-   <img src="icon-192.png" alt="Logo" onerror="this.style.display='none'" style="width:75px; height:75px; border-radius:18px; margin-bottom:12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
-   <p style="font-size:13px; color:var(--muted); margin:0 0 15px; text-align:center;">Masukkan PIN keamanan Anda</p>
-   <input type="password" id="pinInput" class="field" style="text-align:center; font-size:24px; letter-spacing:8px; padding:12px; width:100%;" placeholder="****">
-   <button class="btn primary" id="unlockBtn" type="button" style="width: 100%; margin-top: 15px; font-size:15px; padding:13px;">BUKA APLIKASI</button>
-   <button class="btn secondary small" id="forgotPinBtn" type="button" style="margin-top: 15px; width: 100%; background:transparent; border:1px solid var(--line);">Lupa PIN?</button>
+  <div class="modalhead" style="justify-content:center;background:var(--navy2)"><b>🔒 MASUK APLIKASI</b></div>
+  <div class="modalbody" style="padding:24px 20px;display:flex;flex-direction:column;align-items:center">
+   <img src="icon-192.png" alt="Logo" onerror="this.style.display='none'" style="width:74px;height:74px;border-radius:18px;margin-bottom:12px;box-shadow:0 8px 16px #0002">
+   <p style="font-size:13px;color:var(--muted);margin:0 0 14px">Masukkan PIN keamanan Anda</p>
+   <input type="password" inputmode="numeric" id="pinInput" class="field" style="text-align:center;font-size:24px;letter-spacing:8px;padding:12px" placeholder="••••">
+   <button class="btn primary" id="unlockBtn" type="button" style="width:100%;margin-top:14px;font-size:15px;padding:13px">BUKA APLIKASI</button>
+   <button class="btn secondary small" id="forgotPinBtn" type="button" style="margin-top:12px;width:100%;background:transparent;border:1px solid var(--line)">Lupa PIN?</button>
   </div>
  </div>
 </div>
 
 <header class="topbar">
  <div class="brandmark">🎲</div>
- <div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.1.0</div></div>
+ <div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.1.1</div></div>
  <div class="top-spacer"></div>
- <button class="btn primary small" id="installAppBtn" style="display:none; margin-right:8px; padding:6px 12px; font-size:12px; font-weight:800;" type="button">⬇ Instal App</button>
+ <button class="btn primary small" id="installAppBtn" style="padding:7px 11px;font-size:12px" type="button">⬇ Instal App</button>
  <button class="iconbtn" id="settingsTop" aria-label="Pengaturan" type="button">⚙</button>
 </header>
 
 <div class="app">
- <!-- SIDEBAR PESERTA DINAMIS -->
  <aside class="panel">
   <div class="panelhead"><span id="panelTitle">👥 PESERTA TIM</span><span id="memberBadge">0</span></div>
   <div class="member-body">
@@ -89,23 +74,21 @@
    <div class="member-list" id="memberList"><div class="empty">Belum ada peserta.<br>Tambahkan nama di bawah.</div></div>
    <div class="addrow"><input class="field" id="newName" placeholder="Ketik nama..." maxlength="60"><button class="btn primary" id="addBtn" type="button">＋</button></div>
    <div class="tools"><button class="btn secondary small grow" id="pasteBtn" type="button">📋 Tempel (Banyak)</button></div>
-   <div class="tools" style="margin-top:7px;">
-     <button class="btn secondary small" id="clearBtn" type="button" style="flex:1">🗑 Hapus</button>
-     <button class="btn secondary small" id="exportBtn" type="button" style="flex:1">⬇ Backup</button>
-     <button class="btn secondary small" id="importBtn" type="button" style="flex:1">⬆ Restore</button>
-     <input type="file" id="importFile" accept="application/json,.json" hidden>
+   <div class="tools" style="margin-top:7px">
+    <button class="btn secondary small" id="clearBtn" type="button" style="flex:1">🗑 Hapus</button>
+    <button class="btn secondary small" id="exportBtn" type="button" style="flex:1">⬇ Backup</button>
+    <button class="btn secondary small" id="importBtn" type="button" style="flex:1">⬆ Restore</button>
+    <input type="file" id="importFile" accept="application/json,.json" hidden>
    </div>
   </div>
  </aside>
 
  <main class="main">
-  <!-- TAB NAVIGASI -->
-  <div style="display:flex; gap:10px; margin-bottom:15px;">
-   <button class="btn primary grow" id="tabTeams" type="button" style="font-size:15px; padding:14px;">👥 BAGI TIM</button>
-   <button class="btn secondary grow" id="tabArisan" type="button" style="font-size:15px; padding:14px;">🎉 ARISAN</button>
+  <div style="display:flex;gap:10px;margin-bottom:15px">
+   <button class="btn primary grow" id="tabTeams" type="button" style="font-size:15px;padding:14px">👥 BAGI TIM</button>
+   <button class="btn secondary grow" id="tabArisan" type="button" style="font-size:15px;padding:14px">🎉 ARISAN</button>
   </div>
 
-  <!-- MODE: BAGI TIM -->
   <div id="viewTeams">
    <section class="hero">
     <div class="heroicon">🏆</div>
@@ -125,82 +108,63 @@
    </section>
    <div class="results-head"><h2>📌 HASIL PEMBAGIAN</h2><span class="hint" id="resultHint">Belum ada undian</span></div>
    <div id="teams" class="empty">Masukkan peserta tim, atur grup, lalu tekan <b>MULAI UNDI</b>.</div>
-   <div class="tools" style="justify-content:flex-end; margin-top:15px;">
+   <div class="tools" style="justify-content:flex-end;margin-top:15px">
     <button class="btn secondary" id="copyBtn" type="button">📄 Salin hasil</button>
     <button class="btn secondary" id="shareBtn" type="button">📲 Bagikan</button>
     <button class="btn dark" id="saveBtn" type="button">💾 Simpan hasil</button>
    </div>
   </div>
 
-  <!-- MODE: ARISAN -->
-  <div id="viewArisan" style="display:none;">
+  <div id="viewArisan" style="display:none">
    <section class="hero arisan-hero">
     <div class="heroicon">🎰</div>
     <div><h1>KOPYOK ARISAN</h1><p>Undi satu pemenang beruntung dari daftar peserta arisan.</p></div>
    </section>
-   
    <div class="arisan-box">
-     <div id="arisanWinner" class="winner-text">SIAP DIUNDI</div>
-     <button class="btn primary" id="btnKopyok" type="button" style="font-size:18px; padding:15px 35px; border-radius:15px; box-shadow: 0 4px 0 #3ab89a;">🎊 KOCAK SEKARANG</button>
+    <div id="arisanWinner" class="winner-text">SIAP DIUNDI</div>
+    <button class="btn primary" id="btnKopyok" type="button" style="font-size:18px;padding:15px 35px;border-radius:15px">🎊 KOCAK SEKARANG</button>
    </div>
-
    <div class="results-head">
     <h2>🏆 RIWAYAT PEMENANG</h2>
     <button class="btn secondary small" id="clearArisanBtn" type="button">🗑 Bersihkan</button>
    </div>
-   <div id="arisanHistory" class="member-list" style="height:auto; max-height:250px;">
-      <div class="empty">Belum ada pemenang arisan.</div>
-   </div>
+   <div id="arisanHistory" class="member-list" style="height:auto;max-height:250px"><div class="empty">Belum ada pemenang arisan.</div></div>
   </div>
 
-  <div class="footer">LOTRE GROUP RANDOM • v1.1.0 • Powered By Ari GPM</div>
+  <div class="footer">LOTRE GROUP RANDOM • v1.1.1 • Powered By Ari GPM</div>
  </main>
 </div>
 
-<!-- INSTALL BANNER -->
 <div class="install-banner" id="installBanner">
  <div class="install-icon">🎲</div>
- <div class="install-text">
-  <h4>Instal LGR App</h4>
-  <p>Pasang ke layar utama untuk akses instan & mode offline.</p>
- </div>
- <div class="install-actions">
+ <div class="install-text"><h4>Instal LGR App</h4><p>Pasang ke layar utama untuk akses instan & offline.</p></div>
+ <div style="display:flex;gap:6px">
   <button class="btn secondary small" id="installDeclineBtn" type="button">Nanti</button>
   <button class="btn primary small" id="installAcceptBtn" type="button">Instal</button>
  </div>
 </div>
 
-<!-- MODAL MANUAL INSTALL (BYPASS BANNER) -->
-<div class="modalback" id="manualInstallModal" style="z-index: 9999;">
- <div class="modal" style="width: min(360px, 90vw);">
-  <div class="modalhead"><b>📱 CARA INSTAL MANUAL</b><button class="iconbtn" id="closeManualInstall" type="button">✕</button></div>
-  <div class="modalbody" style="line-height:1.6; color:var(--navy); font-size:14px;">
-   <p style="margin-top:0;">Browser keamanan Anda menahan instalasi otomatis. Gunakan cara manual yang lebih ampuh ini:</p>
-   <ol style="padding-left:22px; margin:0; font-weight:600;">
-    <li style="margin-bottom:10px;">Ketuk ikon <b>Titik Tiga (⋮)</b> atau <b>Bagikan (⍐)</b> di sudut kanan atas layar browser Anda.</li>
-    <li style="margin-bottom:10px;">Pilih menu <b>"Tambahkan ke Layar Utama"</b> atau <b>"Instal Aplikasi"</b>.</li>
-    <li>Buka aplikasi LGR langsung dari layar utama HP Anda dengan cepat!</li>
+<div class="modalback" id="manualInstallModal" style="z-index:3000">
+ <div class="modal" style="width:min(360px,92vw)">
+  <div class="modalhead"><b>📱 INSTAL KE LAYAR UTAMA</b><button class="iconbtn" id="closeManualInstall" type="button">✕</button></div>
+  <div class="modalbody" style="line-height:1.6;font-size:14px">
+   <p style="margin:0">Jika jendela instal otomatis tidak muncul di browser Anda, ikuti langkah berikut:</p>
+   <ol style="padding-left:20px;margin:0;font-weight:600">
+    <li style="margin-bottom:8px">Ketuk menu <b>Titik Tiga (⋮)</b> atau ikon <b>Bagikan</b> di browser.</li>
+    <li style="margin-bottom:8px">Pilih <b>"Tambahkan ke Layar Utama"</b> atau <b>"Instal Aplikasi"</b>.</li>
+    <li>Konfirmasi <b>Instal / Tambah</b> agar ikon LGR muncul di beranda HP.</li>
    </ol>
   </div>
-  <div class="modalfoot">
-   <button class="btn primary" id="okManualInstall" type="button" style="width:100%">Saya Mengerti</button>
-  </div>
+  <div class="modalfoot"><button class="btn primary" id="okManualInstall" type="button" style="width:100%">Mengerti</button></div>
  </div>
 </div>
 
-<!-- MODAL LUPA PIN -->
-<div class="modalback" id="forgotPinModal" style="z-index: 2500;">
- <div class="modal" style="width: min(340px, 90vw);">
+<div class="modalback" id="forgotPinModal" style="z-index:2500">
+ <div class="modal" style="width:min(340px,92vw)">
   <div class="modalhead"><b>🔑 LUPA PIN</b><button class="iconbtn" id="closeForgotPin" type="button">✕</button></div>
   <div class="modalbody">
-   <div class="formgroup">
-    <label id="secQuestionText" style="color:var(--navy); font-size:13px;">Pertanyaan Keamanan</label>
-    <input type="text" id="secAnswerInput" class="field" placeholder="Jawaban Anda...">
-   </div>
-   <div class="formgroup">
-    <label>Buat PIN Baru</label>
-    <input type="password" id="newPinInput" class="field" placeholder="Masukkan PIN baru">
-   </div>
+   <div class="formgroup"><label id="secQuestionText">Pertanyaan Keamanan</label><input type="text" id="secAnswerInput" class="field" placeholder="Jawaban Anda..."></div>
+   <div class="formgroup"><label>Buat PIN Baru</label><input type="password" inputmode="numeric" id="newPinInput" class="field" placeholder="Minimal 4 angka"></div>
   </div>
   <div class="modalfoot">
    <button class="btn secondary" id="cancelForgotPin" type="button">Batal</button>
@@ -209,33 +173,31 @@
  </div>
 </div>
 
-<!-- MODAL PENGATURAN -->
 <div class="modalback" id="settingsModal">
  <div class="modal">
   <div class="modalhead"><b>⚙ PENGATURAN APLIKASI</b><button class="iconbtn" id="closeSettings" type="button">✕</button></div>
   <div class="modalbody">
    <div class="formgroup"><label>Nama aplikasi / judul grup</label><input class="field" id="appTitle" value="LOTRE GROUP RANDOM"></div>
-   <div class="formrow"><div class="formgroup"><label>Jumlah grup (Mode Tim)</label><input class="field" id="groupSetting" type="number" min="2" max="50" value="4"></div><div class="formgroup"><label>Anggota per grup</label><input class="field" id="sizeSetting" type="number" min="1" max="100" value="5"></div></div>
+   <div class="formrow">
+    <div class="formgroup"><label>Jumlah grup (Tim)</label><input class="field" id="groupSetting" type="number" min="2" max="50" value="4"></div>
+    <div class="formgroup"><label>Anggota per grup</label><input class="field" id="sizeSetting" type="number" min="1" max="100" value="5"></div>
+   </div>
    <div class="formgroup"><label>Mode awal (Bagi Tim)</label><select class="field" id="modeSetting"><option value="groups">Berdasarkan jumlah grup</option><option value="size">Berdasarkan anggota per grup</option></select></div>
    <div class="formgroup"><label>Tema Warna Hasil Tim</label><select class="field" id="colorSetting"><option value="bright">Ceria (warna berbeda)</option><option value="cool">Biru & ungu</option></select></div>
-   
-   <hr style="border:0; border-top:1px solid var(--line); margin:5px 0">
-   <div style="font-size:12px; font-weight:800; color:var(--navy);">🔒 KEAMANAN (PIN)</div>
+   <hr style="border:0;border-top:1px solid var(--line);margin:4px 0">
+   <div style="font-size:12px;font-weight:800;color:var(--navy)">🔒 KEAMANAN (PIN)</div>
    <div class="formrow">
     <div class="formgroup"><label>Status PIN</label><select class="field" id="pinEnableSetting"><option value="true">Aktif</option><option value="false">Mati</option></select></div>
-    <div class="formgroup"><label>PIN Aplikasi</label><input type="password" class="field" id="pinSetting" placeholder="Ubah PIN (Opsional)"></div>
+    <div class="formgroup"><label>PIN Aplikasi</label><input type="password" inputmode="numeric" class="field" id="pinSetting" placeholder="Ubah PIN"></div>
    </div>
    <div class="formgroup"><label>Pertanyaan Keamanan Lupa PIN</label><input class="field" id="questionSetting" placeholder="Contoh: Nama hewan peliharaan?"></div>
-   <div class="formgroup"><label>Jawaban Rahasia</label><input type="text" class="field" id="answerSetting" placeholder="Jawaban (Opsional diubah)"></div>
-   <small style="color:#68788d; display:block; margin-top:5px; line-height:1.4;">Default PIN awal: <b>123456</b>. Pastikan mengatur Pertanyaan Keamanan agar bisa melakukan reset saat lupa PIN.</small>
-
-   <hr style="border:0; border-top:1px solid var(--line); margin:15px 0">
-   <div style="font-size:12px; font-weight:800; color:var(--navy); margin-bottom:10px;">💾 MANAJEMEN DATA (BACKUP/RESTORE)</div>
-   <div style="display:flex; gap:8px;">
-    <button class="btn secondary" id="settingsExportBtn" type="button" style="flex:1;">⬇ Backup Data</button>
-    <button class="btn secondary" id="settingsImportBtn" type="button" style="flex:1;">⬆ Restore Data</button>
+   <div class="formgroup"><label>Jawaban Rahasia</label><input type="text" class="field" id="answerSetting" placeholder="Isi jika ingin mengubah jawaban"></div>
+   <hr style="border:0;border-top:1px solid var(--line);margin:4px 0">
+   <div style="font-size:12px;font-weight:800;color:var(--navy)">💾 MANAJEMEN DATA (BACKUP/RESTORE)</div>
+   <div style="display:flex;gap:8px">
+    <button class="btn secondary" id="settingsExportBtn" type="button" style="flex:1">⬇ Backup Data</button>
+    <button class="btn secondary" id="settingsImportBtn" type="button" style="flex:1">⬆ Restore Data</button>
    </div>
-   <small style="color:#68788d; display:block; margin-top:5px; line-height:1.4;">Simpan pengaturan, PIN, dan seluruh daftar peserta ke dalam satu file .json yang aman.</small>
   </div>
   <div class="modalfoot">
    <button class="btn secondary" id="cancelSettings" type="button">Batal</button>
@@ -244,7 +206,596 @@
  </div>
 </div>
 
-<!-- MODAL PASTE / TEMPEL -->
 <div class="modalback" id="pasteModal">
  <div class="modal">
-  <div class="modalhead"><b>📋 TEMPEL DAFTAR PESERTA</b><button class="iconbtn" id="clos
+  <div class="modalhead"><b>📋 TEMPEL DAFTAR PESERTA</b><button class="iconbtn" id="closePaste" type="button">✕</button></div>
+  <div class="modalbody">
+   <div class="formgroup"><label>Masukkan nama (pisahkan dengan baris baru atau koma)</label><textarea class="field" id="pasteArea" rows="8" placeholder="Andi&#10;Budi&#10;Citra&#10;Dewi"></textarea></div>
+  </div>
+  <div class="modalfoot"><button class="btn secondary" id="cancelPaste" type="button">Batal</button><button class="btn primary" id="applyPaste" type="button">Tambahkan</button></div>
+ </div>
+</div>
+
+<div class="modalback" id="clearModal">
+ <div class="modal">
+  <div class="modalhead"><b>🗑 HAPUS DATA?</b><button class="iconbtn" id="closeClear" type="button">✕</button></div>
+  <div class="modalbody"><p id="clearModalDesc"></p></div>
+  <div class="modalfoot"><button class="btn secondary" id="cancelClear" type="button">Batal</button><button class="btn danger" id="confirmClear" type="button">Ya, hapus</button></div>
+ </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+var NL = String.fromCharCode(10);
+var CR = String.fromCharCode(13);
+var SPLIT_RE = new RegExp('[' + NL + CR + ',;]+');
+var colorsBright = ['#f16b70','#56a9f2','#55c58a','#ffd65a','#a68cf4','#ff9d59','#55c9c9','#e88ab5'];
+var colorsCool = ['#5799df','#8c83e6','#65b9ce','#6c91bd','#9b91d8','#72b8a8'];
+var currentTab = 'teams';
+var isRolling = false;
+var deferredPrompt = null;
+
+var state = {
+  members: [],
+  arisanMembers: [],
+  groups: [],
+  history: [],
+  arisanHistory: [],
+  settings: {
+    title: 'LOTRE GROUP RANDOM',
+    groupCount: 4,
+    perGroup: 5,
+    mode: 'groups',
+    palette: 'bright',
+    pinEnable: true,
+    pin: '123456',
+    secQ: 'Nama hewan peliharaan pertama?',
+    secA: 'kucing'
+  }
+};
+
+function $(id){ return document.getElementById(id); }
+function on(id, ev, fn){ var el = $(id); if(el) el.addEventListener(ev, fn); }
+function showModal(id){ var el = $(id); if(el) el.classList.add('show'); }
+function hideModal(id){ var el = $(id); if(el) el.classList.remove('show'); }
+
+function toast(msg){
+  var t = $('toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2500);
+}
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+
+function load(){
+  try{
+    var raw = localStorage.getItem('lgr-data');
+    if(!raw) return;
+    var x = JSON.parse(raw);
+    if(x && typeof x === 'object'){
+      state.members = Array.isArray(x.members) ? x.members : [];
+      state.arisanMembers = Array.isArray(x.arisanMembers) ? x.arisanMembers : [];
+      state.groups = Array.isArray(x.groups) ? x.groups : [];
+      state.history = Array.isArray(x.history) ? x.history : [];
+      state.arisanHistory = Array.isArray(x.arisanHistory) ? x.arisanHistory : [];
+      if(x.settings && typeof x.settings === 'object'){
+        for(var k in x.settings){
+          if(Object.prototype.hasOwnProperty.call(x.settings, k)){
+            state.settings[k] = x.settings[k];
+          }
+        }
+      }
+    }
+  }catch(e){}
+}
+
+function persist(){
+  try{ localStorage.setItem('lgr-data', JSON.stringify(state)); }catch(e){}
+}
+
+function initLock(){
+  var ls = $('lockScreen');
+  if(!ls) return;
+  if(state.settings.pinEnable){
+    ls.style.display = 'flex';
+    var pi = $('pinInput');
+    if(pi){ pi.value = ''; setTimeout(function(){ pi.focus(); }, 100); }
+  } else {
+    ls.style.display = 'none';
+  }
+}
+
+function activeList(){
+  return currentTab === 'teams' ? state.members : state.arisanMembers;
+}
+
+function renderMembers(){
+  var list = activeList();
+  var box = $('memberList');
+  if($('memberCount')) $('memberCount').textContent = list.length + ' orang';
+  if($('memberBadge')) $('memberBadge').textContent = list.length;
+  if(currentTab === 'teams' && $('statMembers')) $('statMembers').textContent = list.length;
+  if(!box) return;
+  if(!list.length){
+    box.innerHTML = '<div class="empty">Belum ada peserta.<br>Tambahkan nama di bawah.</div>';
+    return;
+  }
+  box.innerHTML = list.map(function(n, i){
+    return '<div class="member"><span class="num">' + (i + 1) + '.</span><span style="flex:1">' + esc(n) + '</span><button class="btn secondary small" data-edit="' + i + '" type="button">✎</button><button class="btn danger small" data-del="' + i + '" type="button">×</button></div>';
+  }).join('');
+}
+
+function fillTarget(){
+  var md = $('mode'), tg = $('target'), tl = $('targetLabel');
+  if(!md || !tg || !tl) return;
+  var mode = md.value;
+  tl.textContent = mode === 'groups' ? 'Jumlah grup' : 'Anggota/grup';
+  var max = mode === 'groups' ? 50 : Math.max(1, Math.min(100, state.members.length || 20));
+  var curr = mode === 'groups' ? state.settings.groupCount : state.settings.perGroup;
+  var opts = [];
+  for(var i = 1; i <= max; i++) opts.push('<option value="' + i + '">' + i + '</option>');
+  tg.innerHTML = opts.join('');
+  tg.value = String(Math.min(max, Math.max(1, curr)));
+}
+
+function renderStats(){
+  var md = $('mode');
+  var mMode = md ? md.value : 'groups';
+  if($('statGroups')){
+    $('statGroups').textContent = state.groups.length || (mMode === 'groups' ? state.settings.groupCount : Math.ceil(state.members.length / Math.max(1, state.settings.perGroup)));
+  }
+  if($('statRounds')) $('statRounds').textContent = state.history.length;
+}
+
+function renderTeams(){
+  var root = $('teams');
+  if(!root) return;
+  if(!state.groups.length){
+    root.className = 'empty';
+    root.innerHTML = 'Masukkan peserta tim, atur grup, lalu tekan <b>MULAI UNDI</b>.';
+    return;
+  }
+  root.className = 'teams';
+  var palette = state.settings.palette === 'cool' ? colorsCool : colorsBright;
+  root.innerHTML = state.groups.map(function(g, i){
+    var items = g.map(function(n){ return '<li>' + esc(n) + '</li>'; }).join('');
+    return '<article class="team" style="--team:' + palette[i % palette.length] + '"><div class="teamhead"><span class="teamnum">' + (i + 1) + '</span><span class="teamname">GRUP ' + (i + 1) + '</span><span class="teamcount">' + g.length + ' anggota</span></div><div class="teamlist"><ol>' + items + '</ol></div></article>';
+  }).join('');
+}
+
+function renderArisanHistory(){
+  var box = $('arisanHistory');
+  if(!box) return;
+  if(!state.arisanHistory.length){
+    box.innerHTML = '<div class="empty">Belum ada pemenang arisan.</div>';
+    return;
+  }
+  box.innerHTML = state.arisanHistory.map(function(w, i){
+    var dt = String(w.date || '').replace(', ', '<br>');
+    return '<div class="member" style="background:#fff;border:1px solid var(--line);margin-bottom:6px"><span class="num">' + (i + 1) + '.</span><span style="flex:1;font-weight:800;color:var(--navy);font-size:15px">' + esc(w.name) + '</span><span style="font-size:10px;color:var(--muted);margin-right:8px;text-align:right">' + dt + '</span><button class="btn danger small" data-delarisan="' + i + '" type="button">×</button></div>';
+  }).join('');
+}
+
+function switchTab(tab){
+  currentTab = tab;
+  if(tab === 'teams'){
+    if($('panelTitle')) $('panelTitle').textContent = '👥 PESERTA TIM';
+    if($('tabTeams')) $('tabTeams').className = 'btn primary grow';
+    if($('tabArisan')) $('tabArisan').className = 'btn secondary grow';
+    if($('viewTeams')) $('viewTeams').style.display = 'block';
+    if($('viewArisan')) $('viewArisan').style.display = 'none';
+    renderMembers(); fillTarget(); renderStats();
+  } else {
+    if($('panelTitle')) $('panelTitle').textContent = '🎰 PESERTA ARISAN';
+    if($('tabArisan')) $('tabArisan').className = 'btn primary grow';
+    if($('tabTeams')) $('tabTeams').className = 'btn secondary grow';
+    if($('viewTeams')) $('viewTeams').style.display = 'none';
+    if($('viewArisan')) $('viewArisan').style.display = 'block';
+    renderMembers(); renderArisanHistory();
+  }
+}
+
+function resultText(){
+  if(!state.groups.length) return '';
+  return state.groups.map(function(g, i){
+    var lines = g.map(function(n, j){ return (j + 1) + '. ' + n; }).join(NL);
+    return 'GRUP ' + (i + 1) + ' (' + g.length + ' anggota)' + NL + lines;
+  }).join(NL + NL);
+}
+
+on('memberList', 'click', function(e){
+  var delBtn = e.target.closest('[data-del]');
+  if(delBtn){
+    var list = activeList();
+    list.splice(Number(delBtn.getAttribute('data-del')), 1);
+    persist(); renderMembers();
+    if(currentTab === 'teams'){ fillTarget(); renderStats(); }
+    return;
+  }
+  var editBtn = e.target.closest('[data-edit]');
+  if(editBtn){
+    var list2 = activeList();
+    var idx = Number(editBtn.getAttribute('data-edit'));
+    var row = editBtn.closest('.member');
+    var span = row.querySelector('span:nth-child(2)');
+    if(!span) return;
+    var inp = document.createElement('input');
+    inp.className = 'field';
+    inp.value = list2[idx];
+    inp.maxLength = 60;
+    span.replaceWith(inp);
+    inp.focus();
+    var done = false;
+    var saveEdit = function(){
+      if(done) return;
+      done = true;
+      var v = inp.value.trim();
+      if(v) list2[idx] = v;
+      persist(); renderMembers();
+      if(currentTab === 'teams'){ fillTarget(); renderStats(); }
+    };
+    inp.addEventListener('keydown', function(ev){
+      if(ev.key === 'Enter') saveEdit();
+      if(ev.key === 'Escape') renderMembers();
+    });
+    inp.addEventListener('blur', saveEdit);
+  }
+});
+
+on('arisanHistory', 'click', function(e){
+  var b = e.target.closest('[data-delarisan]');
+  if(b){
+    state.arisanHistory.splice(Number(b.getAttribute('data-delarisan')), 1);
+    persist(); renderArisanHistory();
+  }
+});
+
+on('unlockBtn', 'click', function(){
+  var pi = $('pinInput');
+  if(!pi) return;
+  if(pi.value.trim() === String(state.settings.pin)){
+    $('lockScreen').style.display = 'none';
+    pi.value = '';
+    toast('Berhasil masuk!');
+  } else {
+    toast('PIN Salah!');
+    pi.value = '';
+    pi.focus();
+  }
+});
+on('pinInput', 'keydown', function(e){ if(e.key === 'Enter') $('unlockBtn').click(); });
+on('forgotPinBtn', 'click', function(){
+  if($('secQuestionText')) $('secQuestionText').textContent = state.settings.secQ || 'Nama hewan peliharaan pertama?';
+  if($('secAnswerInput')) $('secAnswerInput').value = '';
+  if($('newPinInput')) $('newPinInput').value = '';
+  showModal('forgotPinModal');
+});
+on('closeForgotPin', 'click', function(){ hideModal('forgotPinModal'); });
+on('cancelForgotPin', 'click', function(){ hideModal('forgotPinModal'); });
+on('resetPinBtn', 'click', function(){
+  var ans = ($('secAnswerInput').value || '').trim().toLowerCase();
+  var real = String(state.settings.secA || 'kucing').trim().toLowerCase();
+  if(ans === real){
+    var np = ($('newPinInput').value || '').trim();
+    if(np.length < 4) return toast('PIN baru minimal 4 karakter!');
+    state.settings.pin = np;
+    state.settings.pinEnable = true;
+    persist();
+    hideModal('forgotPinModal');
+    $('lockScreen').style.display = 'none';
+    toast('PIN berhasil direset!');
+  } else {
+    toast('Jawaban keamanan salah!');
+  }
+});
+
+on('addBtn', 'click', function(){
+  var ni = $('newName');
+  var n = (ni.value || '').trim();
+  if(!n) return toast('Ketik nama peserta terlebih dahulu.');
+  activeList().push(n);
+  ni.value = '';
+  persist(); renderMembers();
+  if(currentTab === 'teams'){ fillTarget(); renderStats(); }
+});
+on('newName', 'keydown', function(e){ if(e.key === 'Enter') $('addBtn').click(); });
+
+on('pasteBtn', 'click', function(){ showModal('pasteModal'); });
+on('closePaste', 'click', function(){ hideModal('pasteModal'); });
+on('cancelPaste', 'click', function(){ hideModal('pasteModal'); });
+on('applyPaste', 'click', function(){
+  var pa = $('pasteArea');
+  var names = (pa.value || '').split(SPLIT_RE).map(function(x){ return x.trim(); }).filter(Boolean);
+  if(!names.length) return toast('Belum ada nama yang dimasukkan.');
+  var list = activeList();
+  for(var i = 0; i < names.length; i++) list.push(names[i]);
+  pa.value = '';
+  hideModal('pasteModal');
+  persist(); renderMembers();
+  if(currentTab === 'teams'){ fillTarget(); renderStats(); }
+  toast(names.length + ' peserta ditambahkan.');
+});
+
+on('clearBtn', 'click', function(){
+  if(!activeList().length) return toast('Daftar peserta sudah kosong.');
+  $('clearModalDesc').innerHTML = currentTab === 'teams'
+    ? 'Semua nama peserta tim dan hasil undian akan dihapus bersih.<br><br>Tindakan ini tidak bisa dibatalkan.'
+    : 'Semua nama peserta arisan dan riwayat pemenang akan dihapus bersih.<br><br>Tindakan ini tidak bisa dibatalkan.';
+  showModal('clearModal');
+});
+on('closeClear', 'click', function(){ hideModal('clearModal'); });
+on('cancelClear', 'click', function(){ hideModal('clearModal'); });
+on('confirmClear', 'click', function(){
+  if(currentTab === 'teams'){
+    state.members = []; state.groups = []; state.history = [];
+    renderTeams(); fillTarget(); renderStats();
+  } else {
+    state.arisanMembers = []; state.arisanHistory = [];
+    renderArisanHistory();
+  }
+  persist(); renderMembers();
+  hideModal('clearModal');
+  toast('Data berhasil dibersihkan.');
+});
+
+on('tabTeams', 'click', function(){ switchTab('teams'); });
+on('tabArisan', 'click', function(){ switchTab('arisan'); });
+
+on('generateBtn', 'click', function(){
+  if(state.members.length < 2) return toast('Tambahkan minimal 2 peserta tim.');
+  var mode = $('mode').value;
+  var target = Number($('target').value) || 2;
+  var count = mode === 'groups' ? Math.min(target, state.members.length) : Math.ceil(state.members.length / target);
+  count = Math.max(1, count);
+  var arr = state.members.slice();
+  for(var i = arr.length - 1; i > 0; i--){
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+  }
+  var groups = [];
+  for(var k = 0; k < count; k++) groups.push([]);
+  if(mode === 'groups'){
+    arr.forEach(function(n, idx){ groups[idx % count].push(n); });
+  } else {
+    arr.forEach(function(n, idx){ groups[Math.floor(idx / target)].push(n); });
+  }
+  state.groups = groups;
+  persist(); renderTeams(); renderStats();
+  if($('resultHint')) $('resultHint').textContent = 'Diundi ' + new Date().toLocaleString('id-ID');
+  toast('Pengundian selesai!');
+});
+
+on('mode', 'change', function(){
+  state.settings.mode = $('mode').value;
+  persist(); fillTarget(); renderStats();
+});
+on('target', 'change', function(){
+  if($('mode').value === 'groups') state.settings.groupCount = Number($('target').value);
+  else state.settings.perGroup = Number($('target').value);
+  persist(); renderStats();
+});
+
+on('copyBtn', 'click', function(){
+  var t = resultText();
+  if(!t) return toast('Belum ada hasil tim.');
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(function(){ toast('Hasil disalin.'); }).catch(function(){ fallbackCopy(t); });
+  } else {
+    fallbackCopy(t);
+  }
+});
+
+function fallbackCopy(text){
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  try{ document.execCommand('copy'); toast('Hasil disalin.'); }catch(e){ toast('Gagal menyalin.'); }
+  document.body.removeChild(ta);
+}
+
+on('shareBtn', 'click', function(){
+  var t = resultText();
+  if(!t) return toast('Belum ada hasil tim.');
+  if(navigator.share) navigator.share({title: state.settings.title, text: t}).catch(function(){});
+  else window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank');
+});
+
+on('saveBtn', 'click', function(){
+  if(!state.groups.length) return toast('Belum ada hasil tim.');
+  state.history.unshift({date: new Date().toISOString(), groups: state.groups});
+  state.history = state.history.slice(0, 50);
+  persist(); renderStats();
+  toast('Hasil tim disimpan.');
+});
+
+on('btnKopyok', 'click', function(){
+  var am = state.arisanMembers;
+  if(!am.length) return toast('Daftar peserta arisan masih kosong!');
+  if(isRolling) return;
+  isRolling = true;
+  var btn = $('btnKopyok');
+  var display = $('arisanWinner');
+  btn.disabled = true;
+  btn.textContent = 'MENGACAK...';
+  display.classList.remove('pop-anim');
+  display.style.color = 'var(--muted)';
+  var counter = 0;
+  var roll = setInterval(function(){
+    display.textContent = am[Math.floor(Math.random() * am.length)];
+    counter++;
+    if(counter >= 30){
+      clearInterval(roll);
+      var winner = am[Math.floor(Math.random() * am.length)];
+      display.textContent = winner;
+      display.classList.add('pop-anim');
+      state.arisanHistory.unshift({name: winner, date: new Date().toLocaleString('id-ID')});
+      persist(); renderArisanHistory();
+      btn.textContent = '🎊 KOCAK LAGI';
+      btn.disabled = false;
+      isRolling = false;
+      toast('Selamat kepada ' + winner + '!');
+    }
+  }, 60);
+});
+
+on('clearArisanBtn', 'click', function(){
+  if(!state.arisanHistory.length) return toast('Riwayat arisan sudah kosong.');
+  state.arisanHistory = [];
+  persist(); renderArisanHistory();
+  toast('Riwayat dibersihkan.');
+});
+
+function openSettings(){
+  var st = state.settings;
+  $('appTitle').value = st.title || 'LOTRE GROUP RANDOM';
+  $('groupSetting').value = st.groupCount || 4;
+  $('sizeSetting').value = st.perGroup || 5;
+  $('modeSetting').value = st.mode || 'groups';
+  $('colorSetting').value = st.palette || 'bright';
+  $('pinEnableSetting').value = st.pinEnable ? 'true' : 'false';
+  $('pinSetting').value = '';
+  $('questionSetting').value = st.secQ || 'Nama hewan peliharaan pertama?';
+  $('answerSetting').value = '';
+  showModal('settingsModal');
+}
+
+on('settingsTop', 'click', openSettings);
+on('settingsBtn', 'click', openSettings);
+on('closeSettings', 'click', function(){ hideModal('settingsModal'); });
+on('cancelSettings', 'click', function(){ hideModal('settingsModal'); });
+
+on('applySettings', 'click', function(){
+  state.settings.title = ($('appTitle').value || '').trim() || 'LOTRE GROUP RANDOM';
+  state.settings.groupCount = Math.max(2, Math.min(50, parseInt($('groupSetting').value, 10) || 4));
+  state.settings.perGroup = Math.max(1, Math.min(100, parseInt($('sizeSetting').value, 10) || 5));
+  state.settings.mode = $('modeSetting').value;
+  state.settings.palette = $('colorSetting').value;
+  state.settings.pinEnable = $('pinEnableSetting').value === 'true';
+  if($('pinSetting').value.trim()) state.settings.pin = $('pinSetting').value.trim();
+  if($('questionSetting').value.trim()) state.settings.secQ = $('questionSetting').value.trim();
+  if($('answerSetting').value.trim()) state.settings.secA = $('answerSetting').value.trim();
+  document.title = state.settings.title;
+  $('mode').value = state.settings.mode;
+  persist(); fillTarget(); renderStats(); renderTeams();
+  hideModal('settingsModal');
+  toast('Pengaturan tersimpan.');
+});
+
+function doExport(){
+  var blob = new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'backup-lotre-group-random.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('Backup siap diunduh.');
+}
+on('exportBtn', 'click', doExport);
+on('settingsExportBtn', 'click', doExport);
+
+function doImport(){ $('importFile').click(); }
+on('importBtn', 'click', doImport);
+on('settingsImportBtn', 'click', doImport);
+
+on('importFile', 'change', function(e){
+  var f = e.target.files[0];
+  if(!f) return;
+  var reader = new FileReader();
+  reader.onload = function(){
+    try{
+      var x = JSON.parse(reader.result);
+      if(!x || !Array.isArray(x.members)) throw new Error();
+      state.members = x.members || [];
+      state.arisanMembers = Array.isArray(x.arisanMembers) ? x.arisanMembers : [];
+      state.groups = Array.isArray(x.groups) ? x.groups : [];
+      state.history = Array.isArray(x.history) ? x.history : [];
+      state.arisanHistory = Array.isArray(x.arisanHistory) ? x.arisanHistory : [];
+      if(x.settings){
+        for(var k in x.settings){
+          if(Object.prototype.hasOwnProperty.call(x.settings, k)) state.settings[k] = x.settings[k];
+        }
+      }
+      persist(); renderMembers(); renderTeams(); renderArisanHistory(); fillTarget(); renderStats();
+      hideModal('settingsModal');
+      toast('Data berhasil dipulihkan.');
+    }catch(err){
+      toast('File backup tidak valid.');
+    }
+  };
+  reader.readAsText(f);
+  e.target.value = '';
+});
+
+var isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone;
+if(isStandalone && $('installAppBtn')) $('installAppBtn').style.display = 'none';
+
+window.addEventListener('beforeinstallprompt', function(e){
+  e.preventDefault();
+  deferredPrompt = e;
+  if(!isStandalone && localStorage.getItem('lgr-dismiss-v111') !== 'true'){
+    setTimeout(function(){ if(deferredPrompt) showModal('installBanner'); }, 1000);
+  }
+});
+
+function handleInstall(){
+  hideModal('installBanner');
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(res){
+      if(res && res.outcome === 'accepted' && $('installAppBtn')) $('installAppBtn').style.display = 'none';
+      deferredPrompt = null;
+    });
+  } else {
+    showModal('manualInstallModal');
+  }
+}
+on('installAppBtn', 'click', handleInstall);
+on('installAcceptBtn', 'click', handleInstall);
+on('installDeclineBtn', 'click', function(){
+  hideModal('installBanner');
+  try{ localStorage.setItem('lgr-dismiss-v111', 'true'); }catch(e){}
+});
+on('closeManualInstall', 'click', function(){ hideModal('manualInstallModal'); });
+on('okManualInstall', 'click', function(){ hideModal('manualInstallModal'); });
+window.addEventListener('appinstalled', function(){
+  if($('installAppBtn')) $('installAppBtn').style.display = 'none';
+  hideModal('installBanner');
+  deferredPrompt = null;
+  toast('Aplikasi LGR berhasil diinstal!');
+});
+
+if('caches' in window && localStorage.getItem('lgr-ver') !== '1.1.1'){
+  caches.keys().then(function(keys){
+    keys.forEach(function(k){ caches.delete(k); });
+  });
+  try{ localStorage.setItem('lgr-ver', '1.1.1'); }catch(e){}
+}
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('./sw.js?v=1.1.1').then(function(r){ r.update(); }).catch(function(){});
+  });
+}
+
+load();
+if($('mode')) $('mode').value = state.settings.mode || 'groups';
+document.title = state.settings.title || 'LOTRE GROUP RANDOM';
+renderMembers();
+fillTarget();
+renderTeams();
+renderStats();
+renderArisanHistory();
+initLock();
+})();
+</script>
+</body>
+</html>
