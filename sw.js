@@ -1,4 +1,4 @@
-// Service Worker v1.0.3 - Mode Aman GitHub Pages
+// Service Worker v1.1.3 - Mode Aman GitHub Pages
 self.addEventListener('install', (e) => {
   self.skipWaiting();
 });
