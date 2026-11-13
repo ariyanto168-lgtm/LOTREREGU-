@@ -4,41 +4,98 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#142b4d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="Aplikasi pengacak peserta untuk tim dan arisan.">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>LOTRE GROUP RANDOM</title>
 <style>
 :root{--navy:#142b4d;--navy2:#203e66;--ink:#13243b;--muted:#64748b;--paper:#f4f7fb;--line:#d9e2ee;--mint:#72e4c7;--yellow:#ffd65a;--red:#f16b70;--blue:#56a9f2;--green:#55c58a;--purple:#a68cf4}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink)}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;touch-action:manipulation}
-.topbar{height:62px;background:var(--navy);color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;box-shadow:0 3px 12px #071a3433;position:sticky;top:0;z-index:10}
-.brandmark{width:38px;height:38px;border-radius:12px;background:var(--mint);color:#092a40;display:grid;place-items:center;font-size:21px;font-weight:900;flex-shrink:0}.brand{font-weight:900;letter-spacing:.4px;font-size:15px}.subtitle{font-size:10px;opacity:.75;letter-spacing:1.2px}.top-spacer{flex:1}.iconbtn{background:#ffffff1b;color:#fff;width:40px;height:40px;border-radius:12px;font-size:20px;display:grid;place-items:center;flex-shrink:0}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;border:0;touch-action:manipulation}
+.topbar{height:62px;background:var(--navy);color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;box-shadow:0 3px 12px #071a3433;position:sticky;top:0;z-index:20}
+.brandmark{width:38px;height:38px;border-radius:12px;background:var(--mint);color:#092a40;display:grid;place-items:center;font-size:21px;font-weight:900;flex-shrink:0}
+.brand{font-weight:900;letter-spacing:.4px;font-size:15px}
+.subtitle{font-size:10px;opacity:.75;letter-spacing:1.2px}
+.top-spacer{flex:1}
+.iconbtn{background:#ffffff1b;color:#fff;width:40px;height:40px;border-radius:12px;font-size:20px;display:grid;place-items:center;flex-shrink:0}
 .app{max-width:1400px;margin:auto;padding:16px;display:grid;grid-template-columns:290px minmax(0,1fr);gap:16px}
 .panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 24px #1936570b;overflow:hidden;display:flex;flex-direction:column}
 .panelhead{background:var(--navy2);color:#fff;padding:14px 16px;font-weight:850;letter-spacing:.6px;display:flex;align-items:center;justify-content:space-between}
-.member-body{padding:14px;display:flex;flex-direction:column;flex:1}.counter{font-size:12px;color:var(--muted);margin-bottom:9px;display:flex;justify-content:space-between}
+.member-body{padding:14px;display:flex;flex-direction:column;flex:1}
+.counter{font-size:12px;color:var(--muted);margin-bottom:9px;display:flex;justify-content:space-between}
 .member-list{height:380px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:#f8fbff;padding:6px}
-.member{padding:8px 10px;border-radius:8px;font-weight:650;font-size:14px;display:flex;align-items:center;gap:8px}.member:nth-child(even){background:#eaf2fa}.member .num{font-size:11px;color:#8393a8;width:22px;flex-shrink:0}
-.field{width:100%;border:1px solid #cbd7e5;border-radius:10px;padding:11px;background:#fff;outline:none}.field:focus{border-color:#4c9ee8;box-shadow:0 0 0 3px #4c9ee822}
-.btn{border-radius:11px;padding:11px 14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.12s;user-select:none}.btn:active{transform:scale(.97)}.primary{background:var(--mint);color:#082d3c;box-shadow:0 3px 0 #3ab89a}.secondary{background:#e8eef6;color:#203a59}.danger{background:#ffe8e8;color:#a42c35}.dark{background:var(--navy);color:#fff}.small{padding:8px 10px;font-size:12px}.grow{flex:1}
-.addrow{display:flex;gap:7px;margin-top:10px}.addrow .field{min-width:0}.tools{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
-.main{min-width:0}.hero{background:linear-gradient(125deg,#19395f,#102744);border-radius:18px;padding:18px;color:#fff;display:flex;align-items:center;gap:16px;box-shadow:0 9px 24px #142b4d24}
-.heroicon{font-size:40px}.hero h1{font-size:clamp(18px,3vw,26px);margin:0 0 4px}.hero p{margin:0;color:#c9d8e8;font-size:13px}.hero .btn{margin-left:auto;white-space:nowrap;font-size:15px;padding:14px 18px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}.stat b{font-size:22px;display:block}.stat span{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px}
-.controlbar{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.controlbar label{font-size:12px;font-weight:800;color:#53657b}.controlbar select{width:84px;padding:9px;border:1px solid var(--line);border-radius:9px;background:#fff}
-.results-head{display:flex;align-items:center;justify-content:space-between;margin:15px 2px 10px}.results-head h2{font-size:16px;margin:0}.hint{font-size:11px;color:var(--muted)}
-.teams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.team{border:3px solid var(--team);border-radius:15px;background:#fff;overflow:hidden;box-shadow:0 4px 0 color-mix(in srgb,var(--team),#000 18%)}.teamhead{background:var(--team);color:#10243a;padding:9px 12px;display:flex;align-items:center;gap:9px;font-weight:900}.teamnum{width:29px;height:29px;background:#fff;border-radius:50%;display:grid;place-items:center;font-size:14px}.teamname{flex:1}.teamcount{font-size:11px;background:#ffffff88;padding:4px 7px;border-radius:20px}.teamlist{padding:10px 13px;min-height:90px}.teamlist ol{padding-left:22px;margin:0}.teamlist li{padding:3px 0;font-weight:650;font-size:14px;overflow-wrap:anywhere}.empty{border:2px dashed #cbd7e5;border-radius:14px;padding:30px 15px;text-align:center;color:#728198;background:#ffffffa8;font-size:14px}
+.member{padding:8px 10px;border-radius:8px;font-weight:650;font-size:14px;display:flex;align-items:center;gap:8px}
+.member:nth-child(even){background:#eaf2fa}
+.member .num{font-size:11px;color:#8393a8;width:22px;flex-shrink:0}
+.field{width:100%;border:1px solid #cbd7e5;border-radius:10px;padding:11px;background:#fff;outline:none}
+.field:focus{border-color:#4c9ee8;box-shadow:0 0 0 3px #4c9ee822}
+.btn{border-radius:11px;padding:11px 14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.12s;user-select:none;position:relative}
+.btn:active{transform:scale(.97)}
+.primary{background:var(--mint);color:#082d3c;box-shadow:0 3px 0 #3ab89a}
+.secondary{background:#e8eef6;color:#203a59}
+.danger{background:#ffe8e8;color:#a42c35}
+.dark{background:var(--navy);color:#fff}
+.small{padding:8px 10px;font-size:12px}
+.grow{flex:1}
+.addrow{display:flex;gap:7px;margin-top:10px}
+.addrow .field{min-width:0}
+.tools{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.main{min-width:0}
+.hero{background:linear-gradient(125deg,#19395f,#102744);border-radius:18px;padding:18px;color:#fff;display:flex;align-items:center;gap:16px;box-shadow:0 9px 24px #142b4d24}
+.heroicon{font-size:40px}
+.hero h1{font-size:clamp(18px,3vw,26px);margin:0 0 4px}
+.hero p{margin:0;color:#c9d8e8;font-size:13px}
+.hero .btn{margin-left:auto;white-space:nowrap;font-size:15px;padding:14px 18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat b{font-size:22px;display:block}
+.stat span{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px}
+.controlbar{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.controlbar label{font-size:12px;font-weight:800;color:#53657b}
+.controlbar select{width:84px;padding:9px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.results-head{display:flex;align-items:center;justify-content:space-between;margin:15px 2px 10px}
+.results-head h2{font-size:16px;margin:0}
+.hint{font-size:11px;color:var(--muted)}
+.teams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.team{border:3px solid var(--team);border-radius:15px;background:#fff;overflow:hidden;box-shadow:0 4px 0 color-mix(in srgb,var(--team),#000 18%)}
+.teamhead{background:var(--team);color:#10243a;padding:9px 12px;display:flex;align-items:center;gap:9px;font-weight:900}
+.teamnum{width:29px;height:29px;background:#fff;border-radius:50%;display:grid;place-items:center;font-size:14px}
+.teamname{flex:1}
+.teamcount{font-size:11px;background:#ffffff88;padding:4px 7px;border-radius:20px}
+.teamlist{padding:10px 13px;min-height:90px}
+.teamlist ol{padding-left:22px;margin:0}
+.teamlist li{padding:3px 0;font-weight:650;font-size:14px;overflow-wrap:anywhere}
+.empty{border:2px dashed #cbd7e5;border-radius:14px;padding:30px 15px;text-align:center;color:#728198;background:#ffffffa8;font-size:14px}
 .footer{text-align:center;font-size:11px;color:#8391a3;padding:22px 10px;font-weight:700;letter-spacing:.5px}
-.arisan-hero{background:linear-gradient(125deg,#a68cf4,#72e4c7);color:#10243a}.arisan-hero p{color:#1a3754}
+.arisan-hero{background:linear-gradient(125deg,#a68cf4,#72e4c7);color:#10243a}
+.arisan-hero p{color:#1a3754}
 .arisan-box{background:#fff;border:3px solid var(--line);border-radius:18px;padding:36px 20px;text-align:center;margin:15px 0;min-height:210px;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .winner-text{font-size:clamp(26px,5vw,40px);font-weight:900;color:var(--navy);margin-bottom:24px;word-break:break-word;line-height:1.2;min-height:48px}
 @keyframes winnerPop{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 .pop-anim{animation:winnerPop .45s ease-out forwards;color:var(--red)!important}
-.modalback{position:fixed;inset:0;background:#081a30b8;z-index:50;display:none;align-items:center;justify-content:center;padding:15px}.modalback.show{display:flex}.modal{background:#fff;width:min(500px,100%);max-height:90vh;overflow:auto;border-radius:18px;box-shadow:0 20px 60px #0005;display:flex;flex-direction:column}.modalhead{padding:15px 18px;background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}.modalbody{padding:16px;display:grid;gap:12px;overflow-y:auto}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formgroup label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.modalfoot{padding:14px 16px;display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--line);flex-shrink:0}
-.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#102a49;color:#fff;padding:11px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.2s;z-index:9999;font-size:13px;box-shadow:0 5px 15px #0004;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
-.install-banner{position:fixed;bottom:-140px;left:50%;transform:translateX(-50%);background:#fff;border-radius:14px;box-shadow:0 15px 45px #0006;padding:14px;display:flex;align-items:center;gap:12px;width:min(400px,calc(100vw - 28px));z-index:40;transition:bottom .4s ease;border:2px solid var(--mint)}.install-banner.show{bottom:18px}
-.install-icon{width:44px;height:44px;background:var(--navy);border-radius:10px;display:grid;place-items:center;font-size:22px;color:#fff;flex-shrink:0}.install-text{flex:1}.install-text h4{margin:0 0 3px;font-size:14px;color:var(--navy);font-weight:800}.install-text p{margin:0;font-size:11px;color:var(--muted)}
-#lockScreen{z-index:2000;background:var(--navy)}#lockScreen .modal{width:min(330px,92vw);text-align:center}
+.modalback{position:fixed;inset:0;background:#081a30b8;z-index:50;display:none;align-items:center;justify-content:center;padding:15px}
+.modalback.show{display:flex}
+.modal{background:#fff;width:min(500px,100%);max-height:90vh;overflow:auto;border-radius:18px;box-shadow:0 20px 60px #0005;display:flex;flex-direction:column}
+.modalhead{padding:15px 18px;background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.modalbody{padding:16px;display:grid;gap:12px;overflow-y:auto}
+.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.formgroup label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}
+.modalfoot{padding:14px 16px;display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--line);flex-shrink:0}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#102a49;color:#fff;padding:11px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.2s;z-index:9999;font-size:13px;box-shadow:0 5px 15px #0004;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.install-banner{position:fixed;bottom:-160px;left:50%;transform:translateX(-50%);background:#fff;border-radius:14px;box-shadow:0 15px 45px #0006;padding:14px;display:flex;align-items:center;gap:12px;width:min(400px,calc(100vw - 28px));z-index:40;transition:bottom .4s ease;border:2px solid var(--mint);pointer-events:none}
+.install-banner.show{bottom:18px;pointer-events:auto}
+.install-icon{width:44px;height:44px;background:var(--navy);border-radius:10px;display:grid;place-items:center;font-size:22px;color:#fff;flex-shrink:0}
+.install-text{flex:1}
+.install-text h4{margin:0 0 3px;font-size:14px;color:var(--navy);font-weight:800}
+.install-text p{margin:0;font-size:11px;color:var(--muted)}
+#lockScreen{z-index:2000;background:var(--navy)}
+#lockScreen .modal{width:min(330px,92vw);text-align:center}
 @media(max-width:800px){.app{grid-template-columns:1fr;padding:11px}.member-list{height:170px}.hero{padding:14px;flex-wrap:wrap}.heroicon{font-size:32px}.hero .btn{margin-left:0;width:100%;padding:12px;font-size:14px}.topbar{height:56px;padding:0 12px}.teams{gap:10px}}
 @media(max-width:460px){.teams{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:10px}.stat b{font-size:19px}.controlbar{gap:7px}.controlbar .grow{display:none}.brand{font-size:14px}}
 </style>
@@ -60,9 +117,9 @@
 
 <header class="topbar">
  <div class="brandmark">🎲</div>
- <div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.1.2</div></div>
+ <div><div class="brand">LOTRE GROUP RANDOM</div><div class="subtitle">TEAM GENERATOR • v1.1.3</div></div>
  <div class="top-spacer"></div>
- <button class="btn primary small" id="installAppBtn" style="padding:7px 11px;font-size:12px" type="button">⬇ Instal App</button>
+ <button class="btn primary small" id="installAppBtn" style="display:none;padding:7px 11px;font-size:12px" type="button">⬇ Instal App</button>
  <button class="iconbtn" id="settingsTop" aria-label="Pengaturan" type="button">⚙</button>
 </header>
 
@@ -136,7 +193,7 @@
    </div>
   </div>
 
-  <div class="footer">LOTRE GROUP RANDOM • v1.1.2 • Powered By Ari GPM</div>
+  <div class="footer">LOTRE GROUP RANDOM • v1.1.3 • Powered By Ari GPM</div>
  </main>
 </div>
 
@@ -153,7 +210,7 @@
  <div class="modal" style="width:min(360px,92vw)">
   <div class="modalhead"><b>📱 INSTAL KE LAYAR UTAMA</b><button class="iconbtn" id="closeManualInstall" type="button">✕</button></div>
   <div class="modalbody" style="line-height:1.6;font-size:14px">
-   <p style="margin:0">Jika jendela instal otomatis tidak muncul di browser Anda, ikuti langkah berikut:</p>
+   <p style="margin:0">Ikuti langkah berikut untuk menambahkan aplikasi ke layar utama:</p>
    <ol style="padding-left:20px;margin:0;font-weight:600">
     <li style="margin-bottom:8px">Ketuk menu <b>Titik Tiga (⋮)</b> atau ikon <b>Bagikan</b> di browser.</li>
     <li style="margin-bottom:8px">Pilih <b>"Tambahkan ke Layar Utama"</b> atau <b>"Instal Aplikasi"</b>.</li>
@@ -223,6 +280,4 @@
 
 <div class="modalback" id="clearModal">
  <div class="modal">
-  <div class="modalhead"><b>🗑 HAPUS DATA?</b><button class="iconbtn" id="closeClear" type="button">✕</button></div>
-  <div class="modalbody"><p id="clearModalDesc"></p></div>
-  <div class="modalfoot"><button class="btn secondary" id="cancelClear" type="button">Batal</button><button class="btn danger" id="confirmClear" type="button">
+  
