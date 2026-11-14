@@ -374,6 +374,64 @@
       margin-top: 8px;
     }
 
+    /* Result Action Toolbar (Salin, Bagi, Simpan) */
+    .result-toolbar-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1.5px solid #e2e8f0;
+      padding: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    .result-toolbar-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .result-action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .btn-res-action {
+      height: 40px;
+      border-radius: 12px;
+      border: 1.5px solid transparent;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: transform 0.1s ease, opacity 0.15s ease;
+    }
+
+    .btn-res-action:active {
+      transform: scale(0.96);
+    }
+
+    .btn-res-copy {
+      background: var(--slate-btn);
+      color: var(--navy);
+      border-color: #cbd5e1;
+    }
+
+    .btn-res-share {
+      background: var(--mint-soft);
+      color: #065f46;
+      border-color: #6ee7b7;
+    }
+
+    .btn-res-save {
+      background: var(--navy);
+      color: #ffffff;
+    }
+
     /* Mode Switch Tabs */
     .mode-switch-grid {
       display: grid;
@@ -554,7 +612,7 @@
       background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
       border: 2px solid var(--mint);
       border-radius: 18px;
-      padding: 18px;
+      padding: 18px 14px;
       text-align: center;
       margin-bottom: 12px;
     }
@@ -563,7 +621,7 @@
       font-size: 24px;
       font-weight: 900;
       color: var(--navy);
-      margin: 6px 0;
+      margin: 6px 0 12px;
       word-break: break-word;
     }
 
@@ -602,7 +660,7 @@
       flex-shrink: 0;
     }
 
-    /* Custom Offline-Safe Modals (Zero Bootstrap JS Dependency) */
+    /* Custom Offline-Safe Modals */
     .app-modal-backdrop {
       position: fixed;
       inset: 0;
@@ -721,7 +779,7 @@
         <div class="brand-icon-box" aria-hidden="true">🎲</div>
         <div style="min-width:0;">
           <h1 class="brand-title" id="headerTitle">LOTRE GROUP RANDOM</h1>
-          <p class="brand-subtitle"><span id="headerSubtitle">TEAM GENERATOR</span> • <span id="headerVersion">v1.1.5</span></p>
+          <p class="brand-subtitle"><span id="headerSubtitle">TEAM GENERATOR</span> • <span id="headerVersion">v1.1.6</span></p>
         </div>
       </div>
       <button type="button" class="btn-header-icon" id="btnToggleSettings" aria-label="Pengaturan">
@@ -838,7 +896,7 @@
           </button>
         </div>
 
-        <!-- HASIL PEMBAGIAN TIM -->
+        <!-- HASIL PEMBAGIAN TIM + TOMBOL SALIN, BAGI, SIMPAN -->
         <div id="teamResultsContainer" class="d-none"></div>
       </div>
 
@@ -864,7 +922,7 @@
           </button>
         </div>
 
-        <!-- HASIL UNDIAN ARISAN -->
+        <!-- HASIL UNDIAN ARISAN + TOMBOL SALIN, BAGI, SIMPAN -->
         <div id="arisanResultsContainer" class="d-none"></div>
       </div>
 
@@ -965,7 +1023,7 @@
   </main>
 
   <footer class="app-footer">
-    Powered By Ari GPM • <span id="footerVersion">v1.1.5</span>
+    Powered By Ari GPM • <span id="footerVersion">v1.1.6</span>
   </footer>
 
   <!-- ==================== MODAL: TEMPEL BANYAK ==================== -->
@@ -1034,18 +1092,20 @@
     (function () {
       'use strict';
 
-      const APP_VERSION = 'v1.1.5';
+      const APP_VERSION = 'v1.1.6';
       const STORAGE_KEY = 'lotre_group_random_state_v1';
-      const IDLE_LIMIT_MS = 2 * 60 * 1000; // 2 menit auto-lock
+      const IDLE_LIMIT_MS = 2 * 60 * 1000;
 
       const DEFAULT_STATE = {
         participants: [],
         wonNames: [],
-        activeMode: 'team', // 'team' | 'arisan'
-        splitMode: 'teams', // 'teams' | 'size'
+        activeMode: 'team',
+        splitMode: 'teams',
         splitCount: 2,
         lastTeams: [],
+        lastTeamTime: '',
         lastWinner: null,
+        lastWinnerTime: '',
         settings: {
           title: 'LOTRE GROUP RANDOM',
           subtitle: 'TEAM GENERATOR',
@@ -1064,8 +1124,13 @@
       let idleTimer = null;
       let isDrawing = false;
 
-      // Helper DOM
       const $ = (id) => document.getElementById(id);
+
+      function formatNow() {
+        const d = new Date();
+        const pad = (n) => String(n).padStart(2, '0');
+        return pad(d.getDate()) + '/' + pad(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+      }
 
       function loadState() {
         try {
@@ -1079,7 +1144,9 @@
             splitMode: parsed.splitMode === 'size' ? 'size' : 'teams',
             splitCount: Number(parsed.splitCount) >= 1 ? Number(parsed.splitCount) : 2,
             lastTeams: Array.isArray(parsed.lastTeams) ? parsed.lastTeams : [],
+            lastTeamTime: parsed.lastTeamTime ? String(parsed.lastTeamTime) : '',
             lastWinner: parsed.lastWinner ? String(parsed.lastWinner) : null,
+            lastWinnerTime: parsed.lastWinnerTime ? String(parsed.lastWinnerTime) : '',
             settings: Object.assign({}, DEFAULT_STATE.settings, parsed.settings || {})
           };
         } catch (err) {
@@ -1116,7 +1183,6 @@
         confirmCallback = null;
       }
 
-      // Apply Theme & Identity
       function applyAppearance() {
         const s = state.settings;
         $('headerTitle').textContent = s.title || 'LOTRE GROUP RANDOM';
@@ -1142,7 +1208,6 @@
         $('inputSetRecAnswer').value = s.recAnswer;
       }
 
-      // Render Participants
       function renderParticipants() {
         const list = state.participants;
         const total = list.length;
@@ -1183,7 +1248,6 @@
           });
         }
 
-        // Update Arisan Counters
         const eligible = list.filter((n) => !state.wonNames.includes(n));
         $('arisanEligibleCount').textContent = eligible.length;
         $('arisanWonCount').textContent = state.wonNames.length;
@@ -1212,7 +1276,6 @@
         showToast('Peserta dihapus.');
       }
 
-      // Mode & Stepper Rendering
       function renderModeUI() {
         const isTeam = state.activeMode === 'team';
         $('tabModeTeam').classList.toggle('active', isTeam);
@@ -1229,7 +1292,6 @@
         renderArisanResults();
       }
 
-      // Fisher-Yates Shuffle
       function shuffleArray(arr) {
         const copy = arr.slice();
         for (let i = copy.length - 1; i > 0; i--) {
@@ -1241,7 +1303,259 @@
         return copy;
       }
 
-      // Draw Teams
+      // ==================== FORMAT TEKS HASIL ====================
+      function getTeamsShareText() {
+        const header = '🎲 *HASIL PEMBAGIAN TIM*\n' + (state.settings.title || 'LOTRE GROUP RANDOM') +
+          (state.lastTeamTime ? '\n🕒 ' + state.lastTeamTime : '') + '\n\n';
+        const body = state.lastTeams.map((members, idx) =>
+          '*TIM ' + (idx + 1) + '* (' + members.length + ' org)\n' +
+          members.map((m, i) => (i + 1) + '. ' + m).join('\n')
+        ).join('\n\n');
+        return header + body;
+      }
+
+      function getArisanShareText() {
+        let text = '🎉 *HASIL UNDIAN ARISAN*\n' + (state.settings.title || 'LOTRE GROUP RANDOM') +
+          (state.lastWinnerTime ? '\n🕒 ' + state.lastWinnerTime : '') + '\n\n';
+        if (state.lastWinner) {
+          text += '🏆 *PEMENANG TERPILIH:*\n*' + state.lastWinner + '*\n\n';
+        }
+        if (state.wonNames.length > 0) {
+          text += '📋 *Riwayat Pemenang Putaran Ini (' + state.wonNames.length + '):*\n' +
+            state.wonNames.map((w, i) => (i + 1) + '. ' + w).join('\n');
+        }
+        return text.trim();
+      }
+
+      // ==================== FITUR BAGI (SHARE) ====================
+      function shareTextContent(title, text) {
+        if (navigator.share) {
+          navigator.share({ title: title, text: text }).catch(() => {});
+        } else {
+          const waUrl = 'https://wa.me/?text=' + encodeURIComponent(text);
+          window.open(waUrl, '_blank');
+        }
+      }
+
+      // ==================== FITUR SIMPAN GAMBAR PNG (CANVAS OFFLINE) ====================
+      function roundRectPath(ctx, x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+      }
+
+      function downloadCanvasPng(canvas, filename) {
+        const triggerDownload = (href) => {
+          const a = document.createElement('a');
+          a.href = href;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          showToast('Gambar hasil berhasil disimpan!');
+        };
+
+        if (canvas.toBlob) {
+          canvas.toBlob((blob) => {
+            if (!blob) {
+              triggerDownload(canvas.toDataURL('image/png'));
+              return;
+            }
+            const url = URL.createObjectURL(blob);
+            triggerDownload(url);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+          }, 'image/png');
+        } else {
+          triggerDownload(canvas.toDataURL('image/png'));
+        }
+      }
+
+      function saveTeamsAsImage() {
+        if (!state.lastTeams || state.lastTeams.length === 0) return;
+
+        const width = 720;
+        const pad = 32;
+        const headerH = 128;
+        const footerH = 56;
+        let contentH = 24;
+
+        state.lastTeams.forEach((members) => {
+          contentH += 50 + (members.length * 32) + 22;
+        });
+
+        const totalH = headerH + contentH + footerH;
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = totalH;
+        const ctx = canvas.getContext('2d');
+
+        // Background
+        ctx.fillStyle = '#f1f5f9';
+        ctx.fillRect(0, 0, width, totalH);
+
+        // Header Navy
+        ctx.fillStyle = '#16263e';
+        ctx.fillRect(0, 0, width, headerH);
+
+        ctx.fillStyle = '#53d7a6';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.fillText('HASIL PEMBAGIAN TIM', pad, 42);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 28px sans-serif';
+        ctx.fillText((state.settings.title || 'LOTRE GROUP RANDOM').toUpperCase(), pad, 78);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '15px sans-serif';
+        ctx.fillText('Waktu Undian: ' + (state.lastTeamTime || formatNow()) + ' • Total ' + state.lastTeams.length + ' Tim', pad, 106);
+
+        // Team Cards
+        let curY = headerH + 24;
+        state.lastTeams.forEach((members, idx) => {
+          const cardH = 48 + (members.length * 32) + 12;
+
+          ctx.fillStyle = '#ffffff';
+          roundRectPath(ctx, pad, curY, width - pad * 2, cardH, 16);
+          ctx.fill();
+
+          ctx.strokeStyle = '#cbd5e1';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // Team Header Bar
+          ctx.fillStyle = '#16263e';
+          ctx.font = 'bold 20px sans-serif';
+          ctx.fillText('TIM ' + (idx + 1), pad + 20, curY + 32);
+
+          ctx.fillStyle = '#3ec190';
+          ctx.font = 'bold 16px sans-serif';
+          ctx.textAlign = 'right';
+          ctx.fillText(members.length + ' Anggota', width - pad - 20, curY + 32);
+          ctx.textAlign = 'left';
+
+          // Members
+          ctx.fillStyle = '#1e293b';
+          ctx.font = '600 18px sans-serif';
+          members.forEach((m, i) => {
+            ctx.fillText((i + 1) + '. ' + m, pad + 20, curY + 68 + (i * 32));
+          });
+
+          curY += cardH + 16;
+        });
+
+        // Footer
+        ctx.fillStyle = '#64748b';
+        ctx.font = 'bold 15px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Powered By Ari GPM • ' + APP_VERSION, width / 2, totalH - 22);
+        ctx.textAlign = 'left';
+
+        const fileDate = new Date().toISOString().slice(0, 10);
+        downloadCanvasPng(canvas, 'hasil-tim-' + fileDate + '.png');
+      }
+
+      function saveArisanAsImage() {
+        if (!state.lastWinner && state.wonNames.length === 0) return;
+
+        const width = 720;
+        const pad = 32;
+        const headerH = 128;
+        const spotlightH = state.lastWinner ? 185 : 0;
+        const historyH = state.wonNames.length > 0 ? (64 + state.wonNames.length * 32 + 20) : 0;
+        const footerH = 56;
+        const totalH = headerH + 24 + spotlightH + (spotlightH && historyH ? 18 : 0) + historyH + 24 + footerH;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = totalH;
+        const ctx = canvas.getContext('2d');
+
+        // Background
+        ctx.fillStyle = '#f1f5f9';
+        ctx.fillRect(0, 0, width, totalH);
+
+        // Header Navy
+        ctx.fillStyle = '#16263e';
+        ctx.fillRect(0, 0, width, headerH);
+
+        ctx.fillStyle = '#53d7a6';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.fillText('HASIL UNDIAN ARISAN', pad, 42);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 28px sans-serif';
+        ctx.fillText((state.settings.title || 'LOTRE GROUP RANDOM').toUpperCase(), pad, 78);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '15px sans-serif';
+        ctx.fillText('Waktu Undian: ' + (state.lastWinnerTime || formatNow()), pad, 106);
+
+        let curY = headerH + 24;
+
+        // Winner Spotlight
+        if (state.lastWinner) {
+          ctx.fillStyle = '#d1fae5';
+          roundRectPath(ctx, pad, curY, width - pad * 2, spotlightH, 20);
+          ctx.fill();
+
+          ctx.strokeStyle = '#3ec190';
+          ctx.lineWidth = 3;
+          ctx.stroke();
+
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#065f46';
+          ctx.font = 'bold 18px sans-serif';
+          ctx.fillText('🏆 PEMENANG TERPILIH 🏆', width / 2, curY + 52);
+
+          ctx.fillStyle = '#16263e';
+          ctx.font = 'bold 38px sans-serif';
+          ctx.fillText(state.lastWinner, width / 2, curY + 112);
+
+          ctx.fillStyle = '#047857';
+          ctx.font = '600 16px sans-serif';
+          ctx.fillText('Putaran ke-' + state.wonNames.length + ' dari ' + state.participants.length + ' peserta', width / 2, curY + 152);
+          ctx.textAlign = 'left';
+
+          curY += spotlightH + 18;
+        }
+
+        // Won History List
+        if (state.wonNames.length > 0) {
+          ctx.fillStyle = '#ffffff';
+          roundRectPath(ctx, pad, curY, width - pad * 2, historyH, 16);
+          ctx.fill();
+
+          ctx.strokeStyle = '#cbd5e1';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          ctx.fillStyle = '#16263e';
+          ctx.font = 'bold 19px sans-serif';
+          ctx.fillText('RIWAYAT PEMENANG PUTARAN INI (' + state.wonNames.length + ')', pad + 20, curY + 36);
+
+          ctx.fillStyle = '#1e293b';
+          ctx.font = '600 18px sans-serif';
+          state.wonNames.forEach((w, i) => {
+            ctx.fillText((i + 1) + '. ' + w, pad + 20, curY + 72 + (i * 32));
+          });
+        }
+
+        // Footer
+        ctx.fillStyle = '#64748b';
+        ctx.font = 'bold 15px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Powered By Ari GPM • ' + APP_VERSION, width / 2, totalH - 22);
+        ctx.textAlign = 'left';
+
+        const fileDate = new Date().toISOString().slice(0, 10);
+        downloadCanvasPng(canvas, 'hasil-arisan-' + fileDate + '.png');
+      }
+
+      // ==================== DRAW TEAMS ====================
       function runTeamDraw() {
         if (isDrawing) return;
         const total = state.participants.length;
@@ -1267,6 +1581,7 @@
           });
 
           state.lastTeams = teams;
+          state.lastTeamTime = formatNow();
           saveState();
           renderTeamResults();
 
@@ -1285,9 +1600,16 @@
         }
 
         container.classList.remove('d-none');
-        let html = '<div class="d-flex justify-content-between align-items-center mb-2 px-1">' +
+        let html = '<div class="result-toolbar-card">' +
+          '<div class="result-toolbar-head">' +
           '<strong style="font-size:13.5px; color:var(--navy);">HASIL PEMBAGIAN TIM</strong>' +
-          '<button type="button" class="btn btn-sm fw-bold" id="btnCopyTeamsText" style="background:var(--mint-soft); color:var(--navy); border-radius:10px;">📋 Salin Hasil</button>' +
+          '<span style="font-size:11.5px; color:var(--text-muted); font-weight:600;">' + escapeHtml(state.lastTeamTime) + '</span>' +
+          '</div>' +
+          '<div class="result-action-grid">' +
+          '<button type="button" class="btn-res-action btn-res-copy" id="btnCopyTeamsText"><span>📋</span><span>Salin</span></button>' +
+          '<button type="button" class="btn-res-action btn-res-share" id="btnShareTeamsText"><span>📤</span><span>Bagi</span></button>' +
+          '<button type="button" class="btn-res-action btn-res-save" id="btnSaveTeamsImg"><span>💾</span><span>Simpan</span></button>' +
+          '</div>' +
           '</div>';
 
         state.lastTeams.forEach((members, idx) => {
@@ -1303,18 +1625,18 @@
 
         container.innerHTML = html;
 
-        const copyBtn = $('btnCopyTeamsText');
-        if (copyBtn) {
-          copyBtn.addEventListener('click', () => {
-            const text = state.lastTeams.map((members, idx) =>
-              '*TIM ' + (idx + 1) + '*\n' + members.map((m, i) => (i + 1) + '. ' + m).join('\n')
-            ).join('\n\n');
-            copyToClipboard(text);
-          });
-        }
+        $('btnCopyTeamsText').addEventListener('click', () => {
+          copyToClipboard(getTeamsShareText());
+        });
+        $('btnShareTeamsText').addEventListener('click', () => {
+          shareTextContent('Hasil Pembagian Tim - ' + state.settings.title, getTeamsShareText());
+        });
+        $('btnSaveTeamsImg').addEventListener('click', () => {
+          saveTeamsAsImage();
+        });
       }
 
-      // Draw Arisan
+      // ==================== DRAW ARISAN ====================
       function runArisanDraw() {
         if (isDrawing) return;
         const eligible = state.participants.filter((n) => !state.wonNames.includes(n));
@@ -1326,7 +1648,6 @@
         }
 
         isDrawing = true;
-        const btn = $('btnRunArisanDraw');
         const container = $('arisanResultsContainer');
         container.classList.remove('d-none');
 
@@ -1344,6 +1665,7 @@
             const finalPool = shuffleArray(eligible);
             const winner = finalPool[0];
             state.lastWinner = winner;
+            state.lastWinnerTime = formatNow();
             if (!state.wonNames.includes(winner)) {
               state.wonNames.push(winner);
             }
@@ -1371,7 +1693,11 @@
             '<div style="font-size:28px;">🏆</div>' +
             '<div class="small fw-bold text-uppercase text-success">PEMENANG TERPILIH</div>' +
             '<div class="winner-name">' + escapeHtml(state.lastWinner) + '</div>' +
-            '<button type="button" class="btn btn-sm fw-bold mt-1" id="btnCopyWinner" style="background:var(--navy); color:#fff; border-radius:10px;">📋 Salin Pengumuman</button>' +
+            '<div class="result-action-grid">' +
+            '<button type="button" class="btn-res-action btn-res-copy" id="btnCopyWinner"><span>📋</span><span>Salin</span></button>' +
+            '<button type="button" class="btn-res-action btn-res-share" id="btnShareWinner"><span>📤</span><span>Bagi</span></button>' +
+            '<button type="button" class="btn-res-action btn-res-save" id="btnSaveWinnerImg"><span>💾</span><span>Simpan</span></button>' +
+            '</div>' +
             '</div>';
         }
 
@@ -1388,10 +1714,19 @@
 
         container.innerHTML = html;
 
-        const copyWinBtn = $('btnCopyWinner');
-        if (copyWinBtn) {
-          copyWinBtn.addEventListener('click', () => {
-            copyToClipboard('🎉 Selamat kepada *' + state.lastWinner + '* terpilih sebagai pemenang undian ' + state.settings.title + '!');
+        if ($('btnCopyWinner')) {
+          $('btnCopyWinner').addEventListener('click', () => {
+            copyToClipboard(getArisanShareText());
+          });
+        }
+        if ($('btnShareWinner')) {
+          $('btnShareWinner').addEventListener('click', () => {
+            shareTextContent('Hasil Undian Arisan - ' + state.settings.title, getArisanShareText());
+          });
+        }
+        if ($('btnSaveWinnerImg')) {
+          $('btnSaveWinnerImg').addEventListener('click', () => {
+            saveArisanAsImage();
           });
         }
       }
@@ -1455,7 +1790,6 @@
 
       // Bind All Events
       function bindEvents() {
-        // Add single participant
         $('btnAddSingle').addEventListener('click', () => addParticipant($('inputNewName').value));
         $('inputNewName').addEventListener('keydown', (e) => {
           if (e.key === 'Enter') {
@@ -1464,7 +1798,6 @@
           }
         });
 
-        // Bulk paste modal
         $('btnOpenBulk').addEventListener('click', () => {
           $('textareaBulkNames').value = '';
           $('modalBulkPaste').classList.add('open');
@@ -1490,7 +1823,6 @@
           showToast(items.length + ' peserta ditambahkan.');
         });
 
-        // Clear all participants
         $('btnClearParticipants').addEventListener('click', () => {
           if (state.participants.length === 0) {
             showToast('Daftar peserta sudah kosong.');
@@ -1500,14 +1832,15 @@
             state.participants = [];
             state.wonNames = [];
             state.lastTeams = [];
+            state.lastTeamTime = '';
             state.lastWinner = null;
+            state.lastWinnerTime = '';
             saveState();
             renderModeUI();
             showToast('Semua peserta dihapus.');
           });
         });
 
-        // Backup JSON
         $('btnBackupData').addEventListener('click', () => {
           const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
           const url = URL.createObjectURL(blob);
@@ -1522,7 +1855,6 @@
           showToast('File backup JSON berhasil diunduh.');
         });
 
-        // Restore JSON
         $('btnRestoreData').addEventListener('click', () => $('inputRestoreFile').click());
         $('inputRestoreFile').addEventListener('change', (e) => {
           const file = e.target.files && e.target.files[0];
@@ -1548,7 +1880,6 @@
           reader.readAsText(file);
         });
 
-        // Mode Tabs
         $('tabModeTeam').addEventListener('click', () => {
           state.activeMode = 'team';
           saveState();
@@ -1560,7 +1891,6 @@
           renderModeUI();
         });
 
-        // Split Config & Stepper
         $('btnSplitByTeams').addEventListener('click', () => {
           state.splitMode = 'teams';
           saveState();
@@ -1586,11 +1916,9 @@
           }
         });
 
-        // Draw Buttons
         $('btnRunTeamDraw').addEventListener('click', runTeamDraw);
         $('btnRunArisanDraw').addEventListener('click', runArisanDraw);
 
-        // Settings Navigation
         $('btnToggleSettings').addEventListener('click', () => {
           const isSettingsOpen = !$('viewSettings').classList.contains('d-none');
           $('viewSettings').classList.toggle('d-none', isSettingsOpen);
@@ -1601,7 +1929,6 @@
           $('viewMain').classList.remove('d-none');
         });
 
-        // Save Identity
         $('btnSaveIdentity').addEventListener('click', () => {
           state.settings.title = $('inputSetTitle').value.trim() || 'LOTRE GROUP RANDOM';
           state.settings.subtitle = $('inputSetSubtitle').value.trim() || 'TEAM GENERATOR';
@@ -1610,7 +1937,6 @@
           showToast('Identitas aplikasi diperbarui.');
         });
 
-        // Theme Selector
         document.querySelectorAll('.theme-option').forEach((btn) => {
           btn.addEventListener('click', () => {
             state.settings.theme = btn.dataset.theme;
@@ -1620,7 +1946,6 @@
           });
         });
 
-        // Security & PIN Settings
         $('chkPinEnabled').addEventListener('change', (e) => {
           state.settings.pinEnabled = e.target.checked;
           saveState();
@@ -1652,7 +1977,6 @@
           lockScreen();
         });
 
-        // PIN Unlock & DOM-Swapping Recovery
         $('btnUnlockSubmit').addEventListener('click', () => {
           const entered = $('inputUnlockPin').value.trim();
           if (entered === state.settings.pinCode) {
@@ -1697,11 +2021,11 @@
           showToast('PIN berhasil direset dan layar terbuka.');
         });
 
-        // Reset Zones
         $('btnResetArisanCycle').addEventListener('click', () => {
           openConfirm('Reset Putaran Arisan?', 'Semua peserta akan kembali masuk daftar undian arisan.', () => {
             state.wonNames = [];
             state.lastWinner = null;
+            state.lastWinnerTime = '';
             saveState();
             renderModeUI();
             showToast('Putaran arisan berhasil direset.');
@@ -1721,7 +2045,6 @@
           });
         });
 
-        // Confirm Modal Controls
         $('btnConfirmCancel').addEventListener('click', closeConfirm);
         $('btnConfirmOk').addEventListener('click', () => {
           const fn = confirmCallback;
@@ -1729,12 +2052,10 @@
           if (typeof fn === 'function') fn();
         });
 
-        // Activity Listeners for 2-Minute Idle Auto-Lock
         ['pointerdown', 'keydown', 'touchstart'].forEach((evt) => {
           document.addEventListener(evt, resetIdleTimer, { passive: true });
         });
 
-        // PWA Install Banner
         window.addEventListener('beforeinstallprompt', (e) => {
           e.preventDefault();
           deferredInstallPrompt = e;
@@ -1754,14 +2075,12 @@
         });
       }
 
-      // Register Service Worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('./sw.js').catch(() => {});
         });
       }
 
-      // Boot App
       applyAppearance();
       renderModeUI();
       bindEvents();
