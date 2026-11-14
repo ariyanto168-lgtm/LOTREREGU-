@@ -202,7 +202,7 @@
         </div>
         <div style="min-width:0;">
           <h1 class="brand-title" id="headerTitle">LOTRE GROUP RANDOM</h1>
-          <p class="brand-subtitle"><span id="headerSubtitle">TEAM GENERATOR</span> • <span id="headerVersion">v1.1.9</span></p>
+          <p class="brand-subtitle"><span id="headerSubtitle">TEAM GENERATOR</span> • <span id="headerVersion">v1.2.0</span></p>
         </div>
       </div>
       <button type="button" class="btn-header-icon" id="btnToggleSettings" aria-label="Pengaturan">⚙️</button>
@@ -224,12 +224,12 @@
     <section id="viewMain">
       <div class="card-panel">
         <div class="card-panel-header">
-          <h2 class="card-panel-title"><span>👥</span><span>PESERTA TIM</span></h2>
+          <h2 class="card-panel-title"><span id="participantCardIcon">👥</span><span id="participantCardTitle">PESERTA TIM</span></h2>
           <span class="count-badge" id="badgeCount">0</span>
         </div>
         <div class="card-panel-body">
           <div class="meta-row">
-            <span class="meta-label">Total Peserta</span>
+            <span class="meta-label" id="participantMetaLabel">Total Peserta Tim</span>
             <span class="meta-value" id="textTotalCount">0 orang</span>
           </div>
           <div class="participant-box">
@@ -280,7 +280,7 @@
         <div class="hero-draw-card">
           <div class="hero-trophy">🎉</div>
           <h3 class="hero-title">KOCOK PEMENANG ARISAN</h3>
-          <p class="hero-desc">Undi pemenang secara acak dari daftar peserta yang belum menang.</p>
+          <p class="hero-desc">Undi pemenang secara acak dari daftar peserta arisan yang belum menang.</p>
           <div class="hero-config-bar">
             <span style="font-size:12.5px;">Belum Menang: <strong style="color:var(--mint);" id="arisanEligibleCount">0</strong></span>
             <span style="font-size:12.5px;">Sudah Menang: <strong style="color:#fbbf24;" id="arisanWonCount">0</strong></span>
@@ -346,12 +346,12 @@
     </section>
   </main>
 
-  <footer class="app-footer">Powered By Ari GPM • <span id="footerVersion">v1.1.9</span></footer>
+  <footer class="app-footer">Powered By Ari GPM • <span id="footerVersion">v1.2.0</span></footer>
 
   <div class="app-modal-backdrop" id="modalBulkPaste">
     <div class="app-modal-box">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <h5 class="fw-bold mb-0">📋 Tempel Daftar Nama</h5>
+        <h5 class="fw-bold mb-0" id="bulkModalTitle">📋 Tempel Daftar Nama</h5>
         <button type="button" class="btn btn-sm btn-light" id="btnCloseBulk">✕</button>
       </div>
       <p class="small text-muted mb-2">Pisahkan nama dengan baris baru (Enter) atau koma.</p>
@@ -405,11 +405,19 @@
   <script>
     (function () {
       'use strict';
-      const APP_VERSION = 'v1.1.9';
+      const APP_VERSION = 'v1.2.0';
       const STORAGE_KEY = 'lotre_group_random_state_v1';
       const DEFAULT_STATE = {
-        participants: [], wonNames: [], activeMode: 'team', splitMode: 'teams', splitCount: 2,
-        lastTeams: [], lastTeamTime: '', lastWinner: null, lastWinnerTime: '',
+        teamParticipants: [],
+        arisanParticipants: [],
+        wonNames: [],
+        activeMode: 'team',
+        splitMode: 'teams',
+        splitCount: 2,
+        lastTeams: [],
+        lastTeamTime: '',
+        lastWinner: null,
+        lastWinnerTime: '',
         settings: {
           title: 'LOTRE GROUP RANDOM', subtitle: 'TEAM GENERATOR', theme: 'plain',
           pinEnabled: false, pinCode: '1234', antiPhishing: 'Prisma Terverifikasi',
@@ -431,8 +439,10 @@
           const raw = localStorage.getItem(STORAGE_KEY);
           if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
           const x = JSON.parse(raw);
+          const legacyList = Array.isArray(x.participants) ? x.participants.map(String) : [];
           return {
-            participants: Array.isArray(x.participants) ? x.participants.map(String) : [],
+            teamParticipants: Array.isArray(x.teamParticipants) ? x.teamParticipants.map(String) : legacyList.slice(),
+            arisanParticipants: Array.isArray(x.arisanParticipants) ? x.arisanParticipants.map(String) : [],
             wonNames: Array.isArray(x.wonNames) ? x.wonNames.map(String) : [],
             activeMode: x.activeMode === 'arisan' ? 'arisan' : 'team',
             splitMode: x.splitMode === 'size' ? 'size' : 'teams',
@@ -450,6 +460,10 @@
 
       function saveState() {
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+      }
+
+      function getActiveList() {
+        return state.activeMode === 'arisan' ? state.arisanParticipants : state.teamParticipants;
       }
 
       function showToast(msg) {
@@ -486,26 +500,38 @@
       }
 
       function renderParticipants() {
-        const list = state.participants;
+        const isArisan = state.activeMode === 'arisan';
+        const list = getActiveList();
+
+        $('participantCardIcon').textContent = isArisan ? '🎉' : '👥';
+        $('participantCardTitle').textContent = isArisan ? 'PESERTA ARISAN' : 'PESERTA TIM';
+        $('participantMetaLabel').textContent = isArisan ? 'Total Peserta Arisan' : 'Total Peserta Tim';
+        $('inputNewName').placeholder = isArisan ? 'Ketik nama peserta arisan...' : 'Ketik nama peserta tim...';
+
         $('badgeCount').textContent = list.length;
         $('textTotalCount').textContent = list.length + ' orang';
+
         const empty = $('emptyStateBox'), chips = $('chipsContainer');
         if (!list.length) {
           empty.classList.remove('d-none');
+          empty.innerHTML = isArisan
+            ? 'Belum ada peserta arisan.<br>Tambahkan nama khusus arisan di bawah.'
+            : 'Belum ada peserta tim.<br>Tambahkan nama khusus tim di bawah.';
           chips.classList.add('d-none');
           chips.innerHTML = '';
         } else {
           empty.classList.add('d-none');
           chips.classList.remove('d-none');
           chips.innerHTML = list.map((name, idx) => {
-            const won = state.activeMode === 'arisan' && state.wonNames.includes(name);
+            const won = isArisan && state.wonNames.includes(name);
             return '<span class="chip-item' + (won ? ' is-won' : '') + '">' +
               '<span>' + (idx + 1) + '. ' + escapeHtml(name) + '</span>' +
               '<button type="button" class="chip-remove" data-idx="' + idx + '">×</button>' +
               '</span>';
           }).join('');
         }
-        $('arisanEligibleCount').textContent = list.filter((n) => !state.wonNames.includes(n)).length;
+
+        $('arisanEligibleCount').textContent = state.arisanParticipants.filter((n) => !state.wonNames.includes(n)).length;
         $('arisanWonCount').textContent = state.wonNames.length;
       }
 
@@ -695,8 +721,11 @@
       document.addEventListener('click', (e) => {
         const chipDel = e.target.closest('.chip-remove');
         if (chipDel) {
-          const rem = state.participants.splice(Number(chipDel.dataset.idx), 1)[0];
-          if (rem) state.wonNames = state.wonNames.filter((n) => n !== rem);
+          const list = getActiveList();
+          const rem = list.splice(Number(chipDel.dataset.idx), 1)[0];
+          if (rem && state.activeMode === 'arisan') {
+            state.wonNames = state.wonNames.filter((n) => n !== rem);
+          }
           saveState(); renderParticipants(); showToast('Peserta dihapus.');
           return;
         }
@@ -715,24 +744,33 @@
         if (id === 'btnAddSingle') {
           const val = $('inputNewName').value.trim();
           if (!val) return showToast('Ketik nama peserta terlebih dahulu.');
-          state.participants.push(val); saveState(); renderParticipants();
+          getActiveList().push(val); saveState(); renderParticipants();
           $('inputNewName').value = ''; $('inputNewName').focus();
         } else if (id === 'btnOpenBulk') {
+          $('bulkModalTitle').textContent = state.activeMode === 'arisan' ? '📋 Tempel Daftar Peserta Arisan' : '📋 Tempel Daftar Peserta Tim';
           $('textareaBulkNames').value = ''; $('modalBulkPaste').classList.add('open');
         } else if (id === 'btnCloseBulk' || id === 'btnCancelBulk') {
           $('modalBulkPaste').classList.remove('open');
         } else if (id === 'btnSubmitBulk') {
           const items = $('textareaBulkNames').value.split(/[\n,;]+/).map((l) => l.replace(/^\s*\d+[\.\)\-]\s*/, '').trim()).filter(Boolean);
           if (!items.length) return showToast('Tidak ada nama valid.');
-          state.participants.push(...items); saveState(); renderParticipants();
+          getActiveList().push(...items); saveState(); renderParticipants();
           $('modalBulkPaste').classList.remove('open'); showToast(items.length + ' peserta ditambahkan.');
         } else if (id === 'btnClearParticipants') {
-          if (!state.participants.length) return showToast('Daftar peserta sudah kosong.');
-          $('confirmModalTitle').textContent = 'Hapus Semua Peserta?';
-          $('confirmModalMessage').textContent = 'Seluruh daftar nama peserta akan dikosongkan.';
+          const isArisan = state.activeMode === 'arisan';
+          const list = getActiveList();
+          if (!list.length) return showToast('Daftar peserta sudah kosong.');
+          $('confirmModalTitle').textContent = isArisan ? 'Hapus Peserta Arisan?' : 'Hapus Peserta Tim?';
+          $('confirmModalMessage').textContent = isArisan
+            ? 'Seluruh daftar peserta arisan akan dikosongkan (daftar tim tetap aman).'
+            : 'Seluruh daftar peserta tim akan dikosongkan (daftar arisan tetap aman).';
           confirmFn = () => {
-            state.participants = []; state.wonNames = []; state.lastTeams = []; state.lastTeamTime = ''; state.lastWinner = null; state.lastWinnerTime = '';
-            saveState(); renderModeUI(); showToast('Semua peserta dihapus.');
+            if (isArisan) {
+              state.arisanParticipants = []; state.wonNames = []; state.lastWinner = null; state.lastWinnerTime = '';
+            } else {
+              state.teamParticipants = []; state.lastTeams = []; state.lastTeamTime = '';
+            }
+            saveState(); renderModeUI(); showToast('Daftar peserta dikosongkan.');
           };
           $('modalConfirm').classList.add('open');
         } else if (id === 'btnBackupData') {
@@ -757,20 +795,26 @@
           state.splitCount++; saveState(); $('stepValueDisplay').textContent = state.splitCount;
         } else if (id === 'btnRunTeamDraw') {
           if (isDrawing) return;
-          if (state.participants.length < 2) return showToast('Minimal masukkan 2 peserta.');
-          const n = state.splitMode === 'teams' ? Math.min(state.splitCount, state.participants.length) : Math.max(1, Math.ceil(state.participants.length / state.splitCount));
+          if (state.teamParticipants.length < 2) return showToast('Minimal masukkan 2 peserta tim.');
+          const n = state.splitMode === 'teams'
+            ? Math.min(state.splitCount, state.teamParticipants.length)
+            : Math.max(1, Math.ceil(state.teamParticipants.length / state.splitCount));
           isDrawing = true; btn.textContent = '⏳ MENGACAK TIM...';
           setTimeout(() => {
             const teams = Array.from({ length: n }, () => []);
-            shuffle(state.participants).forEach((p, i) => teams[i % n].push(p));
+            shuffle(state.teamParticipants).forEach((p, i) => teams[i % n].push(p));
             state.lastTeams = teams; state.lastTeamTime = formatNow(); saveState(); renderTeamResults();
             btn.innerHTML = '<span>🎲</span><span>MULAI UNDI</span>'; isDrawing = false;
             showToast('Pembagian ' + n + ' tim selesai!');
           }, 350);
         } else if (id === 'btnRunArisanDraw') {
           if (isDrawing) return;
-          const el = state.participants.filter((n) => !state.wonNames.includes(n));
-          if (!el.length) return showToast(state.participants.length ? 'Semua peserta sudah menang! Reset di Pengaturan.' : 'Tambahkan peserta terlebih dahulu.');
+          const el = state.arisanParticipants.filter((n) => !state.wonNames.includes(n));
+          if (!el.length) {
+            return showToast(state.arisanParticipants.length
+              ? 'Semua peserta arisan sudah menang! Reset di Pengaturan.'
+              : 'Tambahkan peserta arisan terlebih dahulu.');
+          }
           isDrawing = true; $('arisanResultsContainer').classList.remove('d-none');
           let ticks = 0;
           const iv = setInterval(() => {
@@ -836,12 +880,12 @@
           $('pinLockOverlay').classList.remove('locked'); resetIdle(); showToast('PIN direset.');
         } else if (id === 'btnResetArisanCycle') {
           $('confirmModalTitle').textContent = 'Reset Putaran Arisan?';
-          $('confirmModalMessage').textContent = 'Semua peserta kembali masuk daftar undian.';
+          $('confirmModalMessage').textContent = 'Semua peserta arisan kembali masuk daftar undian.';
           confirmFn = () => { state.wonNames = []; state.lastWinner = null; state.lastWinnerTime = ''; saveState(); renderModeUI(); showToast('Putaran arisan direset.'); };
           $('modalConfirm').classList.add('open');
         } else if (id === 'btnFactoryReset') {
           $('confirmModalTitle').textContent = 'Hapus Semua Data?';
-          $('confirmModalMessage').textContent = 'Seluruh data dan pengaturan akan dikembalikan ke awal.';
+          $('confirmModalMessage').textContent = 'Seluruh data tim, arisan, dan pengaturan akan dikembalikan ke awal.';
           confirmFn = () => {
             localStorage.removeItem(STORAGE_KEY); state = JSON.parse(JSON.stringify(DEFAULT_STATE));
             saveState(); applyAppearance(); renderModeUI();
@@ -877,11 +921,14 @@
         r.onload = (ev) => {
           try {
             const imp = JSON.parse(ev.target.result);
-            if (!imp || !Array.isArray(imp.participants)) throw new Error();
+            if (!imp || typeof imp !== 'object') throw new Error();
+            const leg = Array.isArray(imp.participants) ? imp.participants.map(String) : [];
             state = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_STATE)), imp);
+            state.teamParticipants = Array.isArray(imp.teamParticipants) ? imp.teamParticipants.map(String) : leg.slice();
+            state.arisanParticipants = Array.isArray(imp.arisanParticipants) ? imp.arisanParticipants.map(String) : [];
             state.settings = Object.assign({}, DEFAULT_STATE.settings, imp.settings || {});
             saveState(); applyAppearance(); renderModeUI();
-            showToast('Data dipulihkan (' + state.participants.length + ' peserta).');
+            showToast('Data tim & arisan dipulihkan.');
           } catch (err) { showToast('File JSON tidak valid.'); }
           $('inputRestoreFile').value = '';
         };
