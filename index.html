@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#16263e">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>LOTRE GROUP RANDOM - Team Generator</title>
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" type="image/png" href="./icon-192.png">
@@ -19,34 +18,32 @@
       --mint-dark: #3ec190;
       --mint-soft: #e6f9f2;
       --slate-btn: #eef2f7;
-      --slate-btn-hover: #e2e8f0;
       --text-main: #16263e;
       --text-muted: #64748b;
     }
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
       margin: 0; padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: var(--text-main); background-color: #f1f5f9;
       min-height: 100vh; display: flex; flex-direction: column;
-      transition: background-color 0.25s ease;
     }
     body.theme-plain { background-color: #f1f5f9; background-image: none; }
     body.theme-stars {
       background-color: #fefce8;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath fill='%23facc15' fill-opacity='0.24' d='M16 6l2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.6-.8zM48 38l1.8 3.7 4.2.6-3 2.9.7 4.1-3.7-1.9-3.7 1.9.7-4.1-3-2.9 4.2-.6z'/%3E%3Ccircle cx='50' cy='14' r='2' fill='%23f59e0b' fill-opacity='0.22'/%3E%3Ccircle cx='14' cy='48' r='2' fill='%23f59e0b' fill-opacity='0.22'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath fill='%23facc15' fill-opacity='0.24' d='M16 6l2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.6-.8zM48 38l1.8 3.7 4.2.6-3 2.9.7 4.1-3.7-1.9-3.7 1.9.7-4.1-3-2.9 4.2-.6z'/%3E%3C/svg%3E");
     }
     body.theme-hearts {
       background-color: #fff1f2;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath fill='%23fb7185' fill-opacity='0.2' d='M18 23c-4.5-3.6-8-6.7-8-10.3 0-2.8 2.2-5 5-5 1.7 0 3.3.8 4.2 2.1.9-1.3 2.5-2.1 4.2-2.1 2.8 0 5 2.2 5 5 0 3.6-3.5 6.7-8 10.3l-1.2 1-1.2-1zM48 53c-3.4-2.7-6-5-6-7.7 0-2.1 1.6-3.8 3.7-3.8 1.3 0 2.5.6 3.1 1.6.7-1 1.8-1.6 3.1-1.6 2.1 0 3.7 1.7 3.7 3.8 0 2.7-2.6 5-6 7.7l-.8.7-.8-.7z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath fill='%23fb7185' fill-opacity='0.2' d='M18 23c-4.5-3.6-8-6.7-8-10.3 0-2.8 2.2-5 5-5 1.7 0 3.3.8 4.2 2.1.9-1.3 2.5-2.1 4.2-2.1 2.8 0 5 2.2 5 5 0 3.6-3.5 6.7-8 10.3l-1.2 1-1.2-1z'/%3E%3C/svg%3E");
     }
     body.theme-mint {
       background-color: #ecfdf5;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath fill='%2334d399' fill-opacity='0.22' d='M22 10c-7 0-12 5-12 12 7 0 12-5 12-12zm26 28c-6 0-10 4-10 10 6 0 10-4 10-10z'/%3E%3Ccircle cx='46' cy='16' r='3' fill='%2310b981' fill-opacity='0.18'/%3E%3Ccircle cx='16' cy='46' r='2.5' fill='%2310b981' fill-opacity='0.18'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath fill='%2334d399' fill-opacity='0.22' d='M22 10c-7 0-12 5-12 12 7 0 12-5 12-12zm26 28c-6 0-10 4-10 10 6 0 10-4 10-10z'/%3E%3C/svg%3E");
     }
     body.theme-clouds {
       background-color: #eff6ff;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='64' viewBox='0 0 80 64'%3E%3Cpath fill='%2360a5fa' fill-opacity='0.2' d='M24 26h16a6 6 0 0 0 0-12h-.6A8 8 0 0 0 24 12a7 7 0 0 0 0 14zm34 26h12a5 5 0 0 0 0-10h-.5A6.5 6.5 0 0 0 57 40a5.5 5.5 0 0 0 1 12z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='64' viewBox='0 0 80 64'%3E%3Cpath fill='%2360a5fa' fill-opacity='0.2' d='M24 26h16a6 6 0 0 0 0-12h-.6A8 8 0 0 0 24 12a7 7 0 0 0 0 14z'/%3E%3C/svg%3E");
     }
     .app-header {
       background-color: var(--navy); color: #fff; padding: 14px 16px;
@@ -55,34 +52,28 @@
     .header-inner { max-width: 520px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .brand-group { display: flex; align-items: center; gap: 12px; min-width: 0; }
     .brand-icon-box {
-      width: 42px; height: 42px; border-radius: 12px;
-      background: linear-gradient(135deg, #6ee7b7 0%, #34d399 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; flex-shrink: 0; overflow: hidden;
-      box-shadow: 0 3px 8px rgba(52,211,153,0.3);
+      width: 42px; height: 42px; border-radius: 12px; background: var(--mint);
+      display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; overflow: hidden;
     }
     .brand-icon-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .brand-title { font-size: 16px; font-weight: 800; letter-spacing: 0.3px; line-height: 1.2; margin: 0; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand-title { font-size: 16px; font-weight: 800; line-height: 1.2; margin: 0; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .brand-subtitle { font-size: 11px; font-weight: 600; color: #94a3b8; letter-spacing: 0.8px; margin: 2px 0 0; text-transform: uppercase; }
     .btn-header-icon {
       width: 42px; height: 42px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.08); color: #fff; display: inline-flex;
-      align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
+      background: rgba(255,255,255,0.08); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
     }
-    .btn-header-icon:active { transform: scale(0.95); background: rgba(255,255,255,0.18); }
     .app-container { width: 100%; max-width: 520px; margin: 0 auto; padding: 16px 14px 28px; flex: 1; }
     .install-banner {
       background: #fff; border: 1.5px solid var(--mint); border-radius: 16px;
-      padding: 12px 14px; margin-bottom: 14px; display: flex; align-items: center;
-      justify-content: space-between; gap: 10px; box-shadow: 0 4px 12px rgba(22,38,62,0.06);
+      padding: 12px 14px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
     }
     .card-panel {
       background: #fff; border-radius: 20px; overflow: hidden;
-      box-shadow: 0 6px 20px rgba(15,23,42,0.06); border: 1px solid rgba(226,232,240,0.9); margin-bottom: 14px;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.06); border: 1px solid #e2e8f0; margin-bottom: 14px;
     }
     .card-panel-header { background-color: var(--navy); color: #fff; padding: 13px 16px; display: flex; align-items: center; justify-content: space-between; }
     .card-panel-title { font-size: 14px; font-weight: 800; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; margin: 0; }
-    .count-badge { font-size: 15px; font-weight: 800; color: #fff; }
+    .count-badge { font-size: 15px; font-weight: 800; }
     .card-panel-body { padding: 16px; }
     .meta-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; margin-bottom: 10px; }
     .meta-label { color: var(--text-muted); font-weight: 500; }
@@ -91,18 +82,16 @@
       border: 1.5px dashed #cbd5e1; border-radius: 14px; min-height: 150px; max-height: 230px;
       overflow-y: auto; padding: 12px; margin-bottom: 14px; background-color: #fafcff;
     }
-    .participant-empty { height: 122px; display: flex; align-items: center; justify-content: center; text-align: center; color: #94a3b8; font-size: 13.5px; line-height: 1.45; padding: 0 16px; }
+    .participant-empty { height: 122px; display: flex; align-items: center; justify-content: center; text-align: center; color: #94a3b8; font-size: 13.5px; line-height: 1.45; }
     .participant-chips { display: flex; flex-wrap: wrap; gap: 7px; }
     .chip-item {
       display: inline-flex; align-items: center; gap: 6px; background: #fff;
-      border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 10px 5px 12px;
-      font-size: 13px; font-weight: 600; color: var(--text-main);
+      border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 10px 5px 12px; font-size: 13px; font-weight: 600;
     }
     .chip-item.is-won { background: #f1f5f9; color: #94a3b8; text-decoration: line-through; }
     .chip-remove {
       border: none; background: #fee2e2; color: #ef4444; width: 19px; height: 19px;
-      border-radius: 50%; font-size: 12px; font-weight: 800; line-height: 1;
-      display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;
+      border-radius: 50%; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;
     }
     .add-input-row { display: flex; gap: 10px; margin-bottom: 10px; }
     .input-clean {
@@ -112,44 +101,32 @@
     .input-clean:focus { border-color: var(--mint-dark); }
     .btn-add-mint {
       width: 48px; height: 46px; border-radius: 13px; border: none; background-color: var(--mint);
-      color: var(--navy); font-size: 24px; font-weight: 700; display: inline-flex;
-      align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
+      color: var(--navy); font-size: 24px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
     }
-    .btn-add-mint:active { transform: scale(0.95); background-color: var(--mint-dark); }
     .btn-slate {
       width: 100%; height: 40px; border-radius: 12px; border: none; background-color: var(--slate-btn);
-      color: var(--text-main); font-size: 13px; font-weight: 700; display: inline-flex;
-      align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+      color: var(--text-main); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
     }
-    .btn-slate:active { background-color: var(--slate-btn-hover); transform: scale(0.98); }
-    .action-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
-    .result-toolbar-card {
-      background: #fff; border-radius: 16px; border: 1.5px solid #e2e8f0;
-      padding: 12px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(15,23,42,0.05);
-    }
+    .action-grid-3, .result-action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .action-grid-3 { margin-top: 8px; }
+    .result-toolbar-card { background: #fff; border-radius: 16px; border: 1.5px solid #e2e8f0; padding: 12px; margin-bottom: 12px; }
     .result-toolbar-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .result-action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .btn-res-action {
       height: 40px; border-radius: 12px; border: 1.5px solid transparent; font-size: 13px;
       font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer;
     }
-    .btn-res-action:active { transform: scale(0.96); }
     .btn-res-copy { background: var(--slate-btn); color: var(--navy); border-color: #cbd5e1; }
     .btn-res-share { background: var(--mint-soft); color: #065f46; border-color: #6ee7b7; }
     .btn-res-save { background: var(--navy); color: #fff; }
     .mode-switch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
     .btn-mode-tab {
       height: 46px; border-radius: 14px; border: 1.5px solid #e2e8f0; background-color: #fff;
-      color: var(--text-main); font-size: 13.5px; font-weight: 800; letter-spacing: 0.4px;
-      display: inline-flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer;
+      color: var(--text-main); font-size: 13.5px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer;
     }
-    .btn-mode-tab.active { background-color: var(--mint); border-color: var(--mint); color: var(--navy); box-shadow: 0 4px 12px rgba(83,215,166,0.32); }
-    .hero-draw-card {
-      background-color: var(--navy); color: #fff; border-radius: 22px;
-      padding: 20px 18px; box-shadow: 0 10px 24px rgba(22,38,62,0.2); margin-bottom: 14px;
-    }
+    .btn-mode-tab.active { background-color: var(--mint); border-color: var(--mint); color: var(--navy); }
+    .hero-draw-card { background-color: var(--navy); color: #fff; border-radius: 22px; padding: 20px 18px; margin-bottom: 14px; }
     .hero-trophy { font-size: 30px; line-height: 1; margin-bottom: 10px; display: inline-block; }
-    .hero-title { font-size: 18px; font-weight: 800; letter-spacing: 0.4px; margin: 0 0 6px; text-transform: uppercase; }
+    .hero-title { font-size: 18px; font-weight: 800; margin: 0 0 6px; text-transform: uppercase; }
     .hero-desc { font-size: 13px; color: #cbd5e1; line-height: 1.45; margin: 0 0 16px; }
     .hero-config-bar {
       background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px;
@@ -166,19 +143,12 @@
     .step-val { min-width: 26px; text-align: center; font-size: 15px; font-weight: 800; color: var(--mint); }
     .btn-primary-mint {
       width: 100%; height: 48px; border-radius: 14px; border: none; background-color: var(--mint);
-      color: var(--navy); font-size: 14.5px; font-weight: 800; letter-spacing: 0.5px;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
-      box-shadow: 0 4px 14px rgba(83,215,166,0.35);
+      color: var(--navy); font-size: 14.5px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
     }
-    .btn-primary-mint:active { transform: scale(0.98); background-color: var(--mint-dark); }
-    .result-team-card {
-      background: #fff; border-radius: 16px; border: 1.5px solid #e2e8f0;
-      padding: 14px; margin-bottom: 10px; box-shadow: 0 3px 10px rgba(15,23,42,0.04);
-    }
+    .result-team-card { background: #fff; border-radius: 16px; border: 1.5px solid #e2e8f0; padding: 14px; margin-bottom: 10px; }
     .result-team-header {
       display: flex; justify-content: space-between; align-items: center;
-      padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px dashed #cbd5e1;
-      font-weight: 800; font-size: 14px; color: var(--navy);
+      padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px dashed #cbd5e1; font-weight: 800; font-size: 14px;
     }
     .winner-spotlight {
       background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
@@ -188,7 +158,7 @@
     .theme-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .theme-option {
       border: 2px solid #e2e8f0; border-radius: 14px; padding: 10px 12px; background: #fff;
-      text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--text-main);
+      text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700;
     }
     .theme-option.active { border-color: var(--navy); background: var(--mint-soft); }
     .theme-swatch { width: 24px; height: 24px; border-radius: 8px; border: 1px solid #cbd5e1; flex-shrink: 0; }
@@ -197,10 +167,7 @@
       display: none; align-items: center; justify-content: center; padding: 16px;
     }
     .app-modal-backdrop.open { display: flex; }
-    .app-modal-box {
-      background: #fff; border-radius: 20px; width: 100%; max-width: 420px;
-      padding: 20px; box-shadow: 0 20px 40px rgba(15,23,42,0.28);
-    }
+    .app-modal-box { background: #fff; border-radius: 20px; width: 100%; max-width: 420px; padding: 20px; }
     .pin-lock-overlay {
       position: fixed; inset: 0; background: var(--navy); color: #fff; z-index: 9000;
       display: none; align-items: center; justify-content: center; padding: 20px;
@@ -218,8 +185,7 @@
     .app-toast {
       position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(20px);
       background: var(--navy); color: #fff; padding: 10px 18px; border-radius: 999px;
-      font-size: 13px; font-weight: 600; box-shadow: 0 8px 20px rgba(15,23,42,0.25);
-      opacity: 0; pointer-events: none; z-index: 9500; transition: opacity 0.2s ease, transform 0.2s ease; max-width: 90vw; text-align: center;
+      font-size: 13px; font-weight: 600; opacity: 0; pointer-events: none; z-index: 9500; transition: 0.2s;
     }
     .app-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .app-footer { text-align: center; padding: 14px; font-size: 12px; font-weight: 700; color: #64748b; }
@@ -236,27 +202,21 @@
         </div>
         <div style="min-width:0;">
           <h1 class="brand-title" id="headerTitle">LOTRE GROUP RANDOM</h1>
-          <p class="brand-subtitle"><span id="headerSubtitle">TEAM GENERATOR</span> • <span id="headerVersion">v1.1.8</span></p>
+          <p class="brand-subtitle"><span id="headerSubtitle">TEAM GENERATOR</span> • <span id="headerVersion">v1.1.9</span></p>
         </div>
       </div>
-      <button type="button" class="btn-header-icon" id="btnToggleSettings" aria-label="Pengaturan">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"></circle>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-        </svg>
-      </button>
+      <button type="button" class="btn-header-icon" id="btnToggleSettings" aria-label="Pengaturan">⚙️</button>
     </div>
   </header>
 
   <main class="app-container">
-
     <div id="pwaInstallBanner" class="install-banner d-none">
-      <div style="font-size:12.5px; line-height:1.35;">
-        <strong style="display:block; color:var(--navy);">Pasang Aplikasi Offline</strong>
+      <div style="font-size:12.5px;">
+        <strong style="display:block;">Pasang Aplikasi Offline</strong>
         <span style="color:var(--text-muted);">Akses cepat dari layar utama HP.</span>
       </div>
       <div class="d-flex gap-2">
-        <button type="button" id="btnInstallApp" class="btn btn-sm fw-bold" style="background:var(--mint); color:var(--navy); border-radius:10px;">Pasang</button>
+        <button type="button" id="btnInstallApp" class="btn btn-sm fw-bold" style="background:var(--mint); border-radius:10px;">Pasang</button>
         <button type="button" id="btnDismissInstall" class="btn btn-sm btn-light" style="border-radius:10px;">✕</button>
       </div>
     </div>
@@ -272,7 +232,7 @@
             <span class="meta-label">Total Peserta</span>
             <span class="meta-value" id="textTotalCount">0 orang</span>
           </div>
-          <div class="participant-box" id="participantBox">
+          <div class="participant-box">
             <div class="participant-empty" id="emptyStateBox">Belum ada peserta.<br>Tambahkan nama di bawah.</div>
             <div class="participant-chips d-none" id="chipsContainer"></div>
           </div>
@@ -303,4 +263,639 @@
           <div class="hero-config-bar">
             <div class="split-toggle">
               <button type="button" id="btnSplitByTeams" class="active">Jumlah Tim</button>
-              <button type="button" id="btnSplitBy
+              <button type="button" id="btnSplitBySize">Orang / Tim</button>
+            </div>
+            <div class="stepper-box">
+              <button type="button" class="btn-step" id="btnStepDown">−</button>
+              <span class="step-val" id="stepValueDisplay">2</span>
+              <button type="button" class="btn-step" id="btnStepUp">+</button>
+            </div>
+          </div>
+          <button type="button" class="btn-primary-mint" id="btnRunTeamDraw"><span>🎲</span><span>MULAI UNDI</span></button>
+        </div>
+        <div id="teamResultsContainer" class="d-none"></div>
+      </div>
+
+      <div id="panelArisanMode" class="d-none">
+        <div class="hero-draw-card">
+          <div class="hero-trophy">🎉</div>
+          <h3 class="hero-title">KOCOK PEMENANG ARISAN</h3>
+          <p class="hero-desc">Undi pemenang secara acak dari daftar peserta yang belum menang.</p>
+          <div class="hero-config-bar">
+            <span style="font-size:12.5px;">Belum Menang: <strong style="color:var(--mint);" id="arisanEligibleCount">0</strong></span>
+            <span style="font-size:12.5px;">Sudah Menang: <strong style="color:#fbbf24;" id="arisanWonCount">0</strong></span>
+          </div>
+          <button type="button" class="btn-primary-mint" id="btnRunArisanDraw"><span>🎲</span><span>MULAI UNDI</span></button>
+        </div>
+        <div id="arisanResultsContainer" class="d-none"></div>
+      </div>
+    </section>
+
+    <section id="viewSettings" class="d-none">
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <h2 class="card-panel-title"><span>⚙️</span><span>PENGATURAN APLIKASI</span></h2>
+          <button type="button" class="btn btn-sm btn-light fw-bold" id="btnBackToMain" style="border-radius:10px;">← Kembali</button>
+        </div>
+        <div class="card-panel-body">
+          <div class="mb-4">
+            <label class="form-label fw-bold small text-uppercase text-muted">1. Identitas Header</label>
+            <input type="text" id="inputSetTitle" class="input-clean w-100 mb-2" placeholder="Judul Aplikasi">
+            <input type="text" id="inputSetSubtitle" class="input-clean w-100 mb-2" placeholder="Subjudul">
+            <button type="button" class="btn-slate" id="btnSaveIdentity">💾 Simpan Identitas</button>
+          </div>
+          <hr class="my-3">
+          <div class="mb-4">
+            <label class="form-label fw-bold small text-uppercase text-muted">2. Tema Background (5 Pilihan)</label>
+            <div class="theme-grid">
+              <button type="button" class="theme-option" data-theme="plain"><span class="theme-swatch" style="background:#f1f5f9;"></span><span>Standar Polos</span></button>
+              <button type="button" class="theme-option" data-theme="stars"><span class="theme-swatch" style="background:#fef08a;"></span><span>Bintang Ceria 🌟</span></button>
+              <button type="button" class="theme-option" data-theme="hearts"><span class="theme-swatch" style="background:#fecdd3;"></span><span>Hati Ceria 💖</span></button>
+              <button type="button" class="theme-option" data-theme="mint"><span class="theme-swatch" style="background:#a7f3d0;"></span><span>Mint Fresh 🍃</span></button>
+              <button type="button" class="theme-option" data-theme="clouds" style="grid-column: span 2;"><span class="theme-swatch" style="background:#bfdbfe;"></span><span>Awan Biru ☁️</span></button>
+            </div>
+          </div>
+          <hr class="my-3">
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <label class="form-label fw-bold small text-uppercase text-muted mb-0">3. Kunci PIN & Anti-Phishing</label>
+              <div class="form-check form-switch mb-0">
+                <input class="form-check-input" type="checkbox" id="chkPinEnabled" style="width:42px; height:22px;">
+              </div>
+            </div>
+            <p class="small text-muted mb-2">Otomatis mengunci layar setelah 2 menit tidak aktif.</p>
+            <input type="password" inputmode="numeric" maxlength="6" id="inputSetPin" class="input-clean w-100 mb-2" placeholder="PIN (4-6 digit, default: 1234)">
+            <input type="text" id="inputSetPhishing" class="input-clean w-100 mb-2" placeholder="Frasa Anti-Phishing">
+            <input type="text" id="inputSetRecQuestion" class="input-clean w-100 mb-2" placeholder="Pertanyaan Pemulihan PIN">
+            <input type="text" id="inputSetRecAnswer" class="input-clean w-100 mb-2" placeholder="Jawaban Pemulihan PIN">
+            <div class="d-flex gap-2">
+              <button type="button" class="btn-slate" id="btnSaveSecurity">🔒 Simpan Keamanan</button>
+              <button type="button" class="btn-slate" id="btnLockNow">🛡️ Kunci Sekarang</button>
+            </div>
+          </div>
+          <hr class="my-3">
+          <div>
+            <label class="form-label fw-bold small text-uppercase text-danger">4. Zona Reset & Hapus Data</label>
+            <div class="d-grid gap-2">
+              <button type="button" class="btn btn-outline-warning text-dark fw-bold" id="btnResetArisanCycle" style="border-radius:12px;">🔄 Reset Putaran Pemenang Arisan</button>
+              <button type="button" class="btn btn-outline-danger fw-bold" id="btnFactoryReset" style="border-radius:12px;">⚠️ Hapus Semua Data Aplikasi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">Powered By Ari GPM • <span id="footerVersion">v1.1.9</span></footer>
+
+  <div class="app-modal-backdrop" id="modalBulkPaste">
+    <div class="app-modal-box">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="fw-bold mb-0">📋 Tempel Daftar Nama</h5>
+        <button type="button" class="btn btn-sm btn-light" id="btnCloseBulk">✕</button>
+      </div>
+      <p class="small text-muted mb-2">Pisahkan nama dengan baris baru (Enter) atau koma.</p>
+      <textarea id="textareaBulkNames" rows="6" class="form-control mb-3" style="border-radius:12px;" placeholder="1. Budi Santoso&#10;2. Siti Aminah"></textarea>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn-slate" id="btnCancelBulk">Batal</button>
+        <button type="button" class="btn-primary-mint" style="height:40px;" id="btnSubmitBulk">Tambahkan Semua</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-modal-backdrop" id="modalConfirm">
+    <div class="app-modal-box">
+      <h5 class="fw-bold mb-2" id="confirmModalTitle">Konfirmasi</h5>
+      <p class="small text-muted mb-3" id="confirmModalMessage">Apakah Anda yakin?</p>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn-slate" id="btnConfirmCancel">Batal</button>
+        <button type="button" class="btn btn-danger w-100 fw-bold" style="border-radius:12px; height:40px;" id="btnConfirmOk">Ya, Lanjutkan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pin-lock-overlay" id="pinLockOverlay">
+    <div class="pin-lock-card">
+      <img src="./icon-192.png" alt="Logo" class="lock-brand-logo" onerror="this.style.display='none';">
+      <h4 class="fw-bold mb-1" id="lockAppTitle">LOTRE GROUP RANDOM</h4>
+      <div class="anti-phishing-pill" id="lockPhishingDisplay">Frasa Aman: Prisma Terverifikasi</div>
+      <div id="pinUnlockView">
+        <p class="small text-light opacity-75 mb-2">Masukkan PIN untuk membuka aplikasi</p>
+        <input type="password" inputmode="numeric" maxlength="6" id="inputUnlockPin" class="form-control text-center fw-bold fs-4 mb-3" style="border-radius:14px; letter-spacing:6px;" placeholder="••••">
+        <button type="button" class="btn-primary-mint mb-2" id="btnUnlockSubmit">BUKA KUNCI</button>
+        <button type="button" class="btn btn-link btn-sm text-light opacity-75 text-decoration-none" id="btnSwitchToRecovery">Lupa PIN? Pulihkan di sini</button>
+      </div>
+      <div id="pinRecoveryView" class="d-none text-start">
+        <div class="p-2 rounded mb-2" style="background:rgba(255,255,255,0.08); font-size:12.5px;">
+          <span class="opacity-75 d-block">Pertanyaan Keamanan:</span>
+          <strong id="recQuestionDisplay">-</strong>
+        </div>
+        <input type="text" id="inputRecAnswerCheck" class="form-control mb-2" style="border-radius:12px;" placeholder="Jawaban pemulihan...">
+        <input type="password" inputmode="numeric" maxlength="6" id="inputRecNewPin" class="form-control mb-3" style="border-radius:12px;" placeholder="Buat PIN baru (4-6 digit)">
+        <button type="button" class="btn-primary-mint mb-2" id="btnResetPinSubmit">SIMPAN PIN BARU</button>
+        <div class="text-center">
+          <button type="button" class="btn btn-link btn-sm text-light opacity-75 text-decoration-none" id="btnBackToUnlock">← Kembali ke Layar PIN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-toast" id="appToast"></div>
+
+  <script>
+    (function () {
+      'use strict';
+      const APP_VERSION = 'v1.1.9';
+      const STORAGE_KEY = 'lotre_group_random_state_v1';
+      const DEFAULT_STATE = {
+        participants: [], wonNames: [], activeMode: 'team', splitMode: 'teams', splitCount: 2,
+        lastTeams: [], lastTeamTime: '', lastWinner: null, lastWinnerTime: '',
+        settings: {
+          title: 'LOTRE GROUP RANDOM', subtitle: 'TEAM GENERATOR', theme: 'plain',
+          pinEnabled: false, pinCode: '1234', antiPhishing: 'Prisma Terverifikasi',
+          recQuestion: 'Nama toko atau usaha utama?', recAnswer: 'prisma'
+        }
+      };
+
+      const $ = (id) => document.getElementById(id);
+      let state = loadState();
+      let confirmFn = null, installPrompt = null, idleTimer = null, isDrawing = false, toastTimer = null;
+
+      function formatNow() {
+        const d = new Date(), p = (n) => String(n).padStart(2, '0');
+        return p(d.getDate()) + '/' + p(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+      }
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
+          const x = JSON.parse(raw);
+          return {
+            participants: Array.isArray(x.participants) ? x.participants.map(String) : [],
+            wonNames: Array.isArray(x.wonNames) ? x.wonNames.map(String) : [],
+            activeMode: x.activeMode === 'arisan' ? 'arisan' : 'team',
+            splitMode: x.splitMode === 'size' ? 'size' : 'teams',
+            splitCount: Number(x.splitCount) >= 1 ? Number(x.splitCount) : 2,
+            lastTeams: Array.isArray(x.lastTeams) ? x.lastTeams : [],
+            lastTeamTime: x.lastTeamTime ? String(x.lastTeamTime) : '',
+            lastWinner: x.lastWinner ? String(x.lastWinner) : null,
+            lastWinnerTime: x.lastWinnerTime ? String(x.lastWinnerTime) : '',
+            settings: Object.assign({}, DEFAULT_STATE.settings, x.settings || {})
+          };
+        } catch (e) {
+          return JSON.parse(JSON.stringify(DEFAULT_STATE));
+        }
+      }
+
+      function saveState() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+      }
+
+      function showToast(msg) {
+        const el = $('appToast');
+        el.textContent = msg;
+        el.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      function applyAppearance() {
+        const s = state.settings;
+        $('headerTitle').textContent = s.title || 'LOTRE GROUP RANDOM';
+        $('headerSubtitle').textContent = s.subtitle || 'TEAM GENERATOR';
+        $('headerVersion').textContent = APP_VERSION;
+        $('footerVersion').textContent = APP_VERSION;
+        $('lockAppTitle').textContent = s.title || 'LOTRE GROUP RANDOM';
+        $('lockPhishingDisplay').textContent = 'Frasa Aman: ' + (s.antiPhishing || 'Prisma Terverifikasi');
+        document.body.className = 'theme-' + (s.theme || 'plain');
+        document.querySelectorAll('.theme-option').forEach((b) => {
+          b.classList.toggle('active', b.dataset.theme === s.theme);
+        });
+        $('inputSetTitle').value = s.title;
+        $('inputSetSubtitle').value = s.subtitle;
+        $('chkPinEnabled').checked = Boolean(s.pinEnabled);
+        $('inputSetPin').value = s.pinCode;
+        $('inputSetPhishing').value = s.antiPhishing;
+        $('inputSetRecQuestion').value = s.recQuestion;
+        $('inputSetRecAnswer').value = s.recAnswer;
+      }
+
+      function renderParticipants() {
+        const list = state.participants;
+        $('badgeCount').textContent = list.length;
+        $('textTotalCount').textContent = list.length + ' orang';
+        const empty = $('emptyStateBox'), chips = $('chipsContainer');
+        if (!list.length) {
+          empty.classList.remove('d-none');
+          chips.classList.add('d-none');
+          chips.innerHTML = '';
+        } else {
+          empty.classList.add('d-none');
+          chips.classList.remove('d-none');
+          chips.innerHTML = list.map((name, idx) => {
+            const won = state.activeMode === 'arisan' && state.wonNames.includes(name);
+            return '<span class="chip-item' + (won ? ' is-won' : '') + '">' +
+              '<span>' + (idx + 1) + '. ' + escapeHtml(name) + '</span>' +
+              '<button type="button" class="chip-remove" data-idx="' + idx + '">×</button>' +
+              '</span>';
+          }).join('');
+        }
+        $('arisanEligibleCount').textContent = list.filter((n) => !state.wonNames.includes(n)).length;
+        $('arisanWonCount').textContent = state.wonNames.length;
+      }
+
+      function renderModeUI() {
+        const isTeam = state.activeMode === 'team';
+        $('tabModeTeam').classList.toggle('active', isTeam);
+        $('tabModeArisan').classList.toggle('active', !isTeam);
+        $('panelTeamMode').classList.toggle('d-none', !isTeam);
+        $('panelArisanMode').classList.toggle('d-none', isTeam);
+        $('btnSplitByTeams').classList.toggle('active', state.splitMode === 'teams');
+        $('btnSplitBySize').classList.toggle('active', state.splitMode === 'size');
+        $('stepValueDisplay').textContent = state.splitCount;
+        renderParticipants();
+        renderTeamResults();
+        renderArisanResults();
+      }
+
+      function shuffle(arr) {
+        const a = arr.slice();
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        return a;
+      }
+
+      function getTeamsText() {
+        return '🎲 *HASIL PEMBAGIAN TIM*\n' + state.settings.title +
+          (state.lastTeamTime ? '\n🕒 ' + state.lastTeamTime : '') + '\n\n' +
+          state.lastTeams.map((m, i) => '*TIM ' + (i + 1) + '* (' + m.length + ' org)\n' +
+            m.map((n, k) => (k + 1) + '. ' + n).join('\n')).join('\n\n');
+      }
+
+      function getArisanText() {
+        let t = '🎉 *HASIL UNDIAN ARISAN*\n' + state.settings.title +
+          (state.lastWinnerTime ? '\n🕒 ' + state.lastWinnerTime : '') + '\n\n';
+        if (state.lastWinner) t += '🏆 *PEMENANG TERPILIH:*\n*' + state.lastWinner + '*\n\n';
+        if (state.wonNames.length) {
+          t += '📋 *Riwayat Pemenang (' + state.wonNames.length + '):*\n' +
+            state.wonNames.map((w, i) => (i + 1) + '. ' + w).join('\n');
+        }
+        return t.trim();
+      }
+
+      function copyText(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => showToast('Berhasil disalin!')).catch(() => fallbackCopy(text));
+        } else {
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); showToast('Berhasil disalin!'); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+
+      function shareText(title, text) {
+        if (navigator.share) navigator.share({ title: title, text: text }).catch(() => {});
+        else window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+      }
+
+      function downloadPng(canvas, filename) {
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/png');
+        a.download = filename;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        showToast('Gambar hasil disimpan!');
+      }
+
+      function saveTeamsImg() {
+        if (!state.lastTeams.length) return;
+        const w = 720, pad = 32, hH = 120, fH = 50;
+        let cH = 20; state.lastTeams.forEach((m) => cH += 50 + m.length * 30 + 16);
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = hH + cH + fH;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#f1f5f9'; ctx.fillRect(0, 0, w, canvas.height);
+        ctx.fillStyle = '#16263e'; ctx.fillRect(0, 0, w, hH);
+        ctx.fillStyle = '#53d7a6'; ctx.font = 'bold 15px sans-serif'; ctx.fillText('HASIL PEMBAGIAN TIM', pad, 38);
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 26px sans-serif'; ctx.fillText(state.settings.title.toUpperCase(), pad, 72);
+        ctx.fillStyle = '#94a3b8'; ctx.font = '14px sans-serif'; ctx.fillText('Waktu: ' + state.lastTeamTime, pad, 98);
+        let y = hH + 20;
+        state.lastTeams.forEach((m, idx) => {
+          const cardH = 44 + m.length * 30 + 10;
+          ctx.fillStyle = '#fff'; ctx.fillRect(pad, y, w - pad * 2, cardH);
+          ctx.strokeStyle = '#cbd5e1'; ctx.strokeRect(pad, y, w - pad * 2, cardH);
+          ctx.fillStyle = '#16263e'; ctx.font = 'bold 19px sans-serif'; ctx.fillText('TIM ' + (idx + 1) + ' (' + m.length + ' org)', pad + 16, y + 30);
+          ctx.fillStyle = '#1e293b'; ctx.font = '17px sans-serif';
+          m.forEach((n, i) => ctx.fillText((i + 1) + '. ' + n, pad + 16, y + 62 + i * 30));
+          y += cardH + 14;
+        });
+        ctx.fillStyle = '#64748b'; ctx.font = 'bold 14px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('Powered By Ari GPM • ' + APP_VERSION, w / 2, canvas.height - 18);
+        downloadPng(canvas, 'hasil-tim-' + new Date().toISOString().slice(0, 10) + '.png');
+      }
+
+      function saveArisanImg() {
+        if (!state.lastWinner && !state.wonNames.length) return;
+        const w = 720, pad = 32, hH = 120, sH = state.lastWinner ? 160 : 0;
+        const histH = state.wonNames.length ? (56 + state.wonNames.length * 30 + 16) : 0;
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = hH + 20 + sH + (sH && histH ? 16 : 0) + histH + 60;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#f1f5f9'; ctx.fillRect(0, 0, w, canvas.height);
+        ctx.fillStyle = '#16263e'; ctx.fillRect(0, 0, w, hH);
+        ctx.fillStyle = '#53d7a6'; ctx.font = 'bold 15px sans-serif'; ctx.fillText('HASIL UNDIAN ARISAN', pad, 38);
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 26px sans-serif'; ctx.fillText(state.settings.title.toUpperCase(), pad, 72);
+        ctx.fillStyle = '#94a3b8'; ctx.font = '14px sans-serif'; ctx.fillText('Waktu: ' + state.lastWinnerTime, pad, 98);
+        let y = hH + 20;
+        if (state.lastWinner) {
+          ctx.fillStyle = '#d1fae5'; ctx.fillRect(pad, y, w - pad * 2, sH);
+          ctx.strokeStyle = '#3ec190'; ctx.lineWidth = 3; ctx.strokeRect(pad, y, w - pad * 2, sH);
+          ctx.textAlign = 'center'; ctx.fillStyle = '#065f46'; ctx.font = 'bold 17px sans-serif';
+          ctx.fillText('🏆 PEMENANG TERPILIH 🏆', w / 2, y + 44);
+          ctx.fillStyle = '#16263e'; ctx.font = 'bold 34px sans-serif';
+          ctx.fillText(state.lastWinner, w / 2, y + 102);
+          ctx.textAlign = 'left'; y += sH + 16;
+        }
+        if (state.wonNames.length) {
+          ctx.fillStyle = '#fff'; ctx.fillRect(pad, y, w - pad * 2, histH);
+          ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1; ctx.strokeRect(pad, y, w - pad * 2, histH);
+          ctx.fillStyle = '#16263e'; ctx.font = 'bold 18px sans-serif';
+          ctx.fillText('RIWAYAT PEMENANG (' + state.wonNames.length + ')', pad + 16, y + 32);
+          ctx.fillStyle = '#1e293b'; ctx.font = '17px sans-serif';
+          state.wonNames.forEach((n, i) => ctx.fillText((i + 1) + '. ' + n, pad + 16, y + 64 + i * 30));
+        }
+        ctx.fillStyle = '#64748b'; ctx.font = 'bold 14px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('Powered By Ari GPM • ' + APP_VERSION, w / 2, canvas.height - 18);
+        downloadPng(canvas, 'hasil-arisan-' + new Date().toISOString().slice(0, 10) + '.png');
+      }
+
+      function renderTeamResults() {
+        const c = $('teamResultsContainer');
+        if (!state.lastTeams || !state.lastTeams.length) { c.classList.add('d-none'); c.innerHTML = ''; return; }
+        c.classList.remove('d-none');
+        c.innerHTML = '<div class="result-toolbar-card"><div class="result-toolbar-head">' +
+          '<strong style="font-size:13.5px;">HASIL PEMBAGIAN TIM</strong>' +
+          '<span style="font-size:11.5px; color:var(--text-muted);">' + escapeHtml(state.lastTeamTime) + '</span></div>' +
+          '<div class="result-action-grid">' +
+          '<button type="button" class="btn-res-action btn-res-copy" id="btnCopyTeamsText">📋 Salin</button>' +
+          '<button type="button" class="btn-res-action btn-res-share" id="btnShareTeamsText">📤 Bagi</button>' +
+          '<button type="button" class="btn-res-action btn-res-save" id="btnSaveTeamsImg">💾 Simp</button></div></div>' +
+          state.lastTeams.map((m, idx) => '<div class="result-team-card"><div class="result-team-header">' +
+            '<span>TIM ' + (idx + 1) + '</span><span class="badge rounded-pill" style="background:var(--navy);">' + m.length + ' org</span></div>' +
+            '<div class="small fw-semibold" style="line-height:1.6;">' + m.map((n, i) => (i + 1) + '. ' + escapeHtml(n)).join('<br>') + '</div></div>').join('');
+      }
+
+      function renderArisanResults() {
+        const c = $('arisanResultsContainer');
+        if (!state.lastWinner && !state.wonNames.length) { c.classList.add('d-none'); c.innerHTML = ''; return; }
+        c.classList.remove('d-none');
+        let html = '';
+        if (state.lastWinner) {
+          html += '<div class="winner-spotlight"><div style="font-size:28px;">🏆</div>' +
+            '<div class="small fw-bold text-uppercase text-success">PEMENANG TERPILIH</div>' +
+            '<div class="winner-name">' + escapeHtml(state.lastWinner) + '</div>' +
+            '<div class="result-action-grid">' +
+            '<button type="button" class="btn-res-action btn-res-copy" id="btnCopyWinner">📋 Salin</button>' +
+            '<button type="button" class="btn-res-action btn-res-share" id="btnShareWinner">📤 Bagi</button>' +
+            '<button type="button" class="btn-res-action btn-res-save" id="btnSaveWinnerImg">💾 Simp</button></div></div>';
+        }
+        if (state.wonNames.length) {
+          html += '<div class="result-team-card"><div class="result-team-header"><span>RIWAYAT PEMENANG</span>' +
+            '<span class="badge rounded-pill bg-success">' + state.wonNames.length + '</span></div>' +
+            '<div class="small fw-semibold" style="line-height:1.6;">' + state.wonNames.map((w, i) => (i + 1) + '. ' + escapeHtml(w)).join('<br>') + '</div></div>';
+        }
+        c.innerHTML = html;
+      }
+
+      function lockScreen() {
+        if (!state.settings.pinEnabled) return;
+        $('inputUnlockPin').value = '';
+        $('pinUnlockView').classList.remove('d-none');
+        $('pinRecoveryView').classList.add('d-none');
+        $('pinLockOverlay').classList.add('locked');
+      }
+
+      function resetIdle() {
+        clearTimeout(idleTimer);
+        if (state.settings.pinEnabled) idleTimer = setTimeout(lockScreen, 120000);
+      }
+
+      document.addEventListener('click', (e) => {
+        const chipDel = e.target.closest('.chip-remove');
+        if (chipDel) {
+          const rem = state.participants.splice(Number(chipDel.dataset.idx), 1)[0];
+          if (rem) state.wonNames = state.wonNames.filter((n) => n !== rem);
+          saveState(); renderParticipants(); showToast('Peserta dihapus.');
+          return;
+        }
+
+        const themeBtn = e.target.closest('.theme-option');
+        if (themeBtn) {
+          state.settings.theme = themeBtn.dataset.theme;
+          saveState(); applyAppearance(); showToast('Tema diterapkan.');
+          return;
+        }
+
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        const id = btn.id;
+
+        if (id === 'btnAddSingle') {
+          const val = $('inputNewName').value.trim();
+          if (!val) return showToast('Ketik nama peserta terlebih dahulu.');
+          state.participants.push(val); saveState(); renderParticipants();
+          $('inputNewName').value = ''; $('inputNewName').focus();
+        } else if (id === 'btnOpenBulk') {
+          $('textareaBulkNames').value = ''; $('modalBulkPaste').classList.add('open');
+        } else if (id === 'btnCloseBulk' || id === 'btnCancelBulk') {
+          $('modalBulkPaste').classList.remove('open');
+        } else if (id === 'btnSubmitBulk') {
+          const items = $('textareaBulkNames').value.split(/[\n,;]+/).map((l) => l.replace(/^\s*\d+[\.\)\-]\s*/, '').trim()).filter(Boolean);
+          if (!items.length) return showToast('Tidak ada nama valid.');
+          state.participants.push(...items); saveState(); renderParticipants();
+          $('modalBulkPaste').classList.remove('open'); showToast(items.length + ' peserta ditambahkan.');
+        } else if (id === 'btnClearParticipants') {
+          if (!state.participants.length) return showToast('Daftar peserta sudah kosong.');
+          $('confirmModalTitle').textContent = 'Hapus Semua Peserta?';
+          $('confirmModalMessage').textContent = 'Seluruh daftar nama peserta akan dikosongkan.';
+          confirmFn = () => {
+            state.participants = []; state.wonNames = []; state.lastTeams = []; state.lastTeamTime = ''; state.lastWinner = null; state.lastWinnerTime = '';
+            saveState(); renderModeUI(); showToast('Semua peserta dihapus.');
+          };
+          $('modalConfirm').classList.add('open');
+        } else if (id === 'btnBackupData') {
+          const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+          const u = URL.createObjectURL(blob), a = document.createElement('a');
+          a.href = u; a.download = 'lotre-group-random-' + new Date().toISOString().slice(0, 10) + '.json';
+          document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u);
+          showToast('File backup JSON diunduh.');
+        } else if (id === 'btnRestoreData') {
+          $('inputRestoreFile').click();
+        } else if (id === 'tabModeTeam') {
+          state.activeMode = 'team'; saveState(); renderModeUI();
+        } else if (id === 'tabModeArisan') {
+          state.activeMode = 'arisan'; saveState(); renderModeUI();
+        } else if (id === 'btnSplitByTeams') {
+          state.splitMode = 'teams'; saveState(); renderModeUI();
+        } else if (id === 'btnSplitBySize') {
+          state.splitMode = 'size'; saveState(); renderModeUI();
+        } else if (id === 'btnStepDown' && state.splitCount > 1) {
+          state.splitCount--; saveState(); $('stepValueDisplay').textContent = state.splitCount;
+        } else if (id === 'btnStepUp' && state.splitCount < 100) {
+          state.splitCount++; saveState(); $('stepValueDisplay').textContent = state.splitCount;
+        } else if (id === 'btnRunTeamDraw') {
+          if (isDrawing) return;
+          if (state.participants.length < 2) return showToast('Minimal masukkan 2 peserta.');
+          const n = state.splitMode === 'teams' ? Math.min(state.splitCount, state.participants.length) : Math.max(1, Math.ceil(state.participants.length / state.splitCount));
+          isDrawing = true; btn.textContent = '⏳ MENGACAK TIM...';
+          setTimeout(() => {
+            const teams = Array.from({ length: n }, () => []);
+            shuffle(state.participants).forEach((p, i) => teams[i % n].push(p));
+            state.lastTeams = teams; state.lastTeamTime = formatNow(); saveState(); renderTeamResults();
+            btn.innerHTML = '<span>🎲</span><span>MULAI UNDI</span>'; isDrawing = false;
+            showToast('Pembagian ' + n + ' tim selesai!');
+          }, 350);
+        } else if (id === 'btnRunArisanDraw') {
+          if (isDrawing) return;
+          const el = state.participants.filter((n) => !state.wonNames.includes(n));
+          if (!el.length) return showToast(state.participants.length ? 'Semua peserta sudah menang! Reset di Pengaturan.' : 'Tambahkan peserta terlebih dahulu.');
+          isDrawing = true; $('arisanResultsContainer').classList.remove('d-none');
+          let ticks = 0;
+          const iv = setInterval(() => {
+            const r = el[Math.floor(Math.random() * el.length)];
+            $('arisanResultsContainer').innerHTML = '<div class="winner-spotlight"><div class="small fw-bold text-muted">Mengocok Nama...</div><div class="winner-name">' + escapeHtml(r) + '</div></div>';
+            if (++ticks >= 10) {
+              clearInterval(iv);
+              const win = shuffle(el)[0];
+              state.lastWinner = win; state.lastWinnerTime = formatNow();
+              if (!state.wonNames.includes(win)) state.wonNames.push(win);
+              saveState(); renderParticipants(); renderArisanResults(); isDrawing = false;
+              showToast('Selamat kepada ' + win + '!');
+            }
+          }, 70);
+        } else if (id === 'btnCopyTeamsText') {
+          copyText(getTeamsText());
+        } else if (id === 'btnShareTeamsText') {
+          shareText('Hasil Pembagian Tim', getTeamsText());
+        } else if (id === 'btnSaveTeamsImg') {
+          saveTeamsImg();
+        } else if (id === 'btnCopyWinner') {
+          copyText(getArisanText());
+        } else if (id === 'btnShareWinner') {
+          shareText('Hasil Undian Arisan', getArisanText());
+        } else if (id === 'btnSaveWinnerImg') {
+          saveArisanImg();
+        } else if (id === 'btnToggleSettings') {
+          const open = !$('viewSettings').classList.contains('d-none');
+          $('viewSettings').classList.toggle('d-none', open); $('viewMain').classList.toggle('d-none', !open);
+        } else if (id === 'btnBackToMain') {
+          $('viewSettings').classList.add('d-none'); $('viewMain').classList.remove('d-none');
+        } else if (id === 'btnSaveIdentity') {
+          state.settings.title = $('inputSetTitle').value.trim() || 'LOTRE GROUP RANDOM';
+          state.settings.subtitle = $('inputSetSubtitle').value.trim() || 'TEAM GENERATOR';
+          saveState(); applyAppearance(); showToast('Identitas diperbarui.');
+        } else if (id === 'btnSaveSecurity') {
+          const pin = $('inputSetPin').value.trim();
+          if (!/^\d{4,6}$/.test(pin)) return showToast('PIN harus 4-6 digit angka.');
+          state.settings.pinEnabled = $('chkPinEnabled').checked; state.settings.pinCode = pin;
+          state.settings.antiPhishing = $('inputSetPhishing').value.trim() || 'Prisma Terverifikasi';
+          state.settings.recQuestion = $('inputSetRecQuestion').value.trim() || 'Nama toko atau usaha utama?';
+          state.settings.recAnswer = $('inputSetRecAnswer').value.trim() || 'prisma';
+          saveState(); applyAppearance(); resetIdle(); showToast('Keamanan PIN disimpan.');
+        } else if (id === 'btnLockNow') {
+          state.settings.pinEnabled = true; $('chkPinEnabled').checked = true; saveState(); lockScreen();
+        } else if (id === 'btnUnlockSubmit') {
+          if ($('inputUnlockPin').value.trim() === state.settings.pinCode) {
+            $('pinLockOverlay').classList.remove('locked'); resetIdle(); showToast('Layar dibuka.');
+          } else {
+            showToast('PIN salah!'); $('inputUnlockPin').value = '';
+          }
+        } else if (id === 'btnSwitchToRecovery') {
+          $('recQuestionDisplay').textContent = state.settings.recQuestion;
+          $('pinUnlockView').classList.add('d-none'); $('pinRecoveryView').classList.remove('d-none');
+        } else if (id === 'btnBackToUnlock') {
+          $('pinRecoveryView').classList.add('d-none'); $('pinUnlockView').classList.remove('d-none');
+        } else if (id === 'btnResetPinSubmit') {
+          const ans = $('inputRecAnswerCheck').value.trim().toLowerCase();
+          const np = $('inputRecNewPin').value.trim();
+          if (ans !== String(state.settings.recAnswer || '').trim().toLowerCase()) return showToast('Jawaban salah.');
+          if (!/^\d{4,6}$/.test(np)) return showToast('PIN baru harus 4-6 digit.');
+          state.settings.pinCode = np; saveState(); applyAppearance();
+          $('pinLockOverlay').classList.remove('locked'); resetIdle(); showToast('PIN direset.');
+        } else if (id === 'btnResetArisanCycle') {
+          $('confirmModalTitle').textContent = 'Reset Putaran Arisan?';
+          $('confirmModalMessage').textContent = 'Semua peserta kembali masuk daftar undian.';
+          confirmFn = () => { state.wonNames = []; state.lastWinner = null; state.lastWinnerTime = ''; saveState(); renderModeUI(); showToast('Putaran arisan direset.'); };
+          $('modalConfirm').classList.add('open');
+        } else if (id === 'btnFactoryReset') {
+          $('confirmModalTitle').textContent = 'Hapus Semua Data?';
+          $('confirmModalMessage').textContent = 'Seluruh data dan pengaturan akan dikembalikan ke awal.';
+          confirmFn = () => {
+            localStorage.removeItem(STORAGE_KEY); state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+            saveState(); applyAppearance(); renderModeUI();
+            $('viewSettings').classList.add('d-none'); $('viewMain').classList.remove('d-none');
+            showToast('Aplikasi direset.');
+          };
+          $('modalConfirm').classList.add('open');
+        } else if (id === 'btnConfirmCancel') {
+          $('modalConfirm').classList.remove('open'); confirmFn = null;
+        } else if (id === 'btnConfirmOk') {
+          $('modalConfirm').classList.remove('open');
+          if (typeof confirmFn === 'function') confirmFn();
+          confirmFn = null;
+        } else if (id === 'btnInstallApp' && installPrompt) {
+          installPrompt.prompt(); installPrompt = null; $('pwaInstallBanner').classList.add('d-none');
+        } else if (id === 'btnDismissInstall') {
+          $('pwaInstallBanner').classList.add('d-none');
+        }
+      });
+
+      $('inputNewName').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); $('btnAddSingle').click(); }
+      });
+
+      $('chkPinEnabled').addEventListener('change', (e) => {
+        state.settings.pinEnabled = e.target.checked; saveState(); resetIdle();
+        showToast(e.target.checked ? 'Kunci PIN aktif.' : 'Kunci PIN nonaktif.');
+      });
+
+      $('inputRestoreFile').addEventListener('change', (e) => {
+        const f = e.target.files && e.target.files[0]; if (!f) return;
+        const r = new FileReader();
+        r.onload = (ev) => {
+          try {
+            const imp = JSON.parse(ev.target.result);
+            if (!imp || !Array.isArray(imp.participants)) throw new Error();
+            state = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_STATE)), imp);
+            state.settings = Object.assign({}, DEFAULT_STATE.settings, imp.settings || {});
+            saveState(); applyAppearance(); renderModeUI();
+            showToast('Data dipulihkan (' + state.participants.length + ' peserta).');
+          } catch (err) { showToast('File JSON tidak valid.'); }
+          $('inputRestoreFile').value = '';
+        };
+        r.readAsText(f);
+      });
+
+      ['pointerdown', 'keydown', 'touchstart'].forEach((evt) => document.addEventListener(evt, resetIdle, { passive: true }));
+      window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installPrompt = e; $('pwaInstallBanner').classList.remove('d-none'); });
+      if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+
+      applyAppearance();
+      renderModeUI();
+      if (state.settings.pinEnabled) lockScreen(); else resetIdle();
+    })();
+  </script>
+</body>
+</html>
