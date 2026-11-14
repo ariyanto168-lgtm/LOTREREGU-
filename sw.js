@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lgr-cache-v1.1.9';
+const CACHE_NAME = 'lgr-cache-v1.2.1';
 const CORE_ASSETS = [
   './',
   './index.html',
