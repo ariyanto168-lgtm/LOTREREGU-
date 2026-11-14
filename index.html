@@ -178,10 +178,6 @@
       border: 1px solid rgba(255,255,255,0.14); border-radius: 24px; padding: 24px 20px; text-align: center;
     }
     .lock-brand-logo { width: 60px; height: 60px; border-radius: 16px; object-fit: cover; margin: 0 auto 10px; display: block; }
-    .anti-phishing-pill {
-      display: inline-block; background: rgba(83,215,166,0.16); border: 1px solid rgba(83,215,166,0.4);
-      color: var(--mint); font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 999px; margin: 8px 0 16px;
-    }
     .app-toast {
       position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(20px);
       background: var(--navy); color: #fff; padding: 10px 18px; border-radius: 999px;
@@ -202,7 +198,7 @@
         </div>
         <div style="min-width:0;">
           <h1 class="brand-title" id="headerTitle">LOTRE GROUP RANDOM</h1>
-          <p class="brand-subtitle"><span id="headerSubtitle">TEAM GENERATOR</span> • <span id="headerVersion">v1.2.0</span></p>
+          <p class="brand-subtitle"><span id="headerSubtitle">TEAM GENERATOR</span> • <span id="headerVersion">v1.2.1</span></p>
         </div>
       </div>
       <button type="button" class="btn-header-icon" id="btnToggleSettings" aria-label="Pengaturan">⚙️</button>
@@ -318,14 +314,13 @@
           <hr class="my-3">
           <div class="mb-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <label class="form-label fw-bold small text-uppercase text-muted mb-0">3. Kunci PIN & Anti-Phishing</label>
+              <label class="form-label fw-bold small text-uppercase text-muted mb-0">3. Kunci PIN Keamanan</label>
               <div class="form-check form-switch mb-0">
                 <input class="form-check-input" type="checkbox" id="chkPinEnabled" style="width:42px; height:22px;">
               </div>
             </div>
             <p class="small text-muted mb-2">Otomatis mengunci layar setelah 2 menit tidak aktif.</p>
             <input type="password" inputmode="numeric" maxlength="6" id="inputSetPin" class="input-clean w-100 mb-2" placeholder="PIN (4-6 digit, default: 1234)">
-            <input type="text" id="inputSetPhishing" class="input-clean w-100 mb-2" placeholder="Frasa Anti-Phishing">
             <input type="text" id="inputSetRecQuestion" class="input-clean w-100 mb-2" placeholder="Pertanyaan Pemulihan PIN">
             <input type="text" id="inputSetRecAnswer" class="input-clean w-100 mb-2" placeholder="Jawaban Pemulihan PIN">
             <div class="d-flex gap-2">
@@ -346,7 +341,7 @@
     </section>
   </main>
 
-  <footer class="app-footer">Powered By Ari GPM • <span id="footerVersion">v1.2.0</span></footer>
+  <footer class="app-footer">Powered By Ari GPM • <span id="footerVersion">v1.2.1</span></footer>
 
   <div class="app-modal-backdrop" id="modalBulkPaste">
     <div class="app-modal-box">
@@ -377,8 +372,7 @@
   <div class="pin-lock-overlay" id="pinLockOverlay">
     <div class="pin-lock-card">
       <img src="./icon-192.png" alt="Logo" class="lock-brand-logo" onerror="this.style.display='none';">
-      <h4 class="fw-bold mb-1" id="lockAppTitle">LOTRE GROUP RANDOM</h4>
-      <div class="anti-phishing-pill" id="lockPhishingDisplay">Frasa Aman: Prisma Terverifikasi</div>
+      <h4 class="fw-bold mb-3" id="lockAppTitle">LOTRE GROUP RANDOM</h4>
       <div id="pinUnlockView">
         <p class="small text-light opacity-75 mb-2">Masukkan PIN untuk membuka aplikasi</p>
         <input type="password" inputmode="numeric" maxlength="6" id="inputUnlockPin" class="form-control text-center fw-bold fs-4 mb-3" style="border-radius:14px; letter-spacing:6px;" placeholder="••••">
@@ -405,7 +399,7 @@
   <script>
     (function () {
       'use strict';
-      const APP_VERSION = 'v1.2.0';
+      const APP_VERSION = 'v1.2.1';
       const STORAGE_KEY = 'lotre_group_random_state_v1';
       const DEFAULT_STATE = {
         teamParticipants: [],
@@ -420,7 +414,7 @@
         lastWinnerTime: '',
         settings: {
           title: 'LOTRE GROUP RANDOM', subtitle: 'TEAM GENERATOR', theme: 'plain',
-          pinEnabled: false, pinCode: '1234', antiPhishing: 'Prisma Terverifikasi',
+          pinEnabled: false, pinCode: '1234',
           recQuestion: 'Nama toko atau usaha utama?', recAnswer: 'prisma'
         }
       };
@@ -485,7 +479,6 @@
         $('headerVersion').textContent = APP_VERSION;
         $('footerVersion').textContent = APP_VERSION;
         $('lockAppTitle').textContent = s.title || 'LOTRE GROUP RANDOM';
-        $('lockPhishingDisplay').textContent = 'Frasa Aman: ' + (s.antiPhishing || 'Prisma Terverifikasi');
         document.body.className = 'theme-' + (s.theme || 'plain');
         document.querySelectorAll('.theme-option').forEach((b) => {
           b.classList.toggle('active', b.dataset.theme === s.theme);
@@ -494,7 +487,6 @@
         $('inputSetSubtitle').value = s.subtitle;
         $('chkPinEnabled').checked = Boolean(s.pinEnabled);
         $('inputSetPin').value = s.pinCode;
-        $('inputSetPhishing').value = s.antiPhishing;
         $('inputSetRecQuestion').value = s.recQuestion;
         $('inputSetRecAnswer').value = s.recAnswer;
       }
@@ -854,7 +846,6 @@
           const pin = $('inputSetPin').value.trim();
           if (!/^\d{4,6}$/.test(pin)) return showToast('PIN harus 4-6 digit angka.');
           state.settings.pinEnabled = $('chkPinEnabled').checked; state.settings.pinCode = pin;
-          state.settings.antiPhishing = $('inputSetPhishing').value.trim() || 'Prisma Terverifikasi';
           state.settings.recQuestion = $('inputSetRecQuestion').value.trim() || 'Nama toko atau usaha utama?';
           state.settings.recAnswer = $('inputSetRecAnswer').value.trim() || 'prisma';
           saveState(); applyAppearance(); resetIdle(); showToast('Keamanan PIN disimpan.');
